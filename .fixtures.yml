@@ -1,0 +1,8 @@
+fixtures:
+  symlinks:
+    choria: "#{source_dir}"
+  forge_modules:
+    choria: "choria/mcollective_choria"
+    mcollective: "choria/mcollective"
+    stdlib: "puppetlabs/stdlib"
+    apt: "puppetlabs/apt"

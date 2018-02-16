@@ -4,6 +4,7 @@ class choria::repo(
 ) {
   if $facts["os"]["family"] == "RedHat" {
     yumrepo{"choria_release":
+      ensure          => $ensure,
       baseurl         => 'https://packagecloud.io/choria/release/el/$releasever/$basearch',
       repo_gpgcheck   => true,
       gpgcheck        => false,
@@ -12,11 +13,11 @@ class choria::repo(
       sslverify       => true,
       sslcacert       => "/etc/pki/tls/certs/ca-bundle.crt",
       metadata_expire => 300,
-      ensure          => $ensure
     }
 
     if $nightly {
       yumrepo{"choria_nightly":
+        ensure          => $ensure,
         baseurl         => 'https://packagecloud.io/choria/nightly/el/$releasever/$basearch',
         repo_gpgcheck   => true,
         gpgcheck        => false,
@@ -25,7 +26,6 @@ class choria::repo(
         sslverify       => true,
         sslcacert       => "/etc/pki/tls/certs/ca-bundle.crt",
         metadata_expire => 300,
-        ensure          => $ensure
       }
     }
   } else {

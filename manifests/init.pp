@@ -2,8 +2,8 @@
 # @param nightly_repo Install the nightly package repo as well as the release one
 # @param ensure Add or remove the software
 class choria (
-  Bool $manage_package_repo = false,
-  Bool $nightly_repo = false,
+  Boolean $manage_package_repo = false,
+  Boolean $nightly_repo = false,
   Enum["present", "absent"] $ensure = "present",
 ) {
   if $manage_package_repo {
