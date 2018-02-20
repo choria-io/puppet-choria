@@ -37,4 +37,17 @@ describe("choria::repo") do
       end
     end
   end
+
+  context("non redhat") do
+    let(:facts) do
+      {
+        "aio_agent_version" => "1.7.0",
+        "os" => {
+          "family" => "Unsupported"
+        }
+      }
+    end
+
+    it { is_expected.to compile.and_raise_error(/Choria Repositories are not supported on Unsupported/) }
+  end
 end
