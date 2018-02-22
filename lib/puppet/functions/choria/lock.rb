@@ -25,16 +25,17 @@
 #   )
 # }
 # ~~~
-Puppet::Functions.create_function(:"choria::lock") do
+Puppet::Functions.create_function(:"choria::lock", Puppet::Functions::InternalFunction) do
   dispatch :lock do
+    scope_param
     param "String", :item
     param "Hash", :properties
     block_param "Callable", :block
   end
 
-  def lock(item, properties, &blk)
+  def lock(scope, item, properties, &blk)
     require_relative "../../_load_choria"
 
-    MCollective::Util::BoltSupport.init_choria.data_lock(item, properties, &blk)
+    MCollective::Util::BoltSupport.init_choria.data_lock(scope, item, properties, &blk)
   end
 end

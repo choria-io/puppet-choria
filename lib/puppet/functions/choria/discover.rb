@@ -48,24 +48,26 @@
 #   "uses" => ["puppet" => ">= 1.2.3"]
 # )
 # ~~~
-Puppet::Functions.create_function(:"choria::discover") do
+Puppet::Functions.create_function(:"choria::discover", Puppet::Functions::InternalFunction) do
   dispatch :mcollective_discover do
+    scope_param
     param "Hash", :options
   end
 
   dispatch :discover do
+    scope_param
     param "String", :type
     param "Hash", :options
   end
 
-  def mcollective_discover(options)
-    discover("mcollective", options)
+  def mcollective_discover(scope, options)
+    discover(scope, "mcollective", options)
   end
 
-  def discover(type, options)
+  def discover(scope, type, options)
     require_relative "../../_load_choria"
 
-    MCollective::Util::BoltSupport.init_choria.discover_nodes(type, options)
+    MCollective::Util::BoltSupport.init_choria.discover_nodes(scope, type, options)
   end
 end
 
