@@ -1,1 +1,1 @@
-type Choria::Nodes = Array[String[1], 1]
+type Choria::Nodes = Array[Choria::Node, 0]

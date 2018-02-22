@@ -36,26 +36,28 @@
 #   )
 # }
 # ~~~
-Puppet::Functions.create_function(:"choria::task") do
+Puppet::Functions.create_function(:"choria::task", Puppet::Functions::InternalFunction) do
   dispatch :run_task do
+    scope_param
     param "String", :type
     param "Hash", :properties
     return_type "Choria::TaskResults"
   end
 
   dispatch :run_mcollective_task do
+    scope_param
     param "Hash", :properties
     return_type "Choria::TaskResults"
   end
 
-  def run_mcollective_task(properties)
-    run_task("mcollective", properties)
+  def run_mcollective_task(scope, properties)
+    run_task(scope, "mcollective", properties)
   end
 
-  def run_task(type, properties)
+  def run_task(scope, type, properties)
     require_relative "../../_load_choria"
 
-    results = MCollective::Util::BoltSupport.init_choria.run_task(type, properties).map do |node, properties|
+    results = MCollective::Util::BoltSupport.init_choria.run_task(scope, type, properties).map do |node, properties|
       MCollective::Util::BoltSupport::TaskResult.new(node, properties)
     end
 

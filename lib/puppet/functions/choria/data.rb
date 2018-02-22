@@ -29,13 +29,15 @@
 #
 # The properties passed to the function is identical to those documents
 # in the [Choria Playbook Documentation](https://choria.io/docs/playbooks/data/).
-Puppet::Functions.create_function(:"choria::data") do
+Puppet::Functions.create_function(:"choria::data", Puppet::Functions::InternalFunction) do
   dispatch :read do
+    scope_param
     param "String", :item
     param "Hash", :properties
   end
 
   dispatch :write do
+    scope_param
     param "String", :item
     param "String", :value
     param "Hash", :properties
@@ -47,11 +49,11 @@ Puppet::Functions.create_function(:"choria::data") do
     MCollective::Util::BoltSupport.init_choria
   end
 
-  def read(item, properties)
-    init.data_read(item, properties)
+  def read(scope, item, properties)
+    init.data_read(scope, item, properties)
   end
 
-  def write(item, value, properties)
-    init.data_write(item, value, properties)
+  def write(scope, item, value, properties)
+    init.data_write(scope, item, value, properties)
   end
 end
