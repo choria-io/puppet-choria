@@ -12,13 +12,21 @@ Puppet::Functions.create_function(:"choria::run_playbook", Puppet::Functions::In
       )
     end
 
-    loaders = closure_scope.compiler.loaders
-    loader = loaders.private_environment_loader
+    args = named_args.reject {|a| a.start_with?("_") }
+    result = []
 
-    if loader && (func = loader.load(:plan, playbook))
-      result = func.class.dispatcher.dispatchers[0].call_by_name_with_scope(scope, named_args, true)
+    begin
+      loaders = closure_scope.compiler.loaders
+      loader = loaders.private_environment_loader
 
-      return result
+      if loader && (func = loader.load(:plan, playbook))
+        results = func.class.dispatcher.dispatchers[0].call_by_name_with_scope(scope, args, true)
+        return results
+      end
+    rescue Puppet::Error
+      raise unless named_args["_catch_errors"]
+
+      return MCollective::Util::BoltSupport::TaskResults.new([], $!)
     end
 
     raise(ArgumentError, "Function choria::run_playbook(): Unknown playbook: '%s'" % playbook)

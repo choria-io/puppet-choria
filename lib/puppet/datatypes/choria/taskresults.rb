@@ -2,6 +2,7 @@ Puppet::DataTypes.create_type("Choria::TaskResults") do
   interface <<-PUPPET
     attributes => {
       "results" => Array[Choria::TaskResult, 0],
+      "exception" => Optional[Error],
     },
     functions => {
       count => Callable[[], Integer],
@@ -11,7 +12,9 @@ Puppet::DataTypes.create_type("Choria::TaskResults") do
       first => Callable[[], Optional[Choria::TaskResult]],
       ok => Callable[[], Boolean],
       ok_set => Callable[[], Choria::TaskResults],
+      fail_ok => Callable[[], Boolean],
       hosts => Callable[[], Choria::Nodes],
+      message => Callable[[], String],
     }
   PUPPET
 
