@@ -57,10 +57,6 @@ Puppet::Functions.create_function(:"choria::task", Puppet::Functions::InternalFu
   def run_task(scope, type, properties)
     require_relative "../../_load_choria"
 
-    results = MCollective::Util::BoltSupport.init_choria.run_task(scope, type, properties).map do |node, properties|
-      MCollective::Util::BoltSupport::TaskResult.new(node, properties)
-    end
-
-    MCollective::Util::BoltSupport::TaskResults.new(results)
+    MCollective::Util::BoltSupport.init_choria.run_task(scope, type, properties)
   end
 end
