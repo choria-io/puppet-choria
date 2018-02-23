@@ -6,9 +6,9 @@ Puppet::Functions.create_function(:"choria::on_success", Puppet::Functions::Inte
   end
 
   def handler(results)
-    return results if !results.error_set.empty || results.exception
-
-    yield(results)
+    if results.is_a?(MCollective::Util::BoltSupport::TaskResults) && (!results.error_set.empty || results.exception)
+      yield(results)
+    end
 
     results
   end
