@@ -1,12 +1,14 @@
 Puppet::Functions.create_function(:"choria::on_error", Puppet::Functions::InternalFunction) do
   dispatch :handler do
-    param "Choria::TaskResults", :results
+    param "Any", :results
     block_param
-    return_type "Choria::TaskResults"
+    return_type "Any"
   end
 
   def handler(results)
-    yield(results) if results.exception || !results.error_set.empty
+    if results.is_a?(MCollective::Util::BoltSupport::TaskResults) && (results.exception || !results.error_set.empty)
+      yield(results)
+    end
 
     results
   end
