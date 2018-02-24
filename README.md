@@ -1,13 +1,5 @@
 # choria/choria
 
-#### Table of Contents
-
-1. [Overview](#overview)
-1. [Usage](#usage)
-1. [Configuration](#configuration)
-
-## Overview
-
 A distribution of plugins for MCollective designed to create a production ready MCollective install in 30 minutes.
 
 A main goal is ease of use and installation however a number of new end user features are added to MCollective while building on a the PuppetCA for security.
@@ -21,9 +13,5 @@ Includes:
   * Integration with PuppetDB, PuppetCA, Puppet Bolt, Puppet Tasks and Puppet Plans.
 
 See [choria.io](http://choria.io) for full details
-
-## Module Description
-
-## Usage
 
 A deployment guide can be found at the [Choria Website](http://choria.io)
