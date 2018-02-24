@@ -11,31 +11,29 @@
 #
 # @example disables puppet and wait for all nodes to idle
 #
-# ~~~ puppet
-# choria::task("mcollective",
-#   "action" => "puppet.disable",
-#   "nodes" => $all_nodes,
-#   "properties" => {
-#     "message" => "disabled during plan execution ${name}"
-#   }
-# )
+#    choria::task("mcollective",
+#      "action" => "puppet.disable",
+#      "nodes" => $all_nodes,
+#      "properties" => {
+#        "message" => "disabled during plan execution ${name}"
+#      }
+#    )
 #
-# $result = choria::task("mcollective",
-#   "action" => "puppet.status",
-#   "nodes" => $all_nodes,
-#   "assert" => "idling=true",
-#   "tries" => 10,
-#   "try_sleep" => 30
-# )
+#    $result = choria::task("mcollective",
+#      "action" => "puppet.status",
+#      "nodes" => $all_nodes,
+#      "assert" => "idling=true",
+#      "tries" => 10,
+#      "try_sleep" => 30
+#    )
 #
-# if $result.ok {
-#   choria::task("slack",
-#     "token" => $slack_token,
-#     "channel" = "#ops",
-#     "text" => "All nodes have been disabled and are idling"
-#   )
-# }
-# ~~~
+#    if $result.ok {
+#      choria::task("slack",
+#        "token" => $slack_token,
+#        "channel" = "#ops",
+#        "text" => "All nodes have been disabled and are idling"
+#      )
+#    }
 Puppet::Functions.create_function(:"choria::task", Puppet::Functions::InternalFunction) do
   dispatch :run_task do
     scope_param

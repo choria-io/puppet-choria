@@ -1,3 +1,15 @@
+# Runs a Choria playbook
+#
+# This helper invokes a Choria Playbook and returns any result that the called Playbook returns
+#
+# Errors will by default be raised causing execution to fail, passing `__catch_errors => true` as
+# a property will return the failing task result
+#
+# @example runs a playbook and capture the results
+#
+#    choria::run_playbook("example::restart_puppet",
+#      "cluster" => "alpha"
+#    )
 Puppet::Functions.create_function(:"choria::run_playbook", Puppet::Functions::InternalFunction) do
   dispatch :run_playbook do
     scope_param
