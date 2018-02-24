@@ -5,11 +5,24 @@
 # Errors will by default be raised causing execution to fail, passing `__catch_errors => true` as
 # a property will return the failing task result
 #
-# @example runs a playbook and capture the results
+# @example runs a playbook, fails on any failure
 #
 #    choria::run_playbook("example::restart_puppet",
 #      "cluster" => "alpha"
 #    )
+#
+# @example runs a playbook with custom error handling
+#
+#    choria::run_playbook("example::restart_puppet", _catch_errors => true,
+#      "cluster" => "alpha"
+#    )
+#      .on_error |$err| {
+#         choria::run_playbook("example::notify_slack",
+#           "msg" => sprintf("Playbook %s failed: %s", $facts["choria"]["playbook"], $err.message)
+#         )
+#         choria::run_playbook("example::enable_puppet", "cluster" => "alpha" )
+#         fail($err.message)
+#       }
 Puppet::Functions.create_function(:"choria::run_playbook", Puppet::Functions::InternalFunction) do
   dispatch :run_playbook do
     scope_param
