@@ -1,3 +1,5 @@
+# Installs, configures and manages the Choria Orchestrator
+#
 # @param manage_package_repo Installs the package repositories
 # @param nightly_repo Install the nightly package repo as well as the release one
 # @param ensure Add or remove the software

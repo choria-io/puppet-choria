@@ -1,6 +1,6 @@
 {
   "name": "choria-choria",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "author": "R.I.Pienaar <rip@devco.net>",
   "license": "Apache-2.0",
   "summary": "Install and manage the Choria plugin for MCollective",
@@ -8,10 +8,10 @@
   "project_page": "https://github.com/choria-io/puppet-choria",
   "issues_url": "https://github.com/choria-io/puppet-choria/issues",
   "dependencies": [
-    { "name": "puppetlabs/stdlib", "version_requirement": ">= 4.12.0 < 5.0.0" },
+    { "name": "puppetlabs/stdlib", "version_requirement": ">= 4.24.0 < 5.0.0" },
     { "name": "puppetlabs/apt", "version_requirement": ">= 4.5.1 < 6.0.0" },
-    { "name": "choria/mcollective_choria", "version_requirement": ">= 0.0.27 < 2.0.0" },
-    { "name": "choria/mcollective", "version_requirement": ">= 0.3.0 < 2.0.0" }
+    { "name": "choria/mcollective_choria", "version_requirement": ">= 0.6.0 < 2.0.0" },
+    { "name": "choria/mcollective", "version_requirement": ">= 0.4.0 < 2.0.0" }
   ],
   "operatingsystem_support": [
     {
@@ -51,15 +51,64 @@
       ]
     },
     {
+      "operatingsystem": "SLES",
+      "operatingsystemrelease": [
+        "10 SP4",
+        "11 SP1",
+        "12"
+      ]
+    },
+    {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "9"
+        "6",
+        "7",
+        "8"
       ]
     },
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
+        "10.04",
+        "12.04",
         "14.04"
+      ]
+    },
+    {
+      "operatingsystem": "Solaris",
+      "operatingsystemrelease": [
+        "10",
+        "11",
+        "12"
+      ]
+    },
+    {
+      "operatingsystem": "Windows",
+      "operatingsystemrelease": [
+        "Server 2003",
+        "Server 2003 R2",
+        "Server 2008",
+        "Server 2008 R2",
+        "Server 2012",
+        "Server 2012 R2",
+        "7",
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "AIX",
+      "operatingsystemrelease": [
+        "5.3",
+        "6.1",
+        "7.1"
+      ]
+    },
+    {
+      "operatingsystem": "Darwin",
+      "operatingsystemrelease": [
+        "10.10",
+        "10.11",
+        "10.12"
       ]
     }
   ],
