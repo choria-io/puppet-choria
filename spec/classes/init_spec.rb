@@ -1,6 +1,10 @@
 require "spec_helper"
 
 describe("choria") do
+  before(:each) do
+    Puppet::Parser::Functions.newfunction(:assert_private, :type => :rvalue) {|_| }
+  end
+
   let(:facts) do
     {
       "aio_agent_version" => "1.7.0",
@@ -24,7 +28,7 @@ describe("choria") do
         }
       end
 
-      it "should not manage the repo by default" do
+      it "should support managing the repo by default" do
         is_expected.to contain_class("choria::repo").with_nightly(false)
         is_expected.to contain_class("choria::repo").with_ensure("present")
       end
