@@ -11,6 +11,10 @@ describe("choria::broker::config") do
       "operatingsystem" => "CentOS",
       "osfamily" => "RedHat",
       "operatingsystemmajrelease" => "7",
+      "networking" => {
+        "domain" => "rspec.example.net",
+        "fqdn" => "choria1.rspec.example.net"
+      },
       "os" => {
         "family" => "RedHat"
       }
@@ -25,10 +29,12 @@ describe("choria::broker::config") do
     it { should compile.with_all_deps }
 
     it "should enable the broker" do
+      is_expected.to contain_file("/etc/choria/broker.cfg").with_content(/plugin.choria.srv_domain = rspec.example.net/)
       is_expected.to contain_file("/etc/choria/broker.cfg").with_content(/JSON information about this broker/)
       is_expected.to contain_file("/etc/choria/broker.cfg").without_content(/Embedded NATS general statistics/)
       is_expected.to contain_file("/etc/choria/broker.cfg").without_content(/plugin.choria.broker_network = true/)
       is_expected.to contain_file("/etc/choria/broker.cfg").without_content(/plugin.choria.network.peers/)
+      is_expected.to contain_file("/etc/choria/broker.cfg").without_content(/plugin.choria.broker_federation/)
     end
   end
 
@@ -38,6 +44,7 @@ describe("choria::broker::config") do
     it { should compile.with_all_deps }
 
     it "should enable the broker" do
+      is_expected.to contain_file("/etc/choria/broker.cfg").with_content(/plugin.choria.srv_domain = rspec.example.net/)
       is_expected.to contain_file("/etc/choria/broker.cfg").with_content(/Embedded NATS general statistics/)
       is_expected.to contain_file("/etc/choria/broker.cfg").with_content(/plugin.choria.broker_network = true/)
       is_expected.to contain_file("/etc/choria/broker.cfg").with_content(/plugin.choria.network.listen_address = 0.0.0.0/)
@@ -53,12 +60,25 @@ describe("choria::broker::config") do
     it { should compile.with_all_deps }
 
     it "should enable the broker" do
+      is_expected.to contain_file("/etc/choria/broker.cfg").with_content(/plugin.choria.srv_domain = rspec.example.net/)
       is_expected.to contain_file("/etc/choria/broker.cfg").with_content(/Embedded NATS general statistics/)
       is_expected.to contain_file("/etc/choria/broker.cfg").with_content(/plugin.choria.broker_network = true/)
       is_expected.to contain_file("/etc/choria/broker.cfg").with_content(/plugin.choria.network.listen_address = 0.0.0.0/)
       is_expected.to contain_file("/etc/choria/broker.cfg").with_content(/plugin.choria.network.client_port = 4222/)
       is_expected.to contain_file("/etc/choria/broker.cfg").with_content(/plugin.choria.network.peer_port = 5222/)
       is_expected.to contain_file("/etc/choria/broker.cfg").with_content(/plugin.choria.network.peers = nats:\/\/n1:5222, nats:\/\/n2:5222/)
+    end
+  end
+
+  context("federation broker") do
+    let(:pre_condition) { 'class {"choria::broker": network_broker => false, federation_broker => true}' }
+
+    it { should compile.with_all_deps }
+
+    it "should enable the broker" do
+      is_expected.to contain_file("/etc/choria/broker.cfg").with_content(/plugin.choria.broker_federation = true/)
+      is_expected.to contain_file("/etc/choria/broker.cfg").with_content(/plugin.choria.federation.cluster = rp_env/)
+      is_expected.to contain_file("/etc/choria/broker.cfg").with_content(/plugin.choria.federation.instance = choria1.rspec.example.net/)
     end
   end
 end

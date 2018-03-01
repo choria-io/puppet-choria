@@ -12,13 +12,17 @@
 #    }
 #
 # @param network_broker Enable or Disable the network broker
+# @param federation_broker Enable or Disable the federation broker
+# @param federation_cluster The name of the federation cluster to serve
 # @param listen_address Address the network broker will listen on for clients and broker peers
 # @param stats_listen_address Address the broker will listen for Prometheus stats
 # @param client_port Port clients will connec tto
 # @param cluster_peer_port Port other brokers will connect to
 # @param stats_port Port where Prometheus stats are hosted
 class choria::broker (
-  Boolean $network_broker = false,
+  Boolean $network_broker = true,
+  Boolean $federation_broker = false,
+  String $federation_cluster = $environment,
   Stdlib::Compat::Ip_address $listen_address = "0.0.0.0",
   Stdlib::Compat::Ip_address $stats_listen_address = "0.0.0.0",
   Integer $client_port = 4222,
