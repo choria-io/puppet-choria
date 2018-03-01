@@ -1,2 +1,4 @@
 spec/fixtures
+vendor
+.bundle
 pkg

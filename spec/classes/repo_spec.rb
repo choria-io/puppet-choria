@@ -1,6 +1,10 @@
 require "spec_helper"
 
 describe("choria::repo") do
+  before(:each) do
+    Puppet::Parser::Functions.newfunction(:assert_private, :type => :rvalue) {|_| }
+  end
+
   let(:facts) do
     {
       "aio_agent_version" => "1.7.0",

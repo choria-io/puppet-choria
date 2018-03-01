@@ -1,7 +1,12 @@
-class choria::repo(
+# Installs the Choria YUM Repositories
+#
+# @private
+class choria::repo (
   Boolean $nightly = false,
-  Enum["present", "absent"] $ensure = "present"
+  Enum["present", "absent"] $ensure = "present",
 ) {
+  assert_private()
+
   if $facts["os"]["family"] == "RedHat" {
     yumrepo{"choria_release":
       ensure          => $ensure,
