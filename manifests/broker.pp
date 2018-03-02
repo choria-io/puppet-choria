@@ -59,7 +59,6 @@ class choria::broker (
   Array[String] $network_peers = [],
   Array[String] $federation_middleware_hosts = [],
   Array[String] $collective_middleware_hosts = [],
-  Stdlib::Compat::Absolute_path $config_file = "/etc/choria/broker.conf",
   Choria::Adapters $adapters = {}
 ) {
   require choria

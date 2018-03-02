@@ -14,7 +14,7 @@ class choria::broker::service {
     "absent" => false
   }
 
-  service{"choria-broker":
+  service{$choria::broker_service_name:
     ensure => $ensure,
     enable => $enabled
   }
