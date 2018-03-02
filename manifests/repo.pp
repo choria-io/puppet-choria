@@ -33,7 +33,7 @@ class choria::repo (
         metadata_expire => 300,
       }
     }
-  } elsif $facts["os"]["distro"]["id"] == "Ubuntu" {
+  } elsif fact("os.distro.id") == "Ubuntu" {
     apt::source{"choria-release":
       ensure   => $ensure,
       comment  => "Choria Orchestrator Releases",
