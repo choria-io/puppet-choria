@@ -13,7 +13,7 @@ class choria (
   Boolean $nightly_repo = false,
   Enum["present", "absent"] $ensure = "present",
   String $version = "present",
-  Stdlib::Compat::Absolute_path $broker_config = "/etc/choria/broker.cfg",
+  Stdlib::Compat::Absolute_path $broker_config = "/etc/choria/broker.conf",
   Stdlib::Compat::Absolute_path $log_file = "/var/log/choria.log",
   Enum[debug, info, warn, error, fatal] $log_level = "warn",
   Optional[String] $srvdomain = $facts["networking"]["domain"],
