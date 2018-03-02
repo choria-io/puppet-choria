@@ -41,6 +41,12 @@ plugin.choria.network.peers = <%= $choria::broker::network_peers.join(", ") %>
 plugin.choria.broker_federation = true
 plugin.choria.federation.cluster = <%= $choria::broker::federation_cluster %>
 plugin.choria.federation.instance = <%= $facts["networking"]["fqdn"] %>
+<%- unless $choria::broker::federation_middleware_hosts.empty { -%>
+plugin.choria.federation_middleware_hosts = <%= $choria::broker::federation_middleware_hosts.join(", ") %>
+<%- } -%>
+<%- unless $choria::broker::collective_middleware_hosts.empty { -%>
+plugin.choria.middleware_hosts = <%= $choria::broker::collective_middleware_hosts.join(", ") %>
+<%- } -%>
 <% } -%>
 
 <% unless $choria::broker::adapters.empty { -%>
