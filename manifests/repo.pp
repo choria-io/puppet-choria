@@ -33,6 +33,30 @@ class choria::repo (
         metadata_expire => 300,
       }
     }
+  } elsif $facts["os"]["distro"]["id"] == "Ubuntu" {
+    apt::source{"choria-release":
+      ensure   => $ensure,
+      comment  => "Choria Orchestrator Releases",
+      location => "https://packagecloud.io/choria/release/ubuntu/",
+      release  => "xenial",
+      repos    => "main",
+      key      => {
+        id     => "5921BC1D903D6E0353C985BB9F89253B1E83EA92",
+        source => "https://packagecloud.io/choria/release/gpgkey"
+      }
+    }
+  } elsif $facts["os"]["name"] == "Debian" {
+    apt::source{"choria-release":
+      ensure   => $ensure,
+      comment  => "Choria Orchestrator Releases",
+      location => "https://packagecloud.io/choria/release/debian/",
+      release  => "stretch",
+      repos    => "main",
+      key      => {
+        id     => "5921BC1D903D6E0353C985BB9F89253B1E83EA92",
+        source => "https://packagecloud.io/choria/release/gpgkey"
+      }
+    }
   } else {
     fail(sprintf("Choria Repositories are not supported on %s", $facts["os"]["family"]))
   }
