@@ -42,3 +42,19 @@ plugin.choria.broker_federation = true
 plugin.choria.federation.cluster = <%= $choria::broker::federation_cluster %>
 plugin.choria.federation.instance = <%= $facts["networking"]["fqdn"] %>
 <% } -%>
+
+<% unless $choria::broker::adapters.empty { -%>
+# Adapters convert Choria messages into other formats and other protocols
+plugin.choria.adapters = <%= $choria::broker::adapters.keys.sort.join(",") %>
+<%   $choria::broker::adapters.keys.sort.each |$adapter| { -%>
+<%      $choria::broker::adapters[$adapter].each |$section, $properties| { -%>
+<%        $properties.each |$key, $value| { -%>
+<%          if $value =~ Array { -%>
+plugin.choria.adapter.<%= $adapter %>.<%= $section %>.<%= $key %> = <%= $value.join(", ") %>
+<%          } else { -%>
+plugin.choria.adapter.<%= $adapter %>.<%= $section %>.<%= $key %> = <%= $value %>
+<%          } -%>
+<%        } -%>
+<%      } -%>
+<%   } -%>
+<% } -%>
