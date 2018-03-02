@@ -9,7 +9,7 @@ class choria::install {
     "absent" => "absent"
   }
 
-  package{"choria":
+  package{$choria::package_name:
     ensure => $version
   }
 }

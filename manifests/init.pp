@@ -13,10 +13,12 @@ class choria (
   Boolean $nightly_repo = false,
   Enum["present", "absent"] $ensure = "present",
   String $version = "present",
-  Stdlib::Compat::Absolute_path $broker_config = "/etc/choria/broker.conf",
-  Stdlib::Compat::Absolute_path $log_file = "/var/log/choria.log",
   Enum[debug, info, warn, error, fatal] $log_level = "warn",
   Optional[String] $srvdomain = $facts["networking"]["domain"],
+  Stdlib::Compat::Absolute_path $broker_config = "/etc/choria/broker.conf",
+  Stdlib::Compat::Absolute_path $log_file = "/var/log/choria.log",
+  String $package_name = "choria",
+  String $broker_service_name = "choria-broker",
 ) {
   if $manage_package_repo {
     class{"choria::repo":
