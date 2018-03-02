@@ -47,6 +47,7 @@ describe("choria::repo") do
       {
         "aio_agent_version" => "1.7.0",
         "os" => {
+          "distro" => {},
           "family" => "Unsupported"
         }
       }
