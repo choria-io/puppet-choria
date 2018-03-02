@@ -1,5 +1,5 @@
-logfile = <%= $choria::logfile %>
-loglevel = <%= $choria::loglevel %>
+logfile = <%= $choria::log_file %>
+loglevel = <%= $choria::log_level %>
 
 <% if $choria::srvdomain { -%>
 plugin.choria.srv_domain = <%= $choria::srvdomain %>
