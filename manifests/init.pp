@@ -16,7 +16,7 @@ class choria (
   Stdlib::Compat::Absolute_path $broker_config = "/etc/choria/broker.cfg",
   Stdlib::Compat::Absolute_path $log_file = "/var/log/choria.log",
   Enum[debug, info, warn, error, fatal] $log_level = "warn",
-  Optional[String] $srvdomain = $facts["networking"]["domain"]
+  Optional[String] $srvdomain = $facts["networking"]["domain"],
 ) {
   if $manage_package_repo {
     class{"choria::repo":

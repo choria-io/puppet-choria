@@ -15,3 +15,99 @@ Includes:
 See [choria.io](http://choria.io) for full details
 
 A deployment guide can be found at the [Choria Website](http://choria.io)
+
+## Usage
+
+### Package Repo and Basic Installation
+
+At present RHEL 5, 6 and 7 are supported, the repository also include packages for other tools like our Stream Replicator etc.
+
+It's best configured using Hiera, to install the YUM Repository and install a particular version with some basic adjustments this will be enough.
+
+```yaml
+choria::manage_package_repo: true
+choria::version: 0.0.7-1.el%{facts.os.release.major}
+choria::srvdomain: prod.example.net
+choria::loglevel: warn
+```
+
+```puppet
+include choria
+```
+
+### Configuring the Choria Broker
+
+In all cases below you need to ensure the `choria::broker` class is used:
+
+```puppet
+include choria::broker
+```
+
+Configuration for the various scenarios are shown via Hiera, you can run all scenarios on the same instance.
+
+### Configure a Standalone Choria Broker
+
+We can now configure a standalone Choria Broker, it will listen on ports 4222, 5222 and 8222 on `0.0.0.0`, these are configurable via other properties of `choria::broker`
+
+```yaml
+choria::broker::network_broker: true
+```
+
+### Configure a Choria Broker Cluster
+
+To configure a Broker Cluster over port 5222 you can add this data:
+
+```yaml
+choria::broker::network_peers:
+  - nats://choria1.example.net:5222
+  - nats://choria2.example.net:5222
+  - nats://choria3.example.net:5222
+```
+
+This will build a TLs secures Choria Broker Cluster
+
+### Configure Federation Brokers
+
+To Federate a network - `london` - into a Federated Collective you'd run a Federation Broker in the `london` LAN with the following configuration:
+
+```yaml
+choria::broker::federation_broker: true
+choria::broker::federation_cluster: london
+```
+
+This will use the SRV domain configured in `choria::srvdomain` to find the brokers to connect to as per the documentation.
+
+You can configure custom addresses to connec to:
+
+```yaml
+choria::broker::federation_middleware_hosts:
+  - nats://choria1.central.example.net:5222
+  - nats://choria2.central.example.net:5222
+  - nats://choria3.central.example.net:5222
+choria::broker::collective_middleware_hosts:
+  - nats://choria1.london.example.net:5222
+  - nats://choria2.london.example.net:5222
+  - nats://choria3.london.example.net:5222
+```
+
+### Configure a NATS Streaming Adapter
+
+Given a NATS Stream server with a cluster id `prod_stream` this will adapt Registration messages received in the Collective to the NATS Stream for processing using Stream Processing patterns.
+
+```yaml
+choria::broker::adapters:
+  discover:
+    stream:
+      type: "natsstream"
+      clusterid: prod_stream
+      topic: discovery
+      workers: 10
+      servers:
+        - stan1.example.net:4222
+        - stan2.example.net:4222
+        - stan3.example.net:4222
+    ingest:
+      topic: mcollective.broadcast.agent.discovery
+      protocol: request
+      workers: 10
+```

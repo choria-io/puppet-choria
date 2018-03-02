@@ -57,6 +57,8 @@ class choria::broker (
   Integer $cluster_peer_port = 5222,
   Integer $stats_port = 8222,
   Array[String] $network_peers = [],
+  Array[String] $federation_middleware_hosts = [],
+  Array[String] $collective_middleware_hosts = [],
   Stdlib::Compat::Absolute_path $config_file = "/etc/choria/broker.conf",
   Choria::Adapters $adapters = {}
 ) {
