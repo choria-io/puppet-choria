@@ -81,4 +81,57 @@ describe("choria::broker::config") do
       is_expected.to contain_file("/etc/choria/broker.cfg").with_content(/plugin.choria.federation.instance = choria1.rspec.example.net/)
     end
   end
+
+  context("without adapters") do
+    let(:pre_condition) { 'class {"choria::broker": }' }
+
+    it "should enable the broker" do
+      is_expected.to contain_file("/etc/choria/broker.cfg").without_content(/plugin.choria.adapters/)
+    end
+  end
+
+  context("adapters") do
+    context("natsstream") do
+      let(:pre_condition) do
+        <<-HEREDOC
+        class{"choria::broker":
+          adapters => {
+            discovery => {
+              stream => {
+                type => "natsstream",
+                servers => ["stan1:4222", "stan2:4222"],
+                clusterid => "prod",
+                topic => "discovery",
+                workers => 10,
+              },
+              ingest => {
+                topic => "mcollective.broadcast.agent.discovery",
+                protocol => "request",
+                workers => 10
+              }
+            }
+          }
+        }
+        HEREDOC
+      end
+
+      it { should compile.with_all_deps }
+
+      it "should configure the adapter" do
+        expected = <<~HEREDOC
+        # Adapters convert Choria messages into other formats and other protocols
+        plugin.choria.adapters = discovery
+        plugin.choria.adapter.discovery.stream.type = natsstream
+        plugin.choria.adapter.discovery.stream.servers = stan1:4222, stan2:4222
+        plugin.choria.adapter.discovery.stream.clusterid = prod
+        plugin.choria.adapter.discovery.stream.topic = discovery
+        plugin.choria.adapter.discovery.stream.workers = 10
+        plugin.choria.adapter.discovery.ingest.topic = mcollective.broadcast.agent.discovery
+        plugin.choria.adapter.discovery.ingest.protocol = request
+        plugin.choria.adapter.discovery.ingest.workers = 10
+        HEREDOC
+        is_expected.to contain_file("/etc/choria/broker.cfg").with_content(Regexp.new(expected))
+      end
+    end
+  end
 end

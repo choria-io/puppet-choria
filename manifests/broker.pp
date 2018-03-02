@@ -1,6 +1,6 @@
 # Class: choria::broker
 #
-# @example Choria broker in a 3 node cluster
+# @example Choria Broker in a 3 node cluster
 #
 #    class{"choria::broker":
 #       network_broker => true,
@@ -10,6 +10,34 @@
 #          "nats://choria3:5222"
 #       ]
 #    }
+#
+# @example Choria Broker federating the `development` network
+#
+#   class{"choria::broker":
+#     federation_broker => true,
+#     federation_cluster => "development"
+#   }
+#
+# @example Choria Broker with a NATS Stream adapter for registration data
+#
+#  class{"choria::broker":
+#    adapters => {
+#      discovery => {
+#        stream => {
+#          type => "natsstream",
+#          servers => ["stan1:4222", "stan2:4222"],
+#          clusterid => "prod",
+#          topic => "discovery",
+#          workers => 10,
+#        },
+#        ingest => {
+#          topic => "mcollective.broadcast.agent.discovery",
+#          protocol => "request",
+#          workers => 10
+#        }
+#      }
+#    }
+#  }
 #
 # @param network_broker Enable or Disable the network broker
 # @param federation_broker Enable or Disable the federation broker
@@ -22,14 +50,15 @@
 class choria::broker (
   Boolean $network_broker = true,
   Boolean $federation_broker = false,
-  String $federation_cluster = $environment,
+  Optional[String] $federation_cluster = $environment,
   Stdlib::Compat::Ip_address $listen_address = "0.0.0.0",
   Stdlib::Compat::Ip_address $stats_listen_address = "0.0.0.0",
   Integer $client_port = 4222,
   Integer $cluster_peer_port = 5222,
   Integer $stats_port = 8222,
   Array[String] $network_peers = [],
-  Stdlib::Compat::Absolute_path $config_file = "/etc/choria/broker.conf"
+  Stdlib::Compat::Absolute_path $config_file = "/etc/choria/broker.conf",
+  Choria::Adapters $adapters = {}
 ) {
   require choria
 
