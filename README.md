@@ -47,7 +47,7 @@ Configuration for the various scenarios are shown via Hiera, you can run all sce
 
 ### Configure a Standalone Choria Broker
 
-We can now configure a standalone Choria Broker, it will listen on ports 4222, 5222 and 8222 on `::`, these are configurable via other properties of `choria::broker`
+We can now configure a standalone Choria Broker, it will listen on ports 4222, 4223 and 8222 on `::`, these are configurable via other properties of `choria::broker`
 
 ```yaml
 choria::broker::network_broker: true
@@ -55,13 +55,13 @@ choria::broker::network_broker: true
 
 ### Configure a Choria Broker Cluster
 
-To configure a Broker Cluster over port 5222 you can add this data:
+To configure a Broker Cluster over port 4223 you can add this data:
 
 ```yaml
 choria::broker::network_peers:
-  - nats://choria1.example.net:5222
-  - nats://choria2.example.net:5222
-  - nats://choria3.example.net:5222
+  - nats://choria1.example.net:4223
+  - nats://choria2.example.net:4223
+  - nats://choria3.example.net:4223
 ```
 
 This will build a TLs secures Choria Broker Cluster
@@ -81,13 +81,13 @@ You can configure custom addresses to connec to:
 
 ```yaml
 choria::broker::federation_middleware_hosts:
-  - nats://choria1.central.example.net:5222
-  - nats://choria2.central.example.net:5222
-  - nats://choria3.central.example.net:5222
+  - nats://choria1.central.example.net:4223
+  - nats://choria2.central.example.net:4223
+  - nats://choria3.central.example.net:4223
 choria::broker::collective_middleware_hosts:
-  - nats://choria1.london.example.net:5222
-  - nats://choria2.london.example.net:5222
-  - nats://choria3.london.example.net:5222
+  - nats://choria1.london.example.net:4223
+  - nats://choria2.london.example.net:4223
+  - nats://choria3.london.example.net:4223
 ```
 
 ### Configure a NATS Streaming Adapter
