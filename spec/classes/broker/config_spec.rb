@@ -51,13 +51,13 @@ describe("choria::broker::config") do
         .with_content(/plugin.choria.broker_network = true/)
         .with_content(/plugin.choria.network.listen_address = ::/)
         .with_content(/plugin.choria.network.client_port = 4222/)
-        .with_content(/plugin.choria.network.peer_port = 5222/)
+        .with_content(/plugin.choria.network.peer_port = 4223/)
         .without_content(/plugin.choria.network.peers/)
     end
   end
 
   context("clustered network broker") do
-    let(:pre_condition) { 'class {"choria::broker": network_broker => true, network_peers => ["nats://n1:5222", "nats://n2:5222"]}' }
+    let(:pre_condition) { 'class {"choria::broker": network_broker => true, network_peers => ["nats://n1:4223", "nats://n2:4223"]}' }
 
     it { should compile.with_all_deps }
 
@@ -67,8 +67,8 @@ describe("choria::broker::config") do
         .with_content(/plugin.choria.broker_network = true/)
         .with_content(/plugin.choria.network.listen_address = ::/)
         .with_content(/plugin.choria.network.client_port = 4222/)
-        .with_content(/plugin.choria.network.peer_port = 5222/)
-        .with_content(/plugin.choria.network.peers = nats:\/\/n1:5222, nats:\/\/n2:5222/)
+        .with_content(/plugin.choria.network.peer_port = 4223/)
+        .with_content(/plugin.choria.network.peers = nats:\/\/n1:4223, nats:\/\/n2:4223/)
     end
   end
 
@@ -92,8 +92,8 @@ describe("choria::broker::config") do
         <<-HEREDOC
         class{"choria::broker":
           federation_broker => true,
-          federation_middleware_hosts => ["nats://n1:5222", "nats://n2:5222"],
-          collective_middleware_hosts => ["nats://n2:5222", "nats://n4:5222"],
+          federation_middleware_hosts => ["nats://n1:4222", "nats://n2:4222"],
+          collective_middleware_hosts => ["nats://n2:4222", "nats://n4:4222"],
         }
         HEREDOC
       end
@@ -102,8 +102,8 @@ describe("choria::broker::config") do
         is_expected.to contain_file("/etc/choria/broker.conf").with_content(/plugin.choria.broker_federation = true/)
           .with_content(/plugin.choria.federation.cluster = rp_env/)
           .with_content(/plugin.choria.federation.instance = choria1.rspec.example.net/)
-          .with_content(/plugin.choria.federation_middleware_hosts = nats:\/\/n1:5222, nats:\/\/n2:5222/)
-          .with_content(/plugin.choria.middleware_hosts = nats:\/\/n2:5222, nats:\/\/n4:5222/)
+          .with_content(/plugin.choria.federation_middleware_hosts = nats:\/\/n1:4222, nats:\/\/n2:4222/)
+          .with_content(/plugin.choria.middleware_hosts = nats:\/\/n2:4222, nats:\/\/n4:4222/)
       end
     end
   end

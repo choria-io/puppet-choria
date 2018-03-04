@@ -54,7 +54,7 @@ class choria::broker (
   Stdlib::Compat::Ip_address $listen_address = "::",
   Stdlib::Compat::Ip_address $stats_listen_address = "::",
   Integer $client_port = 4222,
-  Integer $cluster_peer_port = 5222,
+  Integer $cluster_peer_port = 4223,
   Integer $stats_port = 8222,
   Array[String] $network_peers = [],
   Array[String] $federation_middleware_hosts = [],
