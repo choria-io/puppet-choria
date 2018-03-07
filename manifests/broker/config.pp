@@ -9,6 +9,7 @@ class choria::broker::config {
     group   => "root",
     mode    => "0640",
     content => epp("choria/broker.cfg.epp"),
-    notify  => Class["choria::broker::service"]
+    notify  => Class["choria::broker::service"],
+    require => Class["choria::install"]
   }
 }
