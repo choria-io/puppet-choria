@@ -15,7 +15,8 @@ class choria::broker::service {
   }
 
   service{$choria::broker_service_name:
-    ensure => $ensure,
-    enable => $enabled
+    ensure  => $ensure,
+    enable  => $enabled,
+    require => Class["choria::install"]
   }
 }
