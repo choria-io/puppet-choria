@@ -10,6 +10,7 @@ class choria::repo (
   if $facts["os"]["family"] == "RedHat" {
     yumrepo{"choria_release":
       ensure          => $ensure,
+      descr           => 'Choria Orchestrator Releases',
       baseurl         => 'https://packagecloud.io/choria/release/el/$releasever/$basearch',
       repo_gpgcheck   => true,
       gpgcheck        => false,
@@ -23,6 +24,7 @@ class choria::repo (
     if $nightly {
       yumrepo{"choria_nightly":
         ensure          => $ensure,
+        descr           => 'Choria Orchestrator Nightly Builds',
         baseurl         => 'https://packagecloud.io/choria/nightly/el/$releasever/$basearch',
         repo_gpgcheck   => true,
         gpgcheck        => false,
