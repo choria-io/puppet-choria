@@ -1,5 +1,6 @@
 logfile = <%= $choria::log_file %>
 loglevel = <%= $choria::log_level %>
+identity = <%= $choria::broker::identity %>
 
 <% if $choria::srvdomain { -%>
 plugin.choria.srv_domain = <%= $choria::srvdomain %>

@@ -23,6 +23,28 @@ describe("choria::broker::config") do
 
   let(:pre_condition) { 'class {"choria": }' }
 
+  context("general settings") do
+    let(:pre_condition) { 'class {"choria::broker": }' }
+
+    it "should use the system fqdn for identity" do
+      is_expected.to contain_file("/etc/choria/broker.conf").with_content(/plugin.choria.srv_domain = rspec.example.net/)
+        .with_content(/logfile = \/var\/log\/choria.log/)
+        .with_content(/loglevel = warn/)
+        .with_content(/identity = choria1.rspec.example.net/)
+    end
+
+    context("custom identity") do
+      let(:pre_condition) { 'class {"choria::broker": identity => "custom.rspec.example.net"}' }
+
+      it "should use the supplied identity" do
+        is_expected.to contain_file("/etc/choria/broker.conf").with_content(/plugin.choria.srv_domain = rspec.example.net/)
+          .with_content(/logfile = \/var\/log\/choria.log/)
+          .with_content(/loglevel = warn/)
+          .with_content(/identity = custom.rspec.example.net/)
+      end
+    end
+  end
+
   context("without the network broker") do
     let(:pre_condition) { 'class {"choria::broker": network_broker => false}' }
 
@@ -32,12 +54,14 @@ describe("choria::broker::config") do
       is_expected.to contain_file("/etc/choria/broker.conf").with_content(/plugin.choria.srv_domain = rspec.example.net/)
         .with_content(/logfile = \/var\/log\/choria.log/)
         .with_content(/loglevel = warn/)
+        .with_content(/identity = choria1.rspec.example.net/)
         .with_content(/JSON information about this broker/)
         .without_content(/Embedded NATS general statistics/)
         .without_content(/plugin.choria.broker_network = true/)
         .without_content(/plugin.choria.network.peers/)
         .without_content(/plugin.choria.broker_federation/)
     end
+
   end
 
   context("standalone network broker") do
