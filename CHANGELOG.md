@@ -1,5 +1,8 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2018/03/22|     |Release 0.7.1                                                                                            |
+|2018/03/22|43   |Ensure apt-get update gets run after adding deb repositories                                             |
+|2018/03/22|41   |Improve debian/ubuntu support by setting the identity specifically                                       |
 |2018/03/21|     |Release 0.7.0                                                                                            |
 |2018/03/06|36   |Add mandatory `name` option to the YUM repositories                                                      |
 |2018/03/04|32   |Add missing install dependency to improve puppet run ordering                                            |
