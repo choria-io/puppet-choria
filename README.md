@@ -20,7 +20,7 @@ A deployment guide can be found at the [Choria Website](http://choria.io)
 
 ### Package Repo and Basic Installation
 
-At present RHEL 5 - 7, Debian Xenial and Ubuntu Stretch are supported, the repository also include packages for other tools like our Stream Replicator etc.
+At present RHEL 5 - 7, Debian Stretch and Ubuntu 16.04 LTS (Xenial Xerus) are supported, the repository also include packages for other tools like our Stream Replicator etc.
 
 It's best configured using Hiera, to install the YUM Repository and install a particular version with some basic adjustments this will be enough.
 
