@@ -47,6 +47,7 @@
 # @param client_port Port clients will connec tto
 # @param cluster_peer_port Port other brokers will connect to
 # @param stats_port Port where Prometheus stats are hosted
+# @param identity The identity this server will use to determine SSL cert names etc
 class choria::broker (
   Boolean $network_broker = true,
   Boolean $federation_broker = false,
@@ -59,7 +60,8 @@ class choria::broker (
   Array[String] $network_peers = [],
   Array[String] $federation_middleware_hosts = [],
   Array[String] $collective_middleware_hosts = [],
-  Choria::Adapters $adapters = {}
+  Choria::Adapters $adapters = {},
+  String $identity = $facts["networking"]["fqdn"]
 ) {
   require choria
 
