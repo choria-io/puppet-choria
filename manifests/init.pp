@@ -8,6 +8,10 @@
 # @param logfile The file to log to
 # @param loglevel The logging level to use
 # @param srvdomain The domain name to use when doing SRV lookups
+# @param package_name The package to install
+# @param broker_service_name The service name of the Choria Broker
+# @param server_service_name The service name of the Choria Server
+# @param server To enable or disable the choria server
 class choria (
   Boolean $manage_package_repo = false,
   Boolean $nightly_repo = false,
@@ -19,6 +23,8 @@ class choria (
   Stdlib::Compat::Absolute_path $log_file = "/var/log/choria.log",
   String $package_name = "choria",
   String $broker_service_name = "choria-broker",
+  String $server_service_name = "choria-server",
+  Boolean $server = false,
 ) {
   if $manage_package_repo {
     class{"choria::repo":
@@ -28,5 +34,10 @@ class choria (
     }
   }
 
+  class{"choria::install": }
+
+  -> class{"choria::service": }
+
   contain choria::install
+  contain choria::service
 }
