@@ -6,7 +6,7 @@ class choria::broker::config {
 
   file{$choria::broker_config_file:
     owner   => "root",
-    group   => "root",
+    group   => $choria::root_group,
     mode    => "0640",
     content => epp("choria/broker.cfg.epp"),
     notify  => Class["choria::broker::service"],
