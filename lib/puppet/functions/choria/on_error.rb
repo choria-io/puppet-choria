@@ -48,7 +48,7 @@ Puppet::Functions.create_function(:"choria::on_error", Puppet::Functions::Intern
   end
 
   def handler(results)
-    if results.is_a?(MCollective::Util::BoltSupport::TaskResults) && (results.exception || !results.error_set.empty)
+    if results.is_a?(MCollective::Util::BoltSupport::TaskResults) && results.error_set.empty && !results.exception
       yield(results)
     end
 
