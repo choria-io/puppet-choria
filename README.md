@@ -49,6 +49,8 @@ Configuration for the various scenarios are shown via Hiera, you can run all sce
 
 We can now configure a standalone Choria Broker, it will listen on ports 4222, 4223 and 8222 on `::`, these are configurable via other properties of `choria::broker`
 
+Please review the [Choria Network Broker](https://choria.io/docs/deployment/broker/) documentation for full details.
+
 ```yaml
 choria::broker::network_broker: true
 ```
@@ -70,6 +72,8 @@ This will build a TLs secures Choria Broker Cluster
 
 To Federate a network - `london` - into a Federated Collective you'd run a Federation Broker in the `london` LAN with the following configuration:
 
+Please review the [Federations of Collectives](https://choria.io/docs/federation/) documentation for full details.
+
 ```yaml
 choria::broker::federation_broker: true
 choria::broker::federation_cluster: london
@@ -81,18 +85,20 @@ You can configure custom addresses to connec to:
 
 ```yaml
 choria::broker::federation_middleware_hosts:
-  - nats://choria1.central.example.net:4223
-  - nats://choria2.central.example.net:4223
-  - nats://choria3.central.example.net:4223
+  - choria1.central.example.net:4222
+  - choria2.central.example.net:4222
+  - choria3.central.example.net:4222
 choria::broker::collective_middleware_hosts:
-  - nats://choria1.london.example.net:4223
-  - nats://choria2.london.example.net:4223
-  - nats://choria3.london.example.net:4223
+  - choria1.london.example.net:4222
+  - choria2.london.example.net:4222
+  - choria3.london.example.net:4222
 ```
 
 ### Configure a NATS Streaming Adapter
 
 Given a NATS Stream server with a cluster id `prod_stream` this will adapt Registration messages received in the Collective to the NATS Stream for processing using Stream Processing patterns.
+
+Please review the [Data Adapters](https://choria.io/docs/adapters/) documentation for full details.
 
 ```yaml
 choria::broker::adapters:
