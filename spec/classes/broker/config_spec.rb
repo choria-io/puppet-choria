@@ -5,6 +5,7 @@ describe("choria::broker::config") do
     Puppet::Parser::Functions.newfunction(:assert_private, :type => :rvalue) {|_| }
   end
 
+  let(:node) { "choria1.rspec.example.net" }
   let(:facts) do
     {
       "aio_agent_version" => "1.7.0",

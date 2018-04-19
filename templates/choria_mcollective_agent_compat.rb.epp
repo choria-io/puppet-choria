@@ -1,0 +1,90 @@
+#!<%= $choria::rubypath %>
+
+require "mcollective"
+
+@options = {}
+
+OptionParser.new do |opts|
+  opts.on("--config FILE", "Configuration to use for the MCollective subsystem") do |v|
+    @options["config"] = v
+  end
+end.parse!
+
+abort("Please specify a config file using --config") unless @options["config"]
+
+module MCollective
+  class AgentShim
+    def initialize(config, msg)
+      @config = config
+      @msg = msg
+    end
+
+    def loadconfig
+      config = MCollective::Config.instance
+      config.loadconfig(@config)
+    end
+
+    def request
+      @request ||= begin
+                     request = JSON.parse(@msg)
+                     symbolized_request = {}
+
+                     request.each do |k, v|
+                       symbolized_request[k.intern] = v
+                     end
+
+                     symbolized_request
+                   end
+    end
+
+    def agent
+      @agent ||= begin
+                   agent = MCollective::PluginManager.find_and_load(:agent) do |plugin|
+                     plugin == request[:agent]
+                   end.first
+
+                   if agent
+                     klass = Kernel.const_get(agent)
+                     if klass.ancestors.include?(MCollective::RPC::Agent) && klass.activate?
+                       klass.new
+                     end
+                   end
+                 end
+    end
+
+    def dispatch
+      abort("Unknown agent %s" % request[:agent]) unless agent
+
+      Log.debug("Dispatching request %s from %s@%s to %s#%s" % [request[:requestid], request[:callerid], request[:senderid], request[:body]["agent"], request[:body]["action"]])
+
+      reply = Timeout.timeout(agent.timeout) do
+        # technically the nil here should be a connector, no agent should be fiddling with that
+        # stuff really its ancient legacy for non RPC agents. RPC agents cannot access the connector
+        # some audit plugins might and so would agent hooks - this is all insane and stuff I just
+        # do not want to support, happy for them to fail
+        agent.handlemsg(request, nil)
+      end
+
+      reply.to_json
+
+    rescue Timeout::Error
+      Log.warn("Timeout while handling message %s from %s for agent %s" % [request[:requestid], request[:callerid], request[:agent]])
+      raise
+    rescue Exception # rubocop:disable Lint/RescueException
+      Log.error("Execution of %s failed: %s" % [request[:agent], $!.message])
+      Log.error($!.backtrace.join("\n\t\t"))
+      raise
+    end
+  end
+end
+
+begin
+  shim = MCollective::AgentShim.new(@options["config"], STDIN.read)
+  shim.loadconfig
+
+  puts shim.dispatch
+rescue Exception # rubocop:disable Lint/RescueException
+  STDERR.puts("%s failed: %s: %s" % [__FILE__, $!.class, $!.message])
+  STDERR.puts($!.backtrace.join("\n\t"))
+  puts({"statuscode" => 1, "statusmsg" => "Choria MCollective Compatability Layer failed to invoke the action: %s" % $!.message, "data" => {}}.to_json)
+end

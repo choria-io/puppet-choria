@@ -4,7 +4,7 @@
 class choria::broker::config {
   assert_private()
 
-  file{$choria::broker_config:
+  file{$choria::broker_config_file:
     owner   => "root",
     group   => "root",
     mode    => "0640",
