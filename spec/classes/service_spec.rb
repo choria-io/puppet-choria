@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe("choria::install") do
+describe("choria::service") do
   before(:each) do
     Puppet::Parser::Functions.newfunction(:assert_private, :type => :rvalue) {|_| }
   end

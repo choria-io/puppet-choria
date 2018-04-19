@@ -1,0 +1,45 @@
+---
+choria::server_config:
+  classesfile: "/opt/puppetlabs/puppet/cache/state/classes.txt"
+  plugin.rpcaudit.logfile: "/var/log/puppetlabs/mcollective-audit.log"
+  plugin.yaml: "/etc/puppetlabs/mcollective/generated-facts.yaml"
+  plugin.choria.agent_provider.mcorpc.agent_shim: "/usr/bin/choria_mcollective_agent_compat.rb"
+  plugin.choria.agent_provider.mcorpc.config: "/etc/puppetlabs/mcollective/server.cfg"
+  plugin.choria.agent_provider.mcorpc.libdir: "/opt/puppetlabs/mcollective/plugins"
+
+choria::rubypath: "/opt/puppetlabs/puppet/bin/ruby"
+choria::manage_package_repo: false
+choria::nightly_repo: false
+choria::ensure: "present"
+choria::version: "present"
+choria::log_level: "warn"
+choria::srvdomain: "%{facts.networking.domain}"
+choria::broker_config_file: "/etc/choria/broker.conf"
+choria::server_config_file: "/etc/choria/server.conf"
+choria::log_file: "/var/log/choria.log"
+choria::package_name: "choria"
+choria::broker_service_name: "choria-broker"
+choria::server_service_name: "choria-server"
+choria::identity: "%{trusted.certname}"
+choria::server: false
+
+choria::broker::network_broker: true
+choria::broker::federation_broker: false
+choria::broker::federation_cluster: "%{::environment}"
+choria::broker::listen_address: "::"
+choria::broker::stats_listen_address: "::"
+choria::broker::client_port: 4222
+choria::broker::cluster_peer_port: 4223
+choria::broker::stats_port: 8222
+choria::broker::network_peers: []
+choria::broker::federation_middleware_hosts: []
+choria::broker::collective_middleware_hosts: []
+choria::broker::adapters: {}
+choria::broker::identity: "%{trusted.certname}"
+
+lookup_options:
+  choria::collectives:
+    merge: "unique"
+  choria::server_config:
+    merge:
+      strategy: "deep"
