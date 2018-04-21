@@ -32,7 +32,8 @@ class choria (
   String $server_service_name,
   String $identity,
   Boolean $server,
-  Hash $server_config
+  Hash $server_config,
+  String $root_group,
 ) {
   if $manage_package_repo {
     class{"choria::repo":
