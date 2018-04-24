@@ -83,6 +83,8 @@ begin
   shim.loadconfig
 
   puts shim.dispatch
+  STDOUT.close
+
 rescue Exception # rubocop:disable Lint/RescueException
   STDERR.puts("%s failed: %s: %s" % [__FILE__, $!.class, $!.message])
   STDERR.puts($!.backtrace.join("\n\t"))
