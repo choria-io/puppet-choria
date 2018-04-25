@@ -1,7 +1,6 @@
 ---
 choria::server_config:
   classesfile: "/var/puppet/state/classes.txt"
-  plugin.rpcaudit.logfile: "/var/log/mcollective-audit.log"
   plugin.yaml: "/usr/local/etc/mcollective/generated-facts.yaml"
   plugin.choria.agent_provider.mcorpc.agent_shim: "/usr/local/bin/choria_mcollective_agent_compat.rb"
   plugin.choria.agent_provider.mcorpc.config: "/usr/local/etc/mcollective/server.cfg"
