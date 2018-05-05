@@ -5,7 +5,7 @@
 # @param tries How many times to perform the check before failing
 # @param sleep How long to wait between checks
 # @return [Boolean] indicates task completion
-plan acme::tasks::wait (
+plan choria::tasks::wait (
   String $task_id,
   Choria::Nodes $nodes,
   Integer $tries = 90,

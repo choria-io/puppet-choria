@@ -30,7 +30,7 @@ plan choria::tasks::run(
 
   choria::tasks::validate_input($inputs, $metadata)
 
-  choria::run_playbook("acme::tasks::download_files",
+  choria::run_playbook("choria::tasks::download_files",
     "nodes" => $nodes,
     "task"  => $task,
     "files" => $metadata["files"]
