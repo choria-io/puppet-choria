@@ -24,8 +24,6 @@ plan choria::tasks::run(
   Integer $batch_size = 0,
   Integer $batch_sleep_time = 2
 ) {
-  info("Running task ${task} on ${nodes.size} nodes")
-
   $metadata = choria::tasks::metadata($task)
 
   choria::tasks::validate_input($inputs, $metadata)
@@ -41,6 +39,8 @@ plan choria::tasks::run(
   } else {
     $action = "bolt_tasks.run_and_wait"
   }
+
+  info("Running task '${task}' on ${nodes.size} nodes")
 
   choria::task(
     "nodes"            => $nodes,
