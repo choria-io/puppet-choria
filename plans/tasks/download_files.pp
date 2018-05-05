@@ -9,7 +9,7 @@ plan choria::tasks::download_files(
   Array[Hash] $files,
   Choria::Nodes $nodes
 ) {
-  info("Downloading files for task ${task} onto ${nodes.size} nodes")
+  info("Downloading files for task '${task}' onto ${nodes.size} nodes")
 
   choria::task(
     "nodes"            => $nodes,
