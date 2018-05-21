@@ -1,5 +1,10 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2018/05/21|     |Release 0.9.0                                                                                            |
+|2018/05/18|68   |Fix inverted logic in `on_error` and `on_success` playbook helpers                                       |
+|2018/05/05|61   |Support invoking Puppet Tasks from Playbooks                                                             |
+|2018/04/59|59   |Create a minimal config tailored to the needs of the ruby compat shim                                    |
+|2018/04/25|57   |Ensure Choria Server auditing is enabled                                                                 |
 |2018/04/24|     |Release 0.8.0                                                                                            |
 |2018/04/19|53   |Configure the `choria server` component                                                                  |
 |2018/04/02|49   |Improve handling of `on_error` in Playbooks                                                              |
