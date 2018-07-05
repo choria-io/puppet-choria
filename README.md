@@ -16,7 +16,7 @@ It's best configured using Hiera, to install the YUM Repository and install a pa
 choria::manage_package_repo: true
 choria::version: 0.0.7-1.el%{facts.os.release.major}
 choria::srvdomain: prod.example.net
-choria::loglevel: warn
+choria::log_level: warn
 ```
 
 ```puppet

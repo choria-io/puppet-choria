@@ -1,4 +1,4 @@
-logfile = <%= $choria::log_file %>
+logfile = <%= $choria::logfile %>
 loglevel = <%= $choria::log_level %>
 identity = <%= $choria::broker::identity %>
 
