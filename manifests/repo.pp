@@ -35,7 +35,7 @@ class choria::repo (
         metadata_expire => 300,
       }
     }
-  } elsif fact("os.distro.id") == "Ubuntu" {
+  } elsif $facts["os"]["name"] == "Ubuntu" {
     apt::source{"choria-release":
       ensure        => $ensure,
       notify_update => true,
