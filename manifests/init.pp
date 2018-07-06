@@ -7,7 +7,7 @@
 # @param broker_config_file The configuration file for the broker
 # @param server_config_file The configuration file for the server
 # @param logfile The file to log to
-# @param loglevel The logging level to use
+# @param log_level The logging level to use
 # @param rubypath Path to the Ruby installation used for the MCollective compatability shims
 # @param srvdomain The domain name to use when doing SRV lookups
 # @param package_name The package to install
@@ -25,7 +25,7 @@ class choria (
   Optional[String] $srvdomain,
   Stdlib::Compat::Absolute_path $broker_config_file,
   Stdlib::Compat::Absolute_path $server_config_file,
-  Stdlib::Compat::Absolute_path $log_file,
+  Stdlib::Compat::Absolute_path $logfile,
   Stdlib::Compat::Absolute_path $rubypath,
   String $package_name,
   String $broker_service_name,

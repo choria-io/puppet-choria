@@ -9,7 +9,7 @@ class choria::config {
   }
 
   $config = $defaults + $choria::server_config + {
-    "logfile"                    => $choria::log_file,
+    "logfile"                    => $choria::logfile,
     "loglevel"                   => $choria::log_level,
     "identity"                   => $choria::identity,
     "plugin.choria.srv_domain"   => $choria::srvdomain,
