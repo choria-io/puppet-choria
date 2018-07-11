@@ -17,7 +17,6 @@
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "4",
         "5",
         "6",
         "7"
@@ -26,7 +25,6 @@
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
-        "4",
         "5",
         "6",
         "7"
@@ -35,7 +33,6 @@
     {
       "operatingsystem": "OracleLinux",
       "operatingsystemrelease": [
-        "4",
         "5",
         "6",
         "7"
@@ -44,7 +41,6 @@
     {
       "operatingsystem": "Scientific",
       "operatingsystemrelease": [
-        "4",
         "5",
         "6",
         "7"
@@ -61,9 +57,8 @@
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "6",
-        "7",
-        "8"
+        "8",
+        "9"
       ]
     },
     {
@@ -71,7 +66,8 @@
       "operatingsystemrelease": [
         "10.04",
         "12.04",
-        "14.04"
+        "14.04",
+        "18.04"
       ]
     },
     {
@@ -106,9 +102,9 @@
     {
       "operatingsystem": "Darwin",
       "operatingsystemrelease": [
-        "10.10",
         "10.11",
-        "10.12"
+        "10.12",
+        "10.13"
       ]
     }
   ],
