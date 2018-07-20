@@ -1,5 +1,10 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2018/07/20|     |Release 0.10.0                                                                                           |
+|2018/07/20|77   |Ensure removal of mcollective plugins by way of the directory purge feature restarts choria server       |
+|2018/07/11|75   |Support ubuntu 18.04, and remove old operating systems                                                   |
+|2018/07/05|71   |Rename `log_file` to `logfile` to improve consistency between our modules                                |
+|2018/07/06|73   |Improve support for servers with facter 2.5 like those installed from gems                               |
 |2018/05/21|     |Release 0.9.0                                                                                            |
 |2018/05/18|68   |Fix inverted logic in `on_error` and `on_success` playbook helpers                                       |
 |2018/05/05|61   |Support invoking Puppet Tasks from Playbooks                                                             |
