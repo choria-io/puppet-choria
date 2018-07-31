@@ -8,6 +8,14 @@ OptionParser.new do |opts|
   opts.on("--config FILE", "Configuration to use for the MCollective subsystem") do |v|
     @options["config"] = v
   end
+
+  opts.on("--parse-compound", "Parse a compound filter") do
+    @options["parse_compound"] = true
+  end
+
+  opts.on("--validate-compound", "Parse a compound filter") do
+    @options["validate_compound"] = true
+  end
 end.parse!
 
 abort("Please specify a config file using --config") unless @options["config"]
@@ -17,11 +25,53 @@ module MCollective
     def initialize(config, msg)
       @config = config
       @msg = msg
+      @configured = false
     end
 
     def loadconfig
-      config = MCollective::Config.instance
+      return if @configured
+
+      config = Config.instance
       config.loadconfig(@config)
+      @configured = true
+    end
+
+    # Parses a compound filter and return the callstack match_compound_filter needs
+    #
+    # This is intended to be run on the client to parse a human typed string into the
+    # call stack that traverse the network.
+    #
+    # On failure a hash with `statuscode` and `statusmsg` is returned
+    def parse_compound
+      loadconfig
+
+      Matcher.create_compound_callstack(@msg)
+    rescue Exception # rubocop:disable Lint/RescueException
+      Log.error("Parsing compound filter failed: %s" % $!.message)
+      Log.error($!.backtrace.join("\n\t\t"))
+      {"statuscode" => 1, "statusmsg" => "Choria MCollective Compatability Layer failed to parse the compound filter: %s" % $!.message}
+    end
+
+    # Matches a compound filter on the current host
+    #
+    # The format of the filter should be that which parse_compound returns and what the
+    # ruby client traditionally have put on the wire
+    #
+    # Returns a hash with `matched`
+    def match_compound_filter
+      loadconfig
+
+      security = Security::Base.new
+
+      compound = JSON.parse(@msg)
+      compound = [compound] if compound.first.is_a?(Hash)
+      matched = security.validate_filter?("compound" => compound)
+
+      {"matched" => matched}
+    rescue Exception # rubocop:disable Lint/RescueException
+      Log.error("Matching compound filter failed: %s" % $!.message)
+      Log.error($!.backtrace.join("\n\t\t"))
+      {"matched" => false}
     end
 
     def request
@@ -39,20 +89,26 @@ module MCollective
 
     def agent
       @agent ||= begin
-                   agent = MCollective::PluginManager.find_and_load(:agent) do |plugin|
+                   agent = PluginManager.find_and_load(:agent) do |plugin|
                      plugin == request[:agent]
                    end.first
 
                    if agent
                      klass = Kernel.const_get(agent)
-                     if klass.ancestors.include?(MCollective::RPC::Agent) && klass.activate?
+                     if klass.ancestors.include?(RPC::Agent) && klass.activate?
                        klass.new
                      end
                    end
                  end
     end
 
+    # Calls an action within an agent
+    #
+    # The input has to be a request exactly as the mcollective security system would have produced it
+    # output is a standard RPC reply
     def dispatch
+      loadconfig
+
       abort("Unknown agent %s" % request[:agent]) unless agent
 
       Log.debug("Dispatching request %s from %s@%s to %s#%s" % [request[:requestid], request[:callerid], request[:senderid], request[:body]["agent"], request[:body]["action"]])
@@ -65,28 +121,26 @@ module MCollective
         agent.handlemsg(request, nil)
       end
 
-      reply.to_json
+      reply
 
     rescue Timeout::Error
       Log.warn("Timeout while handling message %s from %s for agent %s" % [request[:requestid], request[:callerid], request[:agent]])
-      raise
+      {"statuscode" => 1, "statusmsg" => "Choria MCollective Compatability Layer failed to invoke the action: %s" % $!.message, "data" => {}}
+
     rescue Exception # rubocop:disable Lint/RescueException
       Log.error("Execution of %s failed: %s" % [request[:agent], $!.message])
       Log.error($!.backtrace.join("\n\t\t"))
-      raise
+      {"statuscode" => 1, "statusmsg" => "Choria MCollective Compatability Layer failed to invoke the action: %s" % $!.message, "data" => {}}
     end
   end
 end
 
-begin
-  shim = MCollective::AgentShim.new(@options["config"], STDIN.read)
-  shim.loadconfig
+shim = MCollective::AgentShim.new(@options["config"], STDIN.read.chomp)
 
-  puts shim.dispatch
-  STDOUT.close
-
-rescue Exception # rubocop:disable Lint/RescueException
-  STDERR.puts("%s failed: %s: %s" % [__FILE__, $!.class, $!.message])
-  STDERR.puts($!.backtrace.join("\n\t"))
-  puts({"statuscode" => 1, "statusmsg" => "Choria MCollective Compatability Layer failed to invoke the action: %s" % $!.message, "data" => {}}.to_json)
+if @options["parse_compound"]
+  puts shim.parse_compound.to_json
+elsif @options["validate_compound"]
+  puts shim.match_compound_filter.to_json
+else
+  puts shim.dispatch.to_json
 end
