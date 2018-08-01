@@ -27,12 +27,16 @@ Puppet::Functions.create_function(:"choria::in_groups_of") do
 
     count = (arr.size / Float(chunk_size)).ceil
 
-    result = []
+    groups = []
+    
+    results = []
 
-    count.times {|s| result <<  arr[s * chunk_size, chunk_size]}
+    count.times {|s| groups <<  arr[s * chunk_size, chunk_size]}
 
-    result.each_with_index do |a|
-      yield(a)
+    groups.each_with_index do |a|
+      results << yield(a)
     end
+
+    results
   end
 end
