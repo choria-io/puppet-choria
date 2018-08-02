@@ -2,16 +2,28 @@
   "name": "choria-choria",
   "version": "0.10.0",
   "author": "R.I.Pienaar <rip@devco.net>",
-  "license": "Apache-2.0",
   "summary": "Install and manage the Choria plugin for MCollective",
+  "license": "Apache-2.0",
   "source": "https://github.com/choria-io/puppet-choria",
   "project_page": "https://github.com/choria-io/puppet-choria",
   "issues_url": "https://github.com/choria-io/puppet-choria/issues",
   "dependencies": [
-    { "name": "puppetlabs/stdlib", "version_requirement": ">= 4.24.0 < 5.0.0" },
-    { "name": "puppetlabs/apt", "version_requirement": ">= 4.5.1 < 6.0.0" },
-    { "name": "choria/mcollective_choria", "version_requirement": ">= 0.9.0 < 2.0.0" },
-    { "name": "choria/mcollective", "version_requirement": ">= 0.6.0 < 2.0.0" }
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 4.24.0 < 5.0.0"
+    },
+    {
+      "name": "puppetlabs/apt",
+      "version_requirement": ">= 4.5.1 < 6.0.0"
+    },
+    {
+      "name": "choria/mcollective_choria",
+      "version_requirement": ">= 0.9.0 < 2.0.0"
+    },
+    {
+      "name": "choria/mcollective",
+      "version_requirement": ">= 0.6.0 < 2.0.0"
+    }
   ],
   "operatingsystem_support": [
     {
@@ -113,5 +125,8 @@
       "name": "puppet",
       "version_requirement": ">= 4.9.0"
     }
-  ]
+  ],
+  "pdk-version": "1.6.1",
+  "template-url": "file:///opt/puppetlabs/pdk/share/cache/pdk-templates.git",
+  "template-ref": "1.6.1-0-g6b0d497"
 }
