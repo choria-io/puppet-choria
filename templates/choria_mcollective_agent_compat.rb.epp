@@ -65,7 +65,12 @@ module MCollective
 
       compound = JSON.parse(@msg)
       compound = [compound] if compound.first.is_a?(Hash)
-      matched = security.validate_filter?("compound" => compound)
+      filter = {"compound" => compound}
+
+      Data.load_data_sources
+      load_agents
+
+      matched = security.validate_filter?(filter)
 
       {"matched" => matched}
     rescue Exception # rubocop:disable Lint/RescueException
@@ -85,6 +90,30 @@ module MCollective
 
                      symbolized_request
                    end
+    end
+
+    def load_agents
+       PluginManager.find(:agent).each do |agent|
+         classname = "MCollective::Agent::%s" % agent.capitalize
+
+         PluginManager.loadclass(classname)
+
+         if activate_agent?(agent)
+           PluginManager << {:type => "#{agent}_agent", :class => classname, :single_instance => true}
+         end
+       end
+    end
+
+    def activate_agent?(agent)
+      klass = Kernel.const_get("MCollective").const_get("Agent").const_get(agent.capitalize)
+
+      if klass.respond_to?("activate?")
+        klass.activate?
+      else
+        true
+      end
+    rescue Exception => e
+      false
     end
 
     def agent
