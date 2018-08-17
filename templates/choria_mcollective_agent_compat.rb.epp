@@ -154,12 +154,12 @@ module MCollective
 
     rescue Timeout::Error
       Log.warn("Timeout while handling message %s from %s for agent %s" % [request[:requestid], request[:callerid], request[:agent]])
-      {"statuscode" => 1, "statusmsg" => "Choria MCollective Compatability Layer failed to invoke the action: %s" % $!.message, "data" => {}}
+      {"statuscode" => 1, "statusmsg" => "Choria MCollective Compatibility Layer failed to invoke the action: %s" % $!.message, "data" => {}}
 
     rescue Exception # rubocop:disable Lint/RescueException
       Log.error("Execution of %s failed: %s" % [request[:agent], $!.message])
       Log.error($!.backtrace.join("\n\t\t"))
-      {"statuscode" => 1, "statusmsg" => "Choria MCollective Compatability Layer failed to invoke the action: %s" % $!.message, "data" => {}}
+      {"statuscode" => 1, "statusmsg" => "Choria MCollective Compatibility Layer failed to invoke the action: %s" % $!.message, "data" => {}}
     end
   end
 end
