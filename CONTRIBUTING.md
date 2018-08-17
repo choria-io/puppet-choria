@@ -23,7 +23,7 @@ it can be used for such and such.
 To deliver this feature we had to extend, this that and the other
 with new behaviours
 
-Backwards compatability is kept
+Backwards compatibility is kept
 ```
 
 Please see [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/) for excellent coverage of the topic of commit messages.  We don't require things to be as detailed or strict as that but it's a great resource to keep in mind.

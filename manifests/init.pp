@@ -8,7 +8,7 @@
 # @param server_config_file The configuration file for the server
 # @param logfile The file to log to
 # @param log_level The logging level to use
-# @param rubypath Path to the Ruby installation used for the MCollective compatability shims
+# @param rubypath Path to the Ruby installation used for the MCollective compatibility shims
 # @param srvdomain The domain name to use when doing SRV lookups
 # @param package_name The package to install
 # @param broker_service_name The service name of the Choria Broker
