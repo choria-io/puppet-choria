@@ -10,7 +10,7 @@ We do not have strong guidelines on what you put in an issue, we'll gladly work 
 
 # PRs
 
-Almost every PR will need an issue first.  You do not need issues for trivial updates like typos, most documentation updates etc.  But if you're doing a PR that adjusts behaviour we will need a issue to go with it.
+Almost every PR will need an issue first.  You do not need issues for trivial updates like typos, most documentation updates etc.  But if you're doing a PR that adjusts behavior we will need a issue to go with it.
 
 Once you have an issue note the number and once you are ready to send your PR please squash your commits then make a single commit with something like the following format:
 
