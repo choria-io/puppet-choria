@@ -8,8 +8,8 @@
   "project_page": "https://github.com/choria-io/puppet-choria",
   "issues_url": "https://github.com/choria-io/puppet-choria/issues",
   "dependencies": [
-    { "name": "puppetlabs/stdlib", "version_requirement": ">= 4.24.0 < 5.0.0" },
-    { "name": "puppetlabs/apt", "version_requirement": ">= 4.5.1 < 6.0.0" },
+    { "name": "puppetlabs/stdlib", "version_requirement": ">= 4.24.0 < 6.0.0" },
+    { "name": "puppetlabs/apt", "version_requirement": ">= 4.5.1 < 7.0.0" },
     { "name": "choria/mcollective_choria", "version_requirement": ">= 0.11.0 < 2.0.0" },
     { "name": "choria/mcollective", "version_requirement": ">= 0.8.0 < 2.0.0" }
   ],
