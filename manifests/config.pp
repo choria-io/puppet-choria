@@ -28,7 +28,7 @@ class choria::config {
     owner   => "root",
     group   => $choria::root_group,
     mode    => "0640",
-    content => mcollective::hash2config($config),
+    content => choria::hash2config($config),
     notify  => Class["choria::service"],
     require => Class["choria::install"]
   }
