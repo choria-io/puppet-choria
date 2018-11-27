@@ -8,5 +8,9 @@ defaults:
 hierarchy:
   - name: "OS family"
     path: "os/%{facts.os.family}.yaml"
+
+  - name: "AIO version specific common"
+    path: "puppet_aio/%{facts.mcollective.aio_major_version}.yaml"
+
   - name: "common"
     path: "common.yaml"
