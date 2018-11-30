@@ -33,11 +33,22 @@ describe("choria::config") do
         .with_content(/plugin.choria.srv_domain = rspec.example.net/)
         .with_content(/collectives = mcollective/)
         .with_content(/classesfile = \/opt\/puppetlabs\/puppet\/cache\/state\/classes.txt/)
+        .with_content(/plugin.choria.status_file_path = .var.log.choria-status.json/)
     end
 
     it "should include the agent shim" do
       is_expected.to contain_file("/usr/bin/choria_mcollective_agent_compat.rb")
         .with_mode("0755")
+    end
+
+    context("with status file configured") do
+      let(:pre_condition) { 'class {"choria": statusfile => "/tmp/status", status_write_interval => 10}' }
+
+      it "should support writing the status file" do
+        is_expected.to contain_file("/etc/choria/server.conf")
+          .with_content(/plugin.choria.status_file_path = .tmp.status/)
+          .with_content(/plugin.choria.status_update_interval = 10/)
+      end
     end
   end
 end
