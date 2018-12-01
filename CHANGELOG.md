@@ -1,5 +1,9 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2018/12/01|     |Release 0.12.0                                                                                           |
+|2018/11/30|102  |Write the Choria Server status file by default                                                           |
+|2018/11/27|99   |On AIO Puppet 6 enable Choria Server by default                                                          |
+|2018/11/12|88   |Use the correct hash2config function                                                                     |
 |2018/10/13|     |Release 0.11.1                                                                                           |
 |2018/10/03|94   |Allow latest apt and stdlib modules to be used                                                           |
 |2018/09/20|     |Release 0.11.0                                                                                           |
