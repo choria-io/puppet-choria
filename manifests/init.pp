@@ -3,6 +3,7 @@
 # @param manage_package_repo Installs the package repositories
 # @param nightly_repo Install the nightly package repo as well as the release one
 # @param ensure Add or remove the software
+# @param repo_baseurl Used to override default packagecloud package source
 # @param version The version of Choria to install
 # @param broker_config_file The configuration file for the broker
 # @param server_config_file The configuration file for the server
@@ -22,6 +23,7 @@ class choria (
   Boolean $manage_package_repo ,
   Boolean $nightly_repo,
   Enum["present", "absent"] $ensure,
+  String $repo_baseurl,
   String $version,
   Enum[debug, info, warn, error, fatal] $log_level,
   Optional[String] $srvdomain,

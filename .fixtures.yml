@@ -6,3 +6,5 @@ fixtures:
     mcollective: "choria/mcollective"
     stdlib: "puppetlabs/stdlib"
     apt: "puppetlabs/apt"
+    translate: "puppetlabs/translate"
+    yumrepo: "puppetlabs/yumrepo_core"
