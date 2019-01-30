@@ -11,7 +11,7 @@ class choria::repo (
     yumrepo{"choria_release":
       ensure          => $ensure,
       descr           => 'Choria Orchestrator Releases',
-      baseurl         => 'https://packagecloud.io/choria/release/el/$releasever/$basearch',
+      baseurl         => "${choria::repo_baseurl}/release/el/\$releasever/\$basearch",
       repo_gpgcheck   => true,
       gpgcheck        => false,
       enabled         => true,
@@ -25,7 +25,7 @@ class choria::repo (
       yumrepo{"choria_nightly":
         ensure          => $ensure,
         descr           => 'Choria Orchestrator Nightly Builds',
-        baseurl         => 'https://packagecloud.io/choria/nightly/el/$releasever/$basearch',
+        baseurl         => "${choria::repo_baseurl}/nightly/el/\$releasever/\$basearch",
         repo_gpgcheck   => true,
         gpgcheck        => false,
         enabled         => true,
@@ -36,12 +36,19 @@ class choria::repo (
       }
     }
   } elsif $facts["os"]["name"] == "Ubuntu" {
+    if versioncmp($facts['os']['release']['major'], '16.04') < 0 {
+      fail("Choria Repositories are only supported for xenial or newer releases")
+    } elsif versioncmp($facts['os']['release']['major'], '17.10') > 0 {
+      $release = 'bionic'
+    } else {
+      $release = 'xenial'
+    }
     apt::source{"choria-release":
       ensure        => $ensure,
       notify_update => true,
       comment       => "Choria Orchestrator Releases",
-      location      => "https://packagecloud.io/choria/release/ubuntu/",
-      release       => "xenial",
+      location      => "${choria::repo_baseurl}/release/ubuntu/",
+      release       => $release,
       repos         => "main",
       key           => {
         id     => "5921BC1D903D6E0353C985BB9F89253B1E83EA92",
@@ -53,7 +60,7 @@ class choria::repo (
       ensure        => $ensure,
       notify_update => true,
       comment       => "Choria Orchestrator Releases",
-      location      => "https://packagecloud.io/choria/release/debian/",
+      location      => "${choria::repo_baseurl}/release/debian/",
       release       => "stretch",
       repos         => "main",
       key           => {
