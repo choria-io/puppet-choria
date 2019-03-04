@@ -1,5 +1,7 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2019/03/04|     |Release 0.13.0                                                                                           |
+|2019/01/30|106  |Allow the Package Cloud repo to be mirrored and a local url used when configuring the repos              |
 |2018/12/01|     |Release 0.12.0                                                                                           |
 |2018/11/30|102  |Write the Choria Server status file by default                                                           |
 |2018/11/27|99   |On AIO Puppet 6 enable Choria Server by default                                                          |
