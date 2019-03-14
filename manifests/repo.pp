@@ -53,7 +53,8 @@ class choria::repo (
       key           => {
         id     => "5921BC1D903D6E0353C985BB9F89253B1E83EA92",
         source => "https://packagecloud.io/choria/release/gpgkey"
-      }
+      },
+      before        => Package[$choria::package_name],
     }
   } elsif $facts["os"]["name"] == "Debian" {
     apt::source{"choria-release":
@@ -66,7 +67,8 @@ class choria::repo (
       key           => {
         id     => "5921BC1D903D6E0353C985BB9F89253B1E83EA92",
         source => "https://packagecloud.io/choria/release/gpgkey"
-      }
+      },
+      before        => Package[$choria::package_name],
     }
   } else {
     fail(sprintf("Choria Repositories are not supported on %s", $facts["os"]["family"]))
