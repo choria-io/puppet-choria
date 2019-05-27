@@ -1,5 +1,8 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2019/05/27|     |Release 0.13.1                                                                                           |
+|2019/03/13|113  |Ensure APT repositories are managed before the packages                                                  |
+|2019/03/14|111  |Disable repo_gpgcheck for yum repos to enable mirrors to be made                                         |
 |2019/03/04|     |Release 0.13.0                                                                                           |
 |2019/01/30|106  |Allow the Package Cloud repo to be mirrored and a local url used when configuring the repos              |
 |2018/12/01|     |Release 0.12.0                                                                                           |
