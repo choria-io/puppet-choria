@@ -4,6 +4,8 @@
 class choria::broker::config {
   assert_private()
 
+  $config = choria::hash2config($choria::broker_config)
+
   file{$choria::broker_config_file:
     owner   => "root",
     group   => $choria::root_group,

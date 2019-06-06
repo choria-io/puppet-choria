@@ -65,3 +65,6 @@ plugin.choria.adapter.<%= $adapter %>.<%= $section %>.<%= $key %> = <%= $value %
 <%      } -%>
 <%   } -%>
 <% } -%>
+<% unless $choria::broker::config::config.empty { -%>
+<%= $choria::broker::config::config %>
+<% } -%>

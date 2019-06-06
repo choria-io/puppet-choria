@@ -39,6 +39,7 @@ class choria (
   String $identity,
   Boolean $server,
   Hash $server_config,
+  Hash $broker_config,
   String $root_group,
 ) {
   if $manage_package_repo {

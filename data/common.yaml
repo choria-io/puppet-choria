@@ -42,6 +42,8 @@ choria::broker::collective_middleware_hosts: []
 choria::broker::adapters: {}
 choria::broker::identity: "%{trusted.certname}"
 
+choria::broker_config: {}
+
 lookup_options:
   choria::collectives:
     merge: "unique"
