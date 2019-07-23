@@ -9,7 +9,11 @@ describe("choria::service") do
     {
       "aio_agent_version" => "1.7.0",
       "os" => {
-        "family" => "RedHat"
+        "family" => "RedHat",
+        "name" => "CentOS",
+        "release" => {
+          "major" => "7"
+        }
       }
     }
   end

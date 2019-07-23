@@ -8,10 +8,17 @@ class choria::repo (
   assert_private()
 
   if $facts["os"]["family"] == "RedHat" {
+    if versioncmp($facts['os']['release']['major'], '6') < 0 {
+      fail("Choria Repositories are only supported for RHEL/CentOS 6 or newer releases")
+    } elsif versioncmp($facts['os']['release']['major'], '7') > 0 {
+      $release = '7'
+    } else {
+      $release = '$releasever'
+    }
     yumrepo{"choria_release":
       ensure          => $ensure,
       descr           => 'Choria Orchestrator Releases',
-      baseurl         => "${choria::repo_baseurl}/release/el/\$releasever/\$basearch",
+      baseurl         => "${choria::repo_baseurl}/release/el/${release}/\$basearch",
       repo_gpgcheck   => false,
       gpgcheck        => false,
       enabled         => true,
@@ -25,7 +32,7 @@ class choria::repo (
       yumrepo{"choria_nightly":
         ensure          => $ensure,
         descr           => 'Choria Orchestrator Nightly Builds',
-        baseurl         => "${choria::repo_baseurl}/nightly/el/\$releasever/\$basearch",
+        baseurl         => "${choria::repo_baseurl}/nightly/el/${release}/\$basearch",
         repo_gpgcheck   => false,
         gpgcheck        => false,
         enabled         => true,
