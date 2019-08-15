@@ -28,6 +28,11 @@ plugin.choria.network.listen_address = <%= $choria::broker::listen_address %>
 # Clients and Servers will connect to this port
 plugin.choria.network.client_port = <%= $choria::broker::client_port %>
 
+<% if $choria::broker::tls_timeout { -%>
+# TLS handshake timeout (in seconds)
+plugin.choria.network.tls_timeout = <%= $choria::broker::tls_timeout %>
+<% } -%>
+
 # Other Choria Network Brokers will connect to this port to form a cluster
 plugin.choria.network.peer_port = <%= $choria::broker::cluster_peer_port %>
 <%   unless $choria::broker::network_peers.empty { -%>
