@@ -47,6 +47,7 @@
 # @param client_port Port clients will connec tto
 # @param cluster_peer_port Port other brokers will connect to
 # @param stats_port Port where Prometheus stats are hosted
+# @param tls_timeout TLS Handshake timeout (in seconds)
 # @param identity The identity this broker will use to determine SSL cert names etc
 class choria::broker (
   Boolean $network_broker,
@@ -61,7 +62,8 @@ class choria::broker (
   Array[String] $federation_middleware_hosts,
   Array[String] $collective_middleware_hosts,
   Choria::Adapters $adapters,
-  String $identity
+  String $identity,
+  Optional[Integer] $tls_timeout = undef,
 ) {
   require choria
 
