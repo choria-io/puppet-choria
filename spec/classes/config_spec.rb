@@ -51,4 +51,17 @@ describe("choria::config") do
       end
     end
   end
+
+  context("custom server config") do
+    let(:pre_condition) {
+      'class {"choria":
+         server_config => {"plugin.choria.security.certname_whitelist" => ["user1", "user2"]},
+       }'
+    }
+
+    it "should support arrays in choria::server_config" do
+      is_expected.to contain_file("/etc/choria/server.conf")
+        .with_content(/plugin.choria.security.certname_whitelist = user1, user2/)
+    end
+  end
 end
