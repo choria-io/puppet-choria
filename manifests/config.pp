@@ -24,6 +24,17 @@ class choria::config {
     "plugin.choria.srv_domain"   => $choria::srvdomain,
   }
 
+  if $choria::mcollective_config_dir != "" {
+    $_config_dir = dirname($choria::server_config_file)
+
+    if $_config_dir != $choria::mcollective_config_dir {
+      file{"${_config_dir}/plugin.d":
+        ensure => link,
+        target => "${choria::mcollective_config_dir}/plugin.d"
+      }
+    }
+  }
+
   if "plugin.choria.agent_provider.mcorpc.agent_shim" in $choria::server_config  and "plugin.choria.agent_provider.mcorpc.config" in $choria::server_config {
     file{$choria::server_config["plugin.choria.agent_provider.mcorpc.agent_shim"]:
       owner   => "root",
