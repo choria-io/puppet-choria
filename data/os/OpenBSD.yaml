@@ -1,0 +1,2 @@
+---
+choria::mcollective_config_dir: "/etc/mcollective"

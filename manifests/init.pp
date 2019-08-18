@@ -5,6 +5,7 @@
 # @param ensure Add or remove the software
 # @param repo_baseurl Used to override default packagecloud package source
 # @param version The version of Choria to install
+# @param mcollective_config_dir Directory where mcollective configuration is stored
 # @param broker_config_file The configuration file for the broker
 # @param server_config_file The configuration file for the server
 # @param logfile The file to log to
@@ -27,6 +28,7 @@ class choria (
   String $version,
   Enum[debug, info, warn, error, fatal] $log_level,
   Optional[String] $srvdomain,
+  Stdlib::Compat::Absolute_path $mcollective_config_dir,
   Stdlib::Compat::Absolute_path $broker_config_file,
   Stdlib::Compat::Absolute_path $server_config_file,
   Stdlib::Compat::Absolute_path $logfile,
