@@ -81,6 +81,23 @@ describe("choria::broker::config") do
     end
   end
 
+  context("restricted client hosts") do
+    let(:pre_condition) do
+      <<-HEREDOC
+         class {"choria::broker":
+           network_broker => true,
+           client_hosts => ["host1", "host2"],
+         }
+         HEREDOC
+       end
+
+    it { should compile.with_all_deps }
+
+    it "should enable client hosts" do
+        is_expected.to contain_file("/etc/choria/broker.conf").with_content(/plugin.choria.network.client_hosts = host1, host2/)
+    end
+  end
+
   context("clustered network broker") do
     let(:pre_condition) { 'class {"choria::broker": network_broker => true, network_peers => ["nats://n1:4223", "nats://n2:4223"]}' }
 

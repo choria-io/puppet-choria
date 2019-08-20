@@ -40,6 +40,7 @@ choria::broker::stats_port: 8222
 choria::broker::network_peers: []
 choria::broker::federation_middleware_hosts: []
 choria::broker::collective_middleware_hosts: []
+choria::broker::client_hosts: []
 choria::broker::adapters: {}
 choria::broker::identity: "%{trusted.certname}"
 
