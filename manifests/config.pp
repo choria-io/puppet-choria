@@ -32,6 +32,11 @@ class choria::config {
         ensure => link,
         target => "${choria::mcollective_config_dir}/plugin.d"
       }
+
+      file{"${_config_dir}/policies":
+        ensure => link,
+        target => "${choria::mcollective_config_dir}/policies"
+      }
     }
   }
 
