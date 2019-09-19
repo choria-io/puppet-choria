@@ -31,8 +31,8 @@ plugin.choria.network.client_port = <%= $choria::broker::client_port %>
 <% if $choria::broker::tls_timeout { -%>
 # TLS handshake timeout (in seconds)
 plugin.choria.network.tls_timeout = <%= $choria::broker::tls_timeout %>
-<% } -%>
 
+<% } -%>
 # Other Choria Network Brokers will connect to this port to form a cluster
 plugin.choria.network.peer_port = <%= $choria::broker::cluster_peer_port %>
 <%   unless $choria::broker::network_peers.empty { -%>
@@ -40,14 +40,12 @@ plugin.choria.network.peer_port = <%= $choria::broker::cluster_peer_port %>
 # All the cluster peers the server will attempt to create connections with
 plugin.choria.network.peers = <%= $choria::broker::network_peers.join(", ") %>
 <%   } -%>
-
 <%   unless $choria::broker::client_hosts.empty { -%>
 
 # List of clients that are allowed to connect to the brokers
 plugin.choria.network.client_hosts = <%= $choria::broker::client_hosts.join(", ") %>
 <%   } -%>
 <% } -%>
-
 
 <% if $choria::broker::federation_broker { -%>
 # The Choria Federation Broker routes isolated Collectives into a Federated Network
