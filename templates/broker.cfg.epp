@@ -1,5 +1,5 @@
-logfile = <%= $choria::logfile %>
-loglevel = <%= $choria::log_level %>
+logfile = <%= $choria::broker_logfile %>
+loglevel = <%= $choria::broker_log_level %>
 identity = <%= $choria::broker::identity %>
 
 <% if $choria::srvdomain { -%>

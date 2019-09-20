@@ -64,4 +64,13 @@ describe("choria::config") do
         .with_content(/plugin.choria.security.certname_whitelist = user1, user2/)
     end
   end
+
+  context("custom logging") do
+    let(:pre_condition) { 'class {"choria": server_logfile => "/var/log/choria-server.log", server_log_level => "debug"}' }
+
+    it "should use the supplied logging" do
+      is_expected.to contain_file("/etc/choria/server.conf").with_content(/logfile = \/var\/log\/choria-server\.log/)
+        .with_content(/loglevel = debug/)
+    end
+  end
 end
