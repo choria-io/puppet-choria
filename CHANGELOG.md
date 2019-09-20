@@ -1,5 +1,12 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2019/09/20|     |Release 0.14.0                                                                                           |
+|2019/09/17|127  |Create a symlink of mcollective policies into choria                                                     |
+|2019/08/20|125  |Allow client_hosts to be set in broker config                                                            |
+|2019/08/18|123  |Create a symlink mcollective plugin.d into choria                                                        |
+|2019/08/16|121  |Allow top-level choria::server_config options to be arrays                                               |
+|2019/08/15|119  |Allow broker TLS timeout to be configured                                                                |
+|2019/07/23|108  |Improve packaging on CentOS 7, drops support for 5                                                       |
 |2019/05/27|     |Release 0.13.1                                                                                           |
 |2019/03/13|113  |Ensure APT repositories are managed before the packages                                                  |
 |2019/03/14|111  |Disable repo_gpgcheck for yum repos to enable mirrors to be made                                         |
