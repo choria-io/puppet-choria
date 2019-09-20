@@ -44,6 +44,15 @@ describe("choria::broker::config") do
           .with_content(/identity = custom.rspec.example.net/)
       end
     end
+
+    context("custom logging") do
+      let(:pre_condition) { 'class {"choria": broker_logfile => "/var/log/choria-broker.log", broker_log_level => "debug"} class {"choria::broker": }' }
+
+      it "should use the supplied logging" do
+        is_expected.to contain_file("/etc/choria/broker.conf").with_content(/logfile = \/var\/log\/choria-broker\.log/)
+          .with_content(/loglevel = debug/)
+      end
+    end
   end
 
   context("without the network broker") do

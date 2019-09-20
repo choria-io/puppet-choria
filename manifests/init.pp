@@ -8,10 +8,14 @@
 # @param mcollective_config_dir Directory where mcollective configuration is stored
 # @param broker_config_file The configuration file for the broker
 # @param server_config_file The configuration file for the server
-# @param logfile The file to log to
+# @param logfile The default file to log to
+# @param broker_logfile The file to log the broker to
+# @param server_logfile The file to log the server to
 # @param statusfile The file to write server status to
 # @param status_write_interval How often the status file should be written in seconds
-# @param log_level The logging level to use
+# @param log_level The default logging level to use
+# @param broker_log_level The logging level to use for the broker
+# @param server_log_level The logging level to use for the server
 # @param rubypath Path to the Ruby installation used for the MCollective compatibility shims
 # @param srvdomain The domain name to use when doing SRV lookups
 # @param package_name The package to install
@@ -42,6 +46,10 @@ class choria (
   Boolean $server,
   Hash $server_config,
   String $root_group,
+  Enum[debug, info, warn, error, fatal] $broker_log_level = $log_level,
+  Enum[debug, info, warn, error, fatal] $server_log_level = $log_level,
+  Stdlib::Compat::Absolute_path $broker_logfile = $logfile,
+  Stdlib::Compat::Absolute_path $server_logfile = $logfile,
 ) {
   if $manage_package_repo {
     class{"choria::repo":
