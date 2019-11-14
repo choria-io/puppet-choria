@@ -3,7 +3,7 @@
 # @private
 class choria::repo (
   Boolean $nightly = false,
-  Boolean $repo_gpgcheck = true,
+  Boolean $repo_gpgcheck = false,
   Enum["present", "absent"] $ensure = "present",
 ) {
   assert_private()
