@@ -3,6 +3,7 @@
 # @private
 class choria::repo (
   Boolean $nightly = false,
+  Boolean $repo_gpgcheck = true,
   Enum["present", "absent"] $ensure = "present",
 ) {
   assert_private()
@@ -19,7 +20,7 @@ class choria::repo (
       ensure          => $ensure,
       descr           => 'Choria Orchestrator Releases',
       baseurl         => "${choria::repo_baseurl}/release/el/${release}/\$basearch",
-      repo_gpgcheck   => true,
+      repo_gpgcheck   => $repo_gpgcheck,
       gpgcheck        => false,
       enabled         => true,
       gpgkey          => "https://packagecloud.io/choria/release/gpgkey",
@@ -33,7 +34,7 @@ class choria::repo (
         ensure          => $ensure,
         descr           => 'Choria Orchestrator Nightly Builds',
         baseurl         => "${choria::repo_baseurl}/nightly/el/${release}/\$basearch",
-        repo_gpgcheck   => true,
+        repo_gpgcheck   => $repo_gpgcheck,
         gpgcheck        => false,
         enabled         => true,
         gpgkey          => "https://packagecloud.io/choria/nightly/gpgkey",

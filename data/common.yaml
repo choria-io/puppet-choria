@@ -28,6 +28,7 @@ choria::server_service_name: "choria-server"
 choria::identity: "%{trusted.certname}"
 choria::server: false
 choria::root_group: "root"
+choria::repo_gpgcheck: true
 
 choria::broker::network_broker: true
 choria::broker::federation_broker: false
