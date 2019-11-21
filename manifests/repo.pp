@@ -63,6 +63,7 @@ class choria::repo (
       },
       before        => Package[$choria::package_name],
     }
+    Class['apt::update'] -> Package[$choria::package_name]
   } elsif $facts["os"]["name"] == "Debian" {
     apt::source{"choria-release":
       ensure        => $ensure,
@@ -77,6 +78,7 @@ class choria::repo (
       },
       before        => Package[$choria::package_name],
     }
+    Class['apt::update'] -> Package[$choria::package_name]
   } else {
     fail(sprintf("Choria Repositories are not supported on %s", $facts["os"]["family"]))
   }
