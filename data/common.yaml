@@ -9,6 +9,8 @@ choria::server_config:
   plugin.choria.agent_provider.mcorpc.libdir: "/opt/puppetlabs/mcollective/plugins"
 
 choria::rubypath: "/opt/puppetlabs/puppet/bin/ruby"
+choria::manage_package: true
+choria::manage_service: true
 choria::manage_package_repo: false
 choria::nightly_repo: false
 choria::repo_baseurl: "https://packagecloud.io/choria"
@@ -27,7 +29,8 @@ choria::broker_service_name: "choria-broker"
 choria::server_service_name: "choria-server"
 choria::identity: "%{trusted.certname}"
 choria::server: false
-choria::root_group: "root"
+choria::config_user: "root"
+choria::config_group: "root"
 
 choria::broker::network_broker: true
 choria::broker::federation_broker: false

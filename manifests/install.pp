@@ -4,12 +4,14 @@
 class choria::install {
   assert_private()
 
-  $version = $choria::ensure ? {
-    "present" => $choria::version,
-    "absent" => "absent"
-  }
+  if $choria::manage_package {
+    $version = $choria::ensure ? {
+      "present" => $choria::version,
+      "absent" => "absent"
+    }
 
-  package{$choria::package_name:
-    ensure => $version
+    package{$choria::package_name:
+      ensure => $version
+    }
   }
 }
