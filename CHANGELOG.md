@@ -1,5 +1,8 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2019/11/25|     |Release 0.15.0                                                                                           |
+|2019/11/21|113  |Improve resource ordering on debian systems                                                              |
+|2019/09/19|130  |Allow splitting services log into server and broker logs                                                 |
 |2019/09/20|     |Release 0.14.0                                                                                           |
 |2019/09/17|127  |Create a symlink of mcollective policies into choria                                                     |
 |2019/08/20|125  |Allow client_hosts to be set in broker config                                                            |

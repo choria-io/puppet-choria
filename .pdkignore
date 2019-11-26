@@ -1,0 +1,6 @@
+.git
+spec
+Gemfile*
+Rakefile
+pkg
+vendor
