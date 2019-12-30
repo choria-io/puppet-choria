@@ -10,6 +10,9 @@
 # @param mcollective_config_dir Directory where mcollective configuration is stored
 # @param broker_config_file The configuration file for the broker
 # @param server_config_file The configuration file for the server
+# @param server_provisioning_token_file The configuration token to configure server provisioning
+# @param server_provisioning_token The contents of the provisioning token
+# @param manage_server_config To manage the server config file or not, disable in provisioning mode
 # @param logfile The default file to log to
 # @param broker_logfile The file to log the broker to
 # @param server_logfile The file to log the server to
@@ -39,6 +42,9 @@ class choria (
   Stdlib::Compat::Absolute_path $mcollective_config_dir,
   Stdlib::Compat::Absolute_path $broker_config_file,
   Stdlib::Compat::Absolute_path $server_config_file,
+  Stdlib::Compat::Absolute_path $server_provisioning_token_file,
+  Optional[String] $server_provisioning_token,
+  Boolean $manage_server_config,
   Stdlib::Compat::Absolute_path $logfile,
   Optional[Stdlib::Compat::Absolute_path] $statusfile,
   Integer $status_write_interval,
