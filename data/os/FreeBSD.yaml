@@ -9,5 +9,5 @@ choria::server_config:
 choria::rubypath: "/usr/local/bin/ruby"
 choria::broker_config_file: "/usr/local/etc/choria/broker.conf"
 choria::server_config_file: "/usr/local/etc/choria/server.conf"
-choria::root_group: "wheel"
+choria::config_group: "wheel"
 choria::mcollective_config_dir: "/usr/local/etc/mcollective"

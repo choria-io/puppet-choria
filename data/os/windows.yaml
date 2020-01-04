@@ -1,2 +1,19 @@
 ---
-choria::mcollective_config_dir: "C:/ProgramData/PuppetLabs/mcollective/etc"
+choria::server_config:
+  plugin.rpcaudit.logfile: "C:/ProgramData/choria/var/log/choria-audit.log"
+  classesfile: "C:/ProgramData/PuppetLabs/puppet/cache/state/classes.txt"
+  plugin.rpcaudit.logfile: "C:/ProgramData/choria/var/log/choria-audit.log"
+  plugin.yaml: "C:/ProgramData/choria/etc/generated-facts.yaml"
+  plugin.choria.agent_provider.mcorpc.agent_shim: "C:/Program Files/choria/bin/choria_mcollective_agent_compat.rb"
+  plugin.choria.agent_provider.mcorpc.config: "C:/ProgramData/choria/etc/choria-shim.cfg"
+  plugin.choria.agent_provider.mcorpc.libdir: "C:/ProgramData/choria/lib/plugins"
+choria::rubypath: "C:/Program Files/Puppet Labs/Puppet/puppet/bin/ruby.exe"
+choria::broker_config_file: "C:/ProgramData/choria/etc/broker.conf"
+choria::server_config_file: "C:/ProgramData/choria/etc/server.conf"
+choria::logfile: "C:/ProgramData/choria/var/log/choria.log"
+choria::statusfile: "C:/ProgramData/choria/var/log/choria-status.json"
+choria::manage_package: false
+choria::manage_service: false
+choria::mcollective_config_dir: "C:/ProgramData/choria/etc"
+choria::config_user: ~
+choria::config_group: ~
