@@ -10,6 +10,7 @@ choria::server_config:
 choria::rubypath: "C:/Program Files/Puppet Labs/Puppet/puppet/bin/ruby.exe"
 choria::broker_config_file: "C:/ProgramData/choria/etc/broker.conf"
 choria::server_config_file: "C:/ProgramData/choria/etc/server.conf"
+choria::server_provisioning_token_file: "C:/ProgramData/choria/etc/provisioning.jwt"
 choria::logfile: "C:/ProgramData/choria/var/log/choria.log"
 choria::statusfile: "C:/ProgramData/choria/var/log/choria-status.json"
 choria::manage_package: false

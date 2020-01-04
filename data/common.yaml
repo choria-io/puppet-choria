@@ -21,6 +21,9 @@ choria::srvdomain: "%{facts.networking.domain}"
 choria::mcollective_config_dir: "/etc/puppetlabs/mcollective"
 choria::broker_config_file: "/etc/choria/broker.conf"
 choria::server_config_file: "/etc/choria/server.conf"
+choria::manage_server_config: true
+choria::server_provisioning_token_file: "/etc/choria/provisioning.jwt"
+choria::server_provisioning_token: ~
 choria::logfile: "/var/log/choria.log"
 choria::statusfile: "/var/log/choria-status.json"
 choria::status_write_interval: 30
