@@ -52,7 +52,7 @@ class choria::config {
   if $choria::manage_server_config {
     file{$choria::server_config_file:
       owner   => $choria::config_user,
-      group   => $choria::root_group,
+      group   => $choria::config_group,
       mode    => "0640",
       content => choria::hash2config($config),
       notify  => Class["choria::service"],
@@ -63,7 +63,7 @@ class choria::config {
   if $choria::server_provisioning_token {
     file{$choria::server_provisioning_token_file:
       owner   => $choria::config_user,
-      group   => $choria::root_group,
+      group   => $choria::config_group,
       mode    => "0640",
       content => $choria::server_provisioning_token,
       notify  => Class["choria::service"],
