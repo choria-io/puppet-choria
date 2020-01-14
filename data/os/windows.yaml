@@ -7,6 +7,7 @@ choria::server_config:
   plugin.choria.agent_provider.mcorpc.agent_shim: "C:/Program Files/choria/bin/choria_mcollective_agent_compat.bat"
   plugin.choria.agent_provider.mcorpc.config: "C:/ProgramData/choria/etc/choria-shim.cfg"
   plugin.choria.agent_provider.mcorpc.libdir: "C:/ProgramData/choria/lib/plugins"
+  plugin.choria.ssldir: "C:/ProgramData/PuppetLabs/puppet/etc/ssl"
 choria::rubypath: "C:/Program Files/Puppet Labs/Puppet/puppet/bin/ruby.exe"
 choria::broker_config_file: "C:/ProgramData/choria/etc/broker.conf"
 choria::server_config_file: "C:/ProgramData/choria/etc/server.conf"

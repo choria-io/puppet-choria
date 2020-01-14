@@ -46,6 +46,11 @@ plugin.choria.network.peers = <%= $choria::broker::network_peers.join(", ") %>
 plugin.choria.network.client_hosts = <%= $choria::broker::client_hosts.join(", ") %>
 <%   } -%>
 <% } -%>
+<% if $choria::broker::ssldir { -%>
+
+# Override ssldir for broker, if needed. This has different effects than setting this key in /etc/choria/plugins/choria.cfg
+plugin.choria.ssldir = <%= $choria::broker::ssldir %>
+<% } -%>
 
 <% if $choria::broker::federation_broker { -%>
 # The Choria Federation Broker routes isolated Collectives into a Federated Network
