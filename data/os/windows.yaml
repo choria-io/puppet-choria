@@ -4,7 +4,7 @@ choria::server_config:
   classesfile: "C:/ProgramData/PuppetLabs/puppet/cache/state/classes.txt"
   plugin.rpcaudit.logfile: "C:/ProgramData/choria/var/log/choria-audit.log"
   plugin.yaml: "C:/ProgramData/choria/etc/generated-facts.yaml"
-  plugin.choria.agent_provider.mcorpc.agent_shim: "C:/Program Files/choria/bin/choria_mcollective_agent_compat.rb"
+  plugin.choria.agent_provider.mcorpc.agent_shim: "C:/Program Files/choria/bin/choria_mcollective_agent_compat.bat"
   plugin.choria.agent_provider.mcorpc.config: "C:/ProgramData/choria/etc/choria-shim.cfg"
   plugin.choria.agent_provider.mcorpc.libdir: "C:/ProgramData/choria/lib/plugins"
 choria::rubypath: "C:/Program Files/Puppet Labs/Puppet/puppet/bin/ruby.exe"

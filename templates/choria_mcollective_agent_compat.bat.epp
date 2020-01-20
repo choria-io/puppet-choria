@@ -1,0 +1,3 @@
+@echo off
+setlocal
+"<%= $choria::rubypath %>" -S -- "<%= $choria::server_config["plugin.choria.agent_provider.mcorpc.agent_shim"].regsubst(/\.bat$/, '.rb') %>" --config "<%= $choria::server_config_file %>" %*
