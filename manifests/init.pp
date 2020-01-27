@@ -29,6 +29,7 @@
 # @param identity The identity this server will use to determine SSL cert names etc
 # @param server To enable or disable the choria server
 # @param server_config Configuration for the Choria Server
+# @param repo_gpgcheck Whether to enable repo gpgcheck (must be false for packagecloud mirrors)
 class choria (
   Boolean $manage_package,
   Boolean $manage_service,
@@ -55,6 +56,7 @@ class choria (
   String $identity,
   Boolean $server,
   Hash $server_config,
+  Optional[Boolean] $repo_gpgcheck,
   Optional[String] $config_user,
   Optional[String] $config_group,
   Enum[debug, info, warn, error, fatal] $broker_log_level = $log_level,

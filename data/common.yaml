@@ -32,6 +32,7 @@ choria::broker_service_name: "choria-broker"
 choria::server_service_name: "choria-server"
 choria::identity: "%{trusted.certname}"
 choria::server: false
+choria::repo_gpgcheck: false
 choria::config_user: "root"
 choria::config_group: "root"
 
