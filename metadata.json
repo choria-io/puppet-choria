@@ -25,7 +25,8 @@
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
         "6",
-        "7"
+        "7",
+        "8"
       ]
     },
     {
@@ -63,6 +64,7 @@
         "10.04",
         "12.04",
         "14.04",
+        "16.04",
         "18.04"
       ]
     },
@@ -101,6 +103,13 @@
         "10.11",
         "10.12",
         "10.13"
+      ]
+    },
+    {
+      "operatingsystem": "VirtuozzoLinux",
+      "operatingsystemrelease": [
+        "6",
+        "7"
       ]
     }
   ],
