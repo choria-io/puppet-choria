@@ -1,5 +1,13 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2020/04/19|     |Release 0.16.0                                                                                           |
+|2020/04/01|155  |Add `choria::playbook_exist` function                                                                    |
+|2020/02/11|151  |Support Amazon Linux                                                                                     |
+|2020/01/27|135  |Allow GPG repo checking behaviour to be configured                                                       |
+|2020/01/25|115  |Allow the `ssldir` setting to be configured by the module                                                |
+|2020/01/04|143  |New configuration options for auto provisioning support                                                  |
+|2020/01/04|145  |Improve windows support                                                                                  |
+|2019/12/06|142  |Add `choria::sleep` playbook function                                                                    |
 |2019/11/25|     |Release 0.15.0                                                                                           |
 |2019/11/21|113  |Improve resource ordering on debian systems                                                              |
 |2019/09/19|130  |Allow splitting services log into server and broker logs                                                 |
