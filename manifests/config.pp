@@ -40,7 +40,16 @@ class choria::config {
     }
   }
 
-  if "plugin.choria.agent_provider.mcorpc.agent_shim" in $choria::server_config  and "plugin.choria.agent_provider.mcorpc.config" in $choria::server_config {
+  if "plugin.choria.machine.store" in $choria::server_config {
+    file{$choria::server_config["plugin.choria.machine.store"]:
+      ensure => directory,
+      owner  => $choria::config_user,
+      group  => $choria::config_group,
+      mode   => "0755",
+    }
+  }
+
+  if "plugin.choria.agent_provider.mcorpc.agent_shim" in $choria::server_config and "plugin.choria.agent_provider.mcorpc.config" in $choria::server_config {
     if $choria::server_config["plugin.choria.agent_provider.mcorpc.agent_shim"] =~ /\.bat$/ {
       $agent_shim = $choria::server_config["plugin.choria.agent_provider.mcorpc.agent_shim"].regsubst(/\.bat$/, '.rb')
       $agent_shim_wrapper = $choria::server_config["plugin.choria.agent_provider.mcorpc.agent_shim"]
@@ -55,6 +64,7 @@ class choria::config {
       mode    => "0755",
       content => epp("choria/choria_mcollective_agent_compat.rb.epp")
     }
+
     if $agent_shim_wrapper {
       file{$agent_shim_wrapper:
         owner   => $choria::config_user,
