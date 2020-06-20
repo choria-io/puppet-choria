@@ -5,6 +5,7 @@ choria::server_config:
   plugin.choria.agent_provider.mcorpc.agent_shim: "/usr/local/bin/choria_mcollective_agent_compat.rb"
   plugin.choria.agent_provider.mcorpc.config: "/usr/local/etc/mcollective/choria-shim.cfg"
   plugin.choria.agent_provider.mcorpc.libdir: "/usr/local/share"
+  plugin.choria.machine.store: "/usr/local/etc/choria/machine"
 
 choria::rubypath: "/usr/local/bin/ruby"
 choria::broker_config_file: "/usr/local/etc/choria/broker.conf"
