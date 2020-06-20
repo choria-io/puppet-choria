@@ -26,6 +26,7 @@ define choria::nagios_check(
     name          => $name,
     version       => "1.0.0",
     initial_state => "UNKNOWN",
+    splay_start   => 300,
     transitions   => [
       {
         name        => "UNKNOWN",
