@@ -41,11 +41,27 @@ class choria::config {
   }
 
   if "plugin.choria.machine.store" in $choria::server_config {
-    file{$choria::server_config["plugin.choria.machine.store"]:
-      ensure => directory,
-      owner  => $choria::config_user,
-      group  => $choria::config_group,
-      mode   => "0755",
+    if $choria::purge_machines {
+      $purge_options = {
+        source  => "puppet:///modules/choria/empty",
+        ignore  => ".keep",
+        purge   => true,
+        recurse => true,
+        force   => true
+      }
+    } else {
+      $purge_options = {}
+    }
+
+    file{
+      default:
+        * =>  $purge_options;
+
+      $choria::server_config["plugin.choria.machine.store"]:
+        ensure => directory,
+        owner  => $choria::config_user,
+        group  => $choria::config_group,
+        mode   => "0755",
     }
   }
 
