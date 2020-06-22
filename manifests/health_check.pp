@@ -7,17 +7,18 @@
 # @param remediate_command Command to run to remediate failures
 # @param remediate_states What states the remediation command should be run in
 # @param remediate_interval Interval between remediation attempts
-define choria::nagios_check(
+define choria::health_check(
   String $plugin,
   String $arguments = "",
   String $plugin_timeout = "10s",
   String $check_interval = "5m",
   String $remediate_command = "",
   Array[String] $remediate_states = ["CRITICAL"],
-  String $remediate_interval = "15m"
+  String $remediate_interval = "15m",
+  Enum["present", "absent"] $ensure = "present"
 ) {
   if !("plugin.choria.machine.store" in $choria::server_config) {
-    fail("Cannot configure choria::nagios_check ${name}, plugin.choria.machine.store is not set")
+    fail("Cannot configure choria::health_check ${name}, plugin.choria.machine.store is not set")
   }
 
   $_store = $choria::server_config["plugin.choria.machine.store"]
@@ -26,37 +27,41 @@ define choria::nagios_check(
     name          => $name,
     version       => "1.0.0",
     initial_state => "UNKNOWN",
-    splay_start   => 300,
     transitions   => [
       {
         name        => "UNKNOWN",
-        from        => ["UNKNOWN", "OK", "WARNING", "CRITICAL"],
+        from        => ["UNKNOWN", "OK", "WARNING", "CRITICAL", "FORCE_CHECK"],
         destination => "UNKNOWN"
       },
       {
         name        => "OK",
-        from        => ["UNKNOWN", "OK", "WARNING", "CRITICAL"],
+        from        => ["UNKNOWN", "OK", "WARNING", "CRITICAL", "FORCE_CHECK"],
         destination => "OK"
       },
       {
         name        => "WARNING",
-        from        => ["UNKNOWN", "OK", "WARNING", "CRITICAL"],
+        from        => ["UNKNOWN", "OK", "WARNING", "CRITICAL", "FORCE_CHECK"],
         destination => "WARNING"
       },
       {
         name        => "CRITICAL",
-        from        => ["UNKNOWN", "OK", "WARNING", "CRITICAL"],
+        from        => ["UNKNOWN", "OK", "WARNING", "CRITICAL", "FORCE_CHECK"],
         destination => "CRITICAL"
       },
       {
-        name        => "MAINTENANCE",
+        name        => "FORCE_CHECK",
         from        => ["UNKNOWN", "OK", "WARNING", "CRITICAL"],
+        destination => "FORCE_CHECK"
+      },
+      {
+        name        => "MAINTENANCE",
+        from        => ["UNKNOWN", "OK", "WARNING", "CRITICAL", "FORCE_CHECK"],
         destination => "MAINTENANCE"
       },
       {
         name        => "RESUME",
         from        => ["MAINTENANCE"],
-        destination => "UNKNOWN"
+        destination => "FORCE_CHECK"
       }
     ]
   }
@@ -85,21 +90,24 @@ define choria::nagios_check(
         command          => $remediate_command
       }
     }
+
+    $_watchers = $_base_watchers + [$_remediate_watcher]
   } else {
-    $_remediate_watcher = {}
+    $_watchers = $_base_watchers
   }
 
-  $_watchers = $_base_watchers + [$_remediate_watcher]
   $_machine = $_base_machine + {watchers => $_watchers}
+  $_machine_ensure = $ensure ? {"present" => directory, "absent" => "absent"}
 
   file{"${_store}/${name}":
-    ensure => directory,
+    ensure => $_machine_ensure,
     owner  => $choria::config_user,
     group  => $choria::config_group,
     mode   => "0755",
   }
 
   file{"${_store}/${name}/machine.yaml":
+    ensure  => $ensure,
     content => $_machine.to_yaml,
     owner   => $choria::config_user,
     group   => $choria::config_group,
