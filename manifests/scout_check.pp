@@ -7,7 +7,7 @@
 # @param remediate_command Command to run to remediate failures
 # @param remediate_states What states the remediation command should be run in
 # @param remediate_interval Interval between remediation attempts
-define choria::health_check(
+define choria::scout_check(
   String $plugin,
   String $arguments = "",
   String $plugin_timeout = "10s",
