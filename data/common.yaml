@@ -8,6 +8,7 @@ choria::server_config:
   plugin.choria.agent_provider.mcorpc.config: "/etc/puppetlabs/mcollective/choria-shim.cfg"
   plugin.choria.agent_provider.mcorpc.libdir: "/opt/puppetlabs/mcollective/plugins"
   plugin.choria.machine.store: "/etc/choria/machine"
+  plugin.scout.overrides: "/etc/choria/overrides.json"
 
 choria::rubypath: "/opt/puppetlabs/puppet/bin/ruby"
 choria::manage_package: true
@@ -55,6 +56,9 @@ choria::broker::identity: "%{trusted.certname}"
 lookup_options:
   choria::collectives:
     merge: "unique"
+  choria::scout_overrides:
+    merge:
+      strategy: "deep"
   choria::server_config:
     merge:
       strategy: "deep"
