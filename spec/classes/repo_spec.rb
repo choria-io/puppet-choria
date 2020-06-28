@@ -91,6 +91,15 @@ describe("choria::repo") do
         "osfamily" => "Debian",
         "aio_agent_version" => "1.7.0",
         "os" => {
+          "distro" => {
+            "codename" => "stretch",
+            "description" => "Debian GNU/Linux 9 (stretch)",
+            "id" => "Debian",
+            "release" => {
+              "full" => "9",
+              "major" => "9"
+            }
+          },
           "family" => "Debian",
           "name" => "Debian",
           "release" => {
@@ -112,6 +121,15 @@ describe("choria::repo") do
         "osfamily" => "Debian",
         "aio_agent_version" => "1.7.0",
         "os" => {
+          "distro" => {
+            "codename" => "bionic",
+            "description" => "Ubuntu 18.04.4 LTS",
+            "id" => "Ubuntu",
+            "release" => {
+              "full" => "18.04",
+              "major" => "18.04"
+            }
+          },
           "family" => "Debian",
           "name"   => "Ubuntu",
           "release" => {
