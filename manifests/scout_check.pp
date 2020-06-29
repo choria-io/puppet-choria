@@ -17,16 +17,40 @@ define choria::scout_check(
   String $remediate_interval = "15m",
   Enum["present", "absent"] $ensure = "present"
 ) {
-  if !("plugin.choria.machine.store" in $choria::server_config) {
-    fail("Cannot configure choria::health_check ${name}, plugin.choria.machine.store is not set")
+  $_base_watchers = [
+      {
+        name        => "check",
+        type        => "nagios",
+        interval    => $check_interval,
+        state_match => ["UNKNOWN", "OK", "WARNING", "CRITICAL"],
+        properties  => {
+          plugin    => "${plugin} ${arguments}",
+          timeout   => $plugin_timeout,
+        }
+      }
+  ]
+
+  if $remediate_command != "" and $remediate_states.length > 0 {
+    $_remediate_watcher = {
+      name               => "remediate",
+      type               => "exec",
+      state_match        => $remediate_states,
+      interval           => $remediate_interval,
+      success_transition => "UNKNOWN",
+      properties         => {
+        command          => $remediate_command
+      }
+    }
+
+    $_watchers = $_base_watchers + [$_remediate_watcher]
+  } else {
+    $_watchers = $_base_watchers
   }
 
-  $_store = $choria::server_config["plugin.choria.machine.store"]
-
-  $_base_machine = {
-    name          => $name,
+  choria::machine{$name:
     version       => "1.0.0",
     initial_state => "UNKNOWN",
+    watchers      => $_watchers,
     transitions   => [
       {
         name        => "UNKNOWN",
@@ -64,53 +88,5 @@ define choria::scout_check(
         destination => "FORCE_CHECK"
       }
     ]
-  }
-
-  $_base_watchers = [
-      {
-        name        => "check",
-        type        => "nagios",
-        interval    => $check_interval,
-        state_match => ["UNKNOWN", "OK", "WARNING", "CRITICAL"],
-        properties  => {
-          plugin    => "${plugin} ${arguments}",
-          timeout   => $plugin_timeout,
-        }
-      }
-  ]
-
-  if $remediate_command != "" and $remediate_states.length > 0{
-    $_remediate_watcher = {
-      name               => "remediate",
-      type               => "exec",
-      state_match        => $remediate_states,
-      interval           => $remediate_interval,
-      success_transition => "UNKNOWN",
-      properties         => {
-        command          => $remediate_command
-      }
-    }
-
-    $_watchers = $_base_watchers + [$_remediate_watcher]
-  } else {
-    $_watchers = $_base_watchers
-  }
-
-  $_machine = $_base_machine + {watchers => $_watchers}
-  $_machine_ensure = $ensure ? {"present" => directory, "absent" => "absent"}
-
-  file{"${_store}/${name}":
-    ensure => $_machine_ensure,
-    owner  => $choria::config_user,
-    group  => $choria::config_group,
-    mode   => "0755",
-  }
-
-  file{"${_store}/${name}/machine.yaml":
-    ensure  => $ensure,
-    content => $_machine.to_yaml,
-    owner   => $choria::config_user,
-    group   => $choria::config_group,
-    mode    => "0644",
   }
 }
