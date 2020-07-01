@@ -2,14 +2,16 @@
 #
 # @param plugin Path to the plugin to run
 # @param arguments Arguments to pass to the plugin
+# @param builtin The name of a builtin check to run
 # @param plugin_timeout How long the plugin is allowed to run
 # @param check_interval Interval between checks in the form 1m, 1h
 # @param remediate_command Command to run to remediate failures
 # @param remediate_states What states the remediation command should be run in
 # @param remediate_interval Interval between remediation attempts
 define choria::scout_check(
-  String $plugin,
+  String $plugin = "",
   String $arguments = "",
+  String $builtin = "",
   String $plugin_timeout = "10s",
   String $check_interval = "5m",
   String $remediate_command = "",
@@ -17,16 +19,32 @@ define choria::scout_check(
   String $remediate_interval = "15m",
   Enum["present", "absent"] $ensure = "present"
 ) {
+  if $plugin == "" and $builtin == "" {
+    fail("${plugin} or ${builtin} is required for scout checks")
+  }
+
+  if $plugin != "" and $builtin != "" {
+    fail("Only one of ${plugin} and ${builtin} can be set")
+  }
+
+  if $plugin != "" {
+    $_watcher_properties = {
+      plugin    => "${plugin} ${arguments}",
+      timeout   => $plugin_timeout,
+    }
+  } else {
+    $_watcher_properties = {
+      builtin   => $builtin
+    }
+  }
+
   $_base_watchers = [
       {
         name        => "check",
         type        => "nagios",
         interval    => $check_interval,
         state_match => ["UNKNOWN", "OK", "WARNING", "CRITICAL"],
-        properties  => {
-          plugin    => "${plugin} ${arguments}",
-          timeout   => $plugin_timeout,
-        }
+        properties  => $_watcher_properties,
       }
   ]
 
