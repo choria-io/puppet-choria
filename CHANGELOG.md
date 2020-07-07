@@ -1,5 +1,11 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2020/07/07|     |Release 0.17.0                                                                                           |
+|2020/06/28|164  |Improve package repository management                                                                    |
+|2020/06/20|158  |Support creating Choria Scout checks and overrides                                                       |
+|2020/07/01|     |Release 0.16.0                                                                                           |
+|2020/06/26|164  |Improve package repository management logic                                                              |
+|2020/06/24|158  |Support adding Choria Scout health checks                                                                |
 |2020/04/19|     |Release 0.16.0                                                                                           |
 |2020/04/01|155  |Add `choria::playbook_exist` function                                                                    |
 |2020/02/11|151  |Support Amazon Linux                                                                                     |
