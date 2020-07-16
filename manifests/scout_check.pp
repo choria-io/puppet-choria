@@ -1,4 +1,4 @@
-# Adds a Choria Autonomous Agent to check machine health
+# Adds a Scout Check to check machine health
 #
 # @param plugin Path to the plugin to run
 # @param arguments Arguments to pass to the plugin
