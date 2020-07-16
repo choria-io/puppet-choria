@@ -56,6 +56,9 @@ choria::broker::identity: "%{trusted.certname}"
 lookup_options:
   choria::collectives:
     merge: "unique"
+  choria::scout_checks:
+    merge:
+      strategy: "deep"
   choria::scout_overrides:
     merge:
       strategy: "deep"
