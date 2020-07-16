@@ -9,6 +9,7 @@ choria::server_config:
   plugin.choria.agent_provider.mcorpc.libdir: "/opt/puppetlabs/mcollective/plugins"
   plugin.choria.machine.store: "/etc/choria/machine"
   plugin.scout.overrides: "/etc/choria/overrides.json"
+  plugin.scout.goss.file: "/etc/choria/goss.yaml"
 
 choria::rubypath: "/opt/puppetlabs/puppet/bin/ruby"
 choria::manage_package: true
@@ -56,6 +57,9 @@ choria::broker::identity: "%{trusted.certname}"
 lookup_options:
   choria::collectives:
     merge: "unique"
+  choria::scout_gossfile:
+    merge:
+      strategy: "deep"
   choria::scout_checks:
     merge:
       strategy: "deep"
