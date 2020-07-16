@@ -7,6 +7,7 @@ choria::server_config:
   plugin.choria.agent_provider.mcorpc.libdir: "/usr/local/share"
   plugin.choria.machine.store: "/usr/local/etc/choria/machine"
   plugin.scout.overrides: "/usr/local/etc/choria/overrides.json"
+  plugin.scout.goss.file: "/usr/local/etc/choria/goss.yaml"
 
 choria::rubypath: "/usr/local/bin/ruby"
 choria::broker_config_file: "/usr/local/etc/choria/broker.conf"

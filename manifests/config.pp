@@ -40,6 +40,15 @@ class choria::config {
     }
   }
 
+  if "plugin.scout.goss.file" in $choria::server_config {
+    file{$choria::server_config["plugin.scout.goss.file"]:
+      content => $choria::scout_gossfile.to_yaml,
+      owner   => $choria::config_user,
+      group   => $choria::config_group,
+      mode    => "0755",
+    }
+  }
+
   if "plugin.scout.overrides" in $choria::server_config {
     file{$choria::server_config["plugin.scout.overrides"]:
       content => $choria::scout_overrides.to_json,
