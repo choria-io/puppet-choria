@@ -1,5 +1,8 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2020/07/17|     |Release 0.18.0                                                                                           |
+|2020/07/16|172  |Support creating a gossfile from hiera                                                                   |
+|2020/07/16|170  |Add choria::scout_checks helper                                                                          |
 |2020/07/07|     |Release 0.17.0                                                                                           |
 |2020/06/28|164  |Improve package repository management                                                                    |
 |2020/06/20|158  |Support creating Choria Scout checks and overrides                                                       |
