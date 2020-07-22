@@ -40,9 +40,9 @@ class choria::config {
     }
   }
 
-  if "plugin.scout.goss.file" in $choria::server_config {
-    file{$choria::server_config["plugin.scout.goss.file"]:
-      content => $choria::scout_gossfile.to_yaml,
+  $choria::scout_gossfile.each |$target, $gossfile| {
+    file{$target:
+      content => $gossfile.to_yaml,
       owner   => $choria::config_user,
       group   => $choria::config_group,
       mode    => "0755",
