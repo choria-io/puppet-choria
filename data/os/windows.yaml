@@ -10,6 +10,7 @@ choria::server_config:
   plugin.choria.ssldir: "C:/ProgramData/PuppetLabs/puppet/etc/ssl"
   plugin.choria.machine.store: "C:/ProgramData/choria/etc/machine"
   plugin.scout.overrides: "C:/ProgramData/choria/etc/overrides.json"
+  plugin.scout.goss.file: "C:/ProgramData/choria/etc/goss.yaml"
 
 choria::rubypath: "C:/Program Files/Puppet Labs/Puppet/puppet/bin/ruby.exe"
 choria::broker_config_file: "C:/ProgramData/choria/etc/broker.conf"
