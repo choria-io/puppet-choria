@@ -3,6 +3,7 @@
 # @param plugin Path to the plugin to run
 # @param arguments Arguments to pass to the plugin
 # @param builtin The name of a builtin check to run
+# @param gossfile The path to a Goss specification when builtin is `goss`
 # @param plugin_timeout How long the plugin is allowed to run
 # @param check_interval Interval between checks in the form 1m, 1h
 # @param remediate_command Command to run to remediate failures
@@ -12,6 +13,7 @@ define choria::scout_check(
   String $plugin = "",
   String $arguments = "",
   String $builtin = "",
+  Variant[Stdlib::Compat::Absolute_path, String[0,0]] $gossfile = "",
   String $plugin_timeout = "10s",
   String $check_interval = "5m",
   String $remediate_command = "",
@@ -34,7 +36,8 @@ define choria::scout_check(
     }
   } else {
     $_watcher_properties = {
-      builtin   => $builtin
+      builtin  => $builtin,
+      gossfile => $gossfile
     }
   }
 
