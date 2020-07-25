@@ -1,6 +1,7 @@
 type Choria::ScoutCheck = Struct[{
   "arguments"          => Optional[String],
   "builtin"            => Optional[Enum["heartbeat", "goss"]],
+  "gossfile"           => Optional[Variant[Stdlib::Compat::Absolute_path, String[0, 0]]],
   "check_interval"     => Optional[Choria::Duration],
   "ensure"             => Optional[Enum["present", "absent"]],
   "plugin"             => Optional[String],
