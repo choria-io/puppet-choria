@@ -7,5 +7,6 @@ type Choria::ScoutCheck = Struct[{
   "plugin"             => Optional[String],
   "plugin_timeout"     => Optional[Choria::Duration],
   "remediate_command"  => Optional[String],
-  "remediate_interval" => Optional[Choria::Duration]
+  "remediate_interval" => Optional[Choria::Duration],
+  "annotations"        => Optional[Hash[String, String]]
 }]

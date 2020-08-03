@@ -9,6 +9,7 @@
 # @param remediate_command Command to run to remediate failures
 # @param remediate_states What states the remediation command should be run in
 # @param remediate_interval Interval between remediation attempts
+# @param annotations A Hash of user supplied data for this check that will be published in events
 define choria::scout_check(
   String $plugin = "",
   String $arguments = "",
@@ -19,6 +20,7 @@ define choria::scout_check(
   String $remediate_command = "",
   Array[String] $remediate_states = ["CRITICAL"],
   String $remediate_interval = "15m",
+  Hash[String, String] $annotations = {},
   Enum["present", "absent"] $ensure = "present"
 ) {
   if $plugin == "" and $builtin == "" {
@@ -36,8 +38,9 @@ define choria::scout_check(
     }
   } else {
     $_watcher_properties = {
-      builtin  => $builtin,
-      gossfile => $gossfile
+      builtin     => $builtin,
+      gossfile    => $gossfile,
+      annotations => $annotations
     }
   }
 
