@@ -106,7 +106,7 @@ define choria::scout_check(
       {
         name        => "RESUME",
         from        => ["MAINTENANCE"],
-        destination => "FORCE_CHECK"
+        destination => "UNKNOWN"
       }
     ]
   }
