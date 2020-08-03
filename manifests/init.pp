@@ -7,6 +7,7 @@
 # @param scout_checks Hash of Scout Checks for a node, ideal for use using Hiera
 # @param scout_overrides Override data for Scout checks
 # @param scout_gossfile Are validation rules for the Goss system
+# @param scout_annotations Annotations that will be applied to all Scout Checks
 # @param nightly_repo Install the nightly package repo as well as the release one
 # @param ensure Add or remove the software
 # @param repo_baseurl Used to override default packagecloud package source
@@ -65,6 +66,7 @@ class choria (
   Optional[String] $config_group,
   Boolean $purge_machines = true,
   Hash $scout_overrides = {},
+  Hash[String, String] $scout_annotations = {},
   Choria::ScoutChecks $scout_checks = {},
   Choria::GossFiles $scout_gossfile = {},
   Enum[debug, info, warn, error, fatal] $broker_log_level = $log_level,

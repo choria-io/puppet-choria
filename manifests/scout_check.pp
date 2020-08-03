@@ -9,7 +9,7 @@
 # @param remediate_command Command to run to remediate failures
 # @param remediate_states What states the remediation command should be run in
 # @param remediate_interval Interval between remediation attempts
-# @param annotations A Hash of user supplied data for this check that will be published in events
+# @param annotations A Hash of user supplied data for this check that will be published in events. Merged with `$choria::scout_annotations`.
 define choria::scout_check(
   String $plugin = "",
   String $arguments = "",
@@ -40,18 +40,19 @@ define choria::scout_check(
     $_watcher_properties = {
       builtin     => $builtin,
       gossfile    => $gossfile,
-      annotations => $annotations
     }
   }
 
   $_base_watchers = [
-      {
-        name        => "check",
-        type        => "nagios",
-        interval    => $check_interval,
-        state_match => ["UNKNOWN", "OK", "WARNING", "CRITICAL"],
-        properties  => $_watcher_properties,
-      }
+    {
+      name        => "check",
+      type        => "nagios",
+      interval    => $check_interval,
+      state_match => ["UNKNOWN", "OK", "WARNING", "CRITICAL"],
+      properties  => $_watcher_properties + {
+        annotations => $choria::scout_annotations + $annotations
+      },
+    }
   ]
 
   if $remediate_command != "" and $remediate_states.length > 0 {
