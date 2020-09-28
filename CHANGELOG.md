@@ -1,5 +1,9 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2020/09/28|     |Release 0.19.0                                                                                           |
+|2020/08/03|181  |Support Scout check annotations                                                                          |
+|2020/08/03|179  |On resuming a Scout check move to `unknown` not `force`                                                  |
+|2020/07/22|175  |Support multiple Gossfiles                                                                               |
 |2020/07/17|     |Release 0.18.0                                                                                           |
 |2020/07/16|172  |Support creating a gossfile from hiera                                                                   |
 |2020/07/16|170  |Add choria::scout_checks helper                                                                          |
