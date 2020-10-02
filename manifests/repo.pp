@@ -50,15 +50,19 @@ class choria::repo (
     }
   } elsif $facts["os"]["family"] == "Debian" {
     $release = $facts["os"]["distro"]["codename"]
-    if ! $release in ["xenial", "bionic", "stretch", "buster"] {
+    if ! $release in ["xenial", "bionic", "focal", "stretch", "buster"] {
       fail("Choria Repositories are not supported on ${release}")
+    }
+    $repo_os_name = $facts["os"]["distro"]["id"] ? {
+      'Neon'  => 'ubuntu',
+      default => $facts["os"]["name"].downcase,
     }
 
     apt::source{"choria-release":
       ensure        => $ensure,
       notify_update => true,
       comment       => "Choria Orchestrator Releases",
-      location      => sprintf("%s/release/%s/", $choria::repo_baseurl, $facts["os"]["name"].downcase),
+      location      => sprintf("%s/release/%s/", $choria::repo_baseurl, $repo_os_name),
       release       => $release,
       repos         => "main",
       key           => {
@@ -72,7 +76,7 @@ class choria::repo (
       ensure        => $nightly_ensure,
       notify_update => true,
       comment       => "Choria Orchestrator Nightly Builds",
-      location      => sprintf("%s/nightly/%s/", $choria::repo_baseurl, $facts["os"]["name"].downcase),
+      location      => sprintf("%s/nightly/%s/", $choria::repo_baseurl, $repo_os_name),
       release       => $release,
       repos         => "main",
       key           => {
