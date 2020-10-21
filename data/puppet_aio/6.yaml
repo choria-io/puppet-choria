@@ -1,2 +1,1 @@
 choria::manage_package_repo: true
-choria::server: true
