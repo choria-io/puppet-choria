@@ -7,7 +7,7 @@ describe("choria::service") do
 
   let(:facts) do
     {
-      "aio_agent_version" => "1.7.0",
+      "aio_agent_version" => "6.19.0",
       "os" => {
         "family" => "RedHat",
         "name" => "CentOS",
@@ -37,8 +37,8 @@ describe("choria::service") do
 
     it "should disable the service" do
       is_expected.to contain_service("choria-server")
-        .with_ensure("stopped")
-        .with_enable(false)
+        .with_ensure("running")
+        .with_enable(true)
     end
   end
 end
