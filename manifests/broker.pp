@@ -24,7 +24,7 @@
 #    adapters => {
 #      discovery => {
 #        stream => {
-#          type => "natsstream",
+#          type => "nats_stream",
 #          servers => ["stan1:4222", "stan2:4222"],
 #          clusterid => "prod",
 #          topic => "discovery",

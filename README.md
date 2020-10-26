@@ -110,7 +110,7 @@ Please review the [Data Adapters](https://choria.io/docs/adapters/) documentatio
 choria::broker::adapters:
   discover:
     stream:
-      type: "natsstream"
+      type: "nats_stream"
       clusterid: prod_stream
       topic: discovery
       workers: 10
