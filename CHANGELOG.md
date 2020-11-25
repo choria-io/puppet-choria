@@ -1,5 +1,9 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2020/11/25|     |Release 0.20.0                                                                                           |
+|2020/10/22|188  |Add FreeBSD support for choria                                                                           |
+|2020/10/21|188  |Always deploy choria server                                                                              |
+|2020/10/02|187  |Support Ubuntu focal and KDE neon 20.04                                                                  |
 |2020/09/28|     |Release 0.19.0                                                                                           |
 |2020/08/03|181  |Support Scout check annotations                                                                          |
 |2020/08/03|179  |On resuming a Scout check move to `unknown` not `force`                                                  |
