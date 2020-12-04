@@ -24,11 +24,11 @@ define choria::scout_check(
   Enum["present", "absent"] $ensure = "present"
 ) {
   if $plugin == "" and $builtin == "" {
-    fail("${plugin} or ${builtin} is required for scout checks")
+    fail("plugin or builtin is required for scout checks")
   }
 
   if $plugin != "" and $builtin != "" {
-    fail("Only one of ${plugin} and ${builtin} can be set")
+    fail("Only one of plugin and builtin can be set")
   }
 
   if $plugin != "" {
@@ -73,6 +73,7 @@ define choria::scout_check(
   }
 
   choria::machine{$name:
+    ensure        => $ensure,
     version       => "1.0.0",
     initial_state => "UNKNOWN",
     watchers      => $_watchers,

@@ -59,6 +59,9 @@ lookup_options:
   choria::scout_gossfile:
     merge:
       strategy: "deep"
+  choria::scout_metrics:
+    merge:
+      strategy: "deep"
   choria::scout_checks:
     merge:
       strategy: "deep"
