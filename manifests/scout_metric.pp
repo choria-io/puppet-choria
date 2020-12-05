@@ -4,12 +4,14 @@
 # @param command Path to the command to run
 # @param arguments Arguments to pass to the command
 # @param interval Interval between metric polls in the form 1m, 1h
+# @param labels Asigns or overrides labels set by the command being ran
 define choria::scout_metric(
   String $command,
   String $metric = $name,
   String $arguments = "",
   String $interval = "1m",
-  Enum["present", "absent"] $ensure = "present"
+  Enum["present", "absent"] $ensure = "present",
+  Hash[String, String] $labels = {}
 ) {
   choria::machine{"${name}_metric":
     ensure        => $ensure,
@@ -23,6 +25,7 @@ define choria::scout_metric(
         properties  => {
           command  => "${command} ${arguments}",
           interval => $interval,
+          labels   => $labels,
         }
       }
     ],
