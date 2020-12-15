@@ -25,15 +25,13 @@ include choria
 
 ### Configuring the Choria Server
 
-The Choria Server is a Beta release of what will eventually replace _mcollectived_, please review the [Beta Guide](https://choria.io/docs/configuration/choria_server/) if you wish to test this.
+The Choria Server replaces _mcollectived_.
 
 On all your nodes where you wish to run the new service:
 
 ```yaml
 choria::server: true
 choria::manage_package_repo: true
-mcollective::service_ensure: stopped
-mcollective::service_enable: false
 ```
 
 On all nodes including those that are pure MCollective and your clients:
