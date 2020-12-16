@@ -13,7 +13,7 @@ choria::server_config:
 choria::rubypath: "/opt/puppetlabs/puppet/bin/ruby"
 choria::manage_package: true
 choria::manage_service: true
-choria::manage_package_repo: false
+choria::manage_package_repo: true
 choria::nightly_repo: false
 choria::repo_baseurl: "https://packagecloud.io/choria"
 choria::ensure: "present"

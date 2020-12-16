@@ -22,3 +22,4 @@ choria::manage_service: false
 choria::mcollective_config_dir: "C:/ProgramData/choria/etc"
 choria::config_user: ~
 choria::config_group: ~
+choria::manage_package_repo: false
