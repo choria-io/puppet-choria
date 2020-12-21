@@ -3,3 +3,4 @@ vendor
 .vendor
 .bundle
 pkg
+Gemfile.lock
