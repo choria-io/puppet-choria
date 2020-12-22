@@ -16,7 +16,6 @@ describe 'choria' do
         it { is_expected.to contain_class('choria') }
         it { is_expected.to contain_class('choria::config') }
         it { is_expected.to contain_class('choria::install') }
-        it { is_expected.not_to contain_class('choria::repo') }
         it { is_expected.to contain_class('choria::service') }
         it { is_expected.to contain_class('choria::scout_checks') }
         it { is_expected.to contain_class('choria::scout_metrics') }
@@ -52,11 +51,21 @@ describe 'choria' do
           it { is_expected.to contain_file('/usr/local/etc/choria/server.conf') }
           it { is_expected.to contain_file('/usr/local/etc/choria/machine').with_ensure('directory') }
         end
+
+        if ['FreeBSD', 'AIX', 'Solaris', 'windows', 'SLES'].include? facts[:os]['name']
+          it { is_expected.not_to contain_class('choria::repo') }
+        else
+          it { is_expected.to contain_class('choria::repo') }
+        end
       end
 
       context 'repo related tests' do
-        it 'should not manage the repo by default' do
-          is_expected.to_not contain_class('choria::repo')
+        context 'should not manage the repo if its disabled' do
+          let :params do
+            { manage_package_repo: false }
+          end
+
+          it { is_expected.to_not contain_class('choria::repo') }
         end
 
         context 'with manage_package_repo set to true' do

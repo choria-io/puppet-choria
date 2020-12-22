@@ -14,3 +14,4 @@ choria::server_config_file: "/usr/local/etc/choria/server.conf"
 choria::server_provisioning_token_file: "/usr/local/etc/choria/provisioning.jwt"
 choria::config_group: "wheel"
 choria::mcollective_config_dir: "/usr/local/etc/mcollective"
+choria::manage_package_repo: false

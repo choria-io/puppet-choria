@@ -1,2 +1,3 @@
 ---
 choria::mcollective_config_dir: "/etc/mcollective"
+choria::manage_package_repo: false
