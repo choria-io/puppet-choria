@@ -87,10 +87,24 @@ class choria (
   class{"choria::install": }
   -> class{"choria::config": }
   -> class{"choria::scout_checks": }
-  -> class{"choria::service": }
+
+  # We use a different class to disable choria service than enable it
+  # to help the discovery system find machines where the service is actually
+  # running vs those with it off - it searches on all machines with class
+  # choria::service so this facilitates client oly installs by setting server false
+  if $server {
+    class{"choria::service":
+      require => Class["choria::scout_checks"]
+    }
+    contain choria::service
+  } else {
+    class{"choria::service_disable":
+      require => Class["choria::scout_checks"]
+    }
+    contain choria::service_disable
+  }
 
   contain choria::install
   contain choria::scout_checks
   contain choria::scout_metrics
-  contain choria::service
 }

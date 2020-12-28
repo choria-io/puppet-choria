@@ -3,7 +3,7 @@ require "spec_helper"
 describe 'choria' do
 
   let :node do
-    'rspec.puppet.com'
+    "rspec.puppet.com"
   end
 
   on_supported_os.each do |os, facts|
