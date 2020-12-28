@@ -1,4 +1,4 @@
-require 'rspec-puppet-facts'
+require "rspec-puppet-facts"
 include RspecPuppetFacts
 require "rspec-puppet/spec_helper"
 

@@ -115,8 +115,11 @@ class choria::config {
       group   => $choria::config_group,
       mode    => "0640",
       content => choria::hash2config($config),
-      notify  => Class["choria::service"],
       require => Class["choria::install"]
+    }
+
+    if $choria::server {
+      File[$choria::server_config_file] ~> Class["choria::service"]
     }
   }
 
@@ -126,8 +129,11 @@ class choria::config {
       group   => $choria::config_group,
       mode    => "0640",
       content => $choria::server_provisioning_token,
-      notify  => Class["choria::service"],
       require => Class["choria::install"],
+    }
+
+    if $choria::server {
+      File[$choria::server_config_file] ~> Class["choria::service"]
     }
   }
 }
