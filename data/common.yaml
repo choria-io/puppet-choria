@@ -5,7 +5,7 @@ choria::server_config:
   plugin.rpcaudit.logfile: "/var/log/choria-audit.log"
   plugin.yaml: "/etc/puppetlabs/mcollective/generated-facts.yaml"
   plugin.choria.agent_provider.mcorpc.agent_shim: "/usr/bin/choria_mcollective_agent_compat.rb"
-  plugin.choria.agent_provider.mcorpc.config: "/etc/puppetlabs/mcollective/choria-shim.cfg"
+  plugin.choria.agent_provider.mcorpc.config: "/etc/choria/choria-shim.cfg"
   plugin.choria.agent_provider.mcorpc.libdir: "/opt/puppetlabs/mcollective/plugins"
   plugin.choria.machine.store: "/etc/choria/machine"
   plugin.scout.overrides: "/etc/choria/overrides.json"
