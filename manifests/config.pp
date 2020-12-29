@@ -26,7 +26,7 @@ class choria::config {
 
   $_config_dir = dirname($choria::server_config_file)
 
-  file{[$_config_dir, "${_config_dir}/policies", "${_config_dir}/plugin.d"]:
+  file{[$_config_dir, "${_config_dir}/policies", "${_config_dir}/policies/rego", "${_config_dir}/plugin.d"]:
     ensure => "directory",
     owner  => $choria::config_user,
     group  => $choria::config_group,

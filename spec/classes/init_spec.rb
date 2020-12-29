@@ -32,6 +32,7 @@ describe 'choria' do
           it { is_expected.to contain_file("C:/ProgramData/choria/etc").with_ensure("directory") }
           it { is_expected.to contain_file("C:/ProgramData/choria/etc/machine").with_ensure("directory") }
           it { is_expected.to contain_file("C:/ProgramData/choria/etc/policies").with_ensure("directory") }
+          it { is_expected.to contain_file("C:/ProgramData/choria/etc/policies/rego").with_ensure("directory") }
           it { is_expected.to contain_file("C:/ProgramData/choria/etc/plugin.d").with_ensure("directory") }
           it { is_expected.to contain_file("C:/ProgramData/choria/etc/overrides.json") }
           it { is_expected.to contain_file("C:/ProgramData/choria/etc/server.conf") }
@@ -45,6 +46,7 @@ describe 'choria' do
           it { is_expected.to contain_file("/etc/choria").with_ensure("directory") }
           it { is_expected.to contain_file("/etc/choria/plugin.d").with_ensure("directory") }
           it { is_expected.to contain_file("/etc/choria/policies").with_ensure("directory") }
+          it { is_expected.to contain_file("/etc/choria/policies/rego").with_ensure("directory") }
           it { is_expected.to contain_file("/etc/choria/machine").with_ensure("directory") }
         end
         context "on FreeBSD", if: facts[:os]["name"] == "FreeBSD" do
@@ -53,6 +55,7 @@ describe 'choria' do
           it { is_expected.to contain_file("/usr/local/etc/choria").with_ensure("directory") }
           it { is_expected.to contain_file("/usr/local/etc/choria/plugin.d").with_ensure("directory") }
           it { is_expected.to contain_file("/usr/local/etc/choria/policies").with_ensure("directory") }
+          it { is_expected.to contain_file("/usr/local/etc/choria/policies/rego").with_ensure("directory") }
           it { is_expected.to contain_file("/usr/local/etc/choria/server.conf") }
           it { is_expected.to contain_file("/usr/local/etc/choria/machine").with_ensure("directory") }
         end
