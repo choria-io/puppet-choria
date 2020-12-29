@@ -24,20 +24,13 @@ class choria::config {
     "plugin.choria.srv_domain"   => $choria::srvdomain,
   }
 
-  if $choria::mcollective_config_dir != "" {
-    $_config_dir = dirname($choria::server_config_file)
+  $_config_dir = dirname($choria::server_config_file)
 
-    if $_config_dir != $choria::mcollective_config_dir {
-      file{"${_config_dir}/plugin.d":
-        ensure => link,
-        target => "${choria::mcollective_config_dir}/plugin.d"
-      }
-
-      file{"${_config_dir}/policies":
-        ensure => link,
-        target => "${choria::mcollective_config_dir}/policies"
-      }
-    }
+  file{[$_config_dir, "${_config_dir}/policies", "${_config_dir}/plugin.d"]:
+    ensure => "directory",
+    owner  => $choria::config_user,
+    group  => $choria::config_group,
+    mode   => "0755",
   }
 
   $choria::scout_gossfile.each |$target, $gossfile| {

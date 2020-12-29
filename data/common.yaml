@@ -20,7 +20,6 @@ choria::ensure: "present"
 choria::version: "present"
 choria::log_level: "warn"
 choria::srvdomain: "%{facts.networking.domain}"
-choria::mcollective_config_dir: "/etc/puppetlabs/mcollective"
 choria::broker_config_file: "/etc/choria/broker.conf"
 choria::server_config_file: "/etc/choria/server.conf"
 choria::manage_server_config: true
