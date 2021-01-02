@@ -4,7 +4,7 @@ choria::server_config:
   plugin.yaml: "/usr/local/etc/choria/generated-facts.yaml"
   plugin.choria.agent_provider.mcorpc.agent_shim: "/usr/local/bin/choria_mcollective_agent_compat.rb"
   plugin.choria.agent_provider.mcorpc.config: "/usr/local/etc/choria/choria-shim.cfg"
-  plugin.choria.agent_provider.mcorpc.libdir: "/usr/local/share"
+  plugin.choria.agent_provider.mcorpc.libdir: "/usr/local/share/choria/plugins"
   plugin.choria.machine.store: "/usr/local/etc/choria/machine"
   plugin.scout.overrides: "/usr/local/etc/choria/overrides.json"
 
