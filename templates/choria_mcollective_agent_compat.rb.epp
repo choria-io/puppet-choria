@@ -8,13 +8,6 @@ OptionParser.new do |opts|
   opts.on("--config FILE", "Configuration to use for the MCollective subsystem") do |v|
     @options["config"] = v
   end
-
-  opts.on("--parse-compound", "Parse a compound filter") do
-    @options["parse_compound"] = true
-  end
-
-  opts.on("--validate-compound", "Parse a compound filter") do
-    @options["validate_compound"] = true
   end
 end.parse!
 
@@ -34,49 +27,6 @@ module MCollective
       config = Config.instance
       config.loadconfig(@config)
       @configured = true
-    end
-
-    # Parses a compound filter and return the callstack match_compound_filter needs
-    #
-    # This is intended to be run on the client to parse a human typed string into the
-    # call stack that traverse the network.
-    #
-    # On failure a hash with `statuscode` and `statusmsg` is returned
-    def parse_compound
-      loadconfig
-
-      Matcher.create_compound_callstack(@msg)
-    rescue Exception # rubocop:disable Lint/RescueException
-      Log.error("Parsing compound filter failed: %s" % $!.message)
-      Log.error($!.backtrace.join("\n\t\t"))
-      {"statuscode" => 1, "statusmsg" => "Choria MCollective Compatability Layer failed to parse the compound filter: %s" % $!.message}
-    end
-
-    # Matches a compound filter on the current host
-    #
-    # The format of the filter should be that which parse_compound returns and what the
-    # ruby client traditionally have put on the wire
-    #
-    # Returns a hash with `matched`
-    def match_compound_filter
-      loadconfig
-
-      security = Security::Base.new
-
-      compound = JSON.parse(@msg)
-      compound = [compound] if compound.first.is_a?(Hash)
-      filter = {"compound" => compound}
-
-      Data.load_data_sources
-      load_agents
-
-      matched = security.validate_filter?(filter)
-
-      {"matched" => matched}
-    rescue Exception # rubocop:disable Lint/RescueException
-      Log.error("Matching compound filter failed: %s" % $!.message)
-      Log.error($!.backtrace.join("\n\t\t"))
-      {"matched" => false}
     end
 
     def request
@@ -165,11 +115,4 @@ module MCollective
 end
 
 shim = MCollective::AgentShim.new(@options["config"], STDIN.read.chomp)
-
-if @options["parse_compound"]
-  puts shim.parse_compound.to_json
-elsif @options["validate_compound"]
-  puts shim.match_compound_filter.to_json
-else
-  puts shim.dispatch.to_json
-end
+puts shim.dispatch.to_json
