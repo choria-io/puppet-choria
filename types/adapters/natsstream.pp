@@ -1,6 +1,6 @@
 type Choria::Adapters::NatsStream = Struct[{
+  type => Enum["nats_stream"],
   stream => Struct[{
-    type => Enum["natsstream"],
     servers => Array[String],
     clusterid => String,
     topic => String,
