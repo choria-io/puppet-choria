@@ -8,7 +8,6 @@ OptionParser.new do |opts|
   opts.on("--config FILE", "Configuration to use for the MCollective subsystem") do |v|
     @options["config"] = v
   end
-  end
 end.parse!
 
 abort("Please specify a config file using --config") unless @options["config"]
