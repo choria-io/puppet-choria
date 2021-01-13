@@ -1,6 +1,6 @@
 {
   "name": "choria-choria",
-  "version": "0.20.0",
+  "version": "0.21.0",
   "author": "R.I.Pienaar <rip@devco.net>",
   "license": "Apache-2.0",
   "summary": "Install and manage the Choria plugin for MCollective",
@@ -11,8 +11,8 @@
     { "name": "puppetlabs/stdlib", "version_requirement": ">= 4.24.0 < 7.0.0" },
     { "name": "puppetlabs/apt", "version_requirement": ">= 4.5.1 < 8.0.0" },
     { "name": "choria/mcollective_choria", "version_requirement": ">= 0.20.0 < 2.0.0" },
-    { "name": "choria/mcollective", "version_requirement": ">= 0.12.0 < 2.0.0" },
-    { "name": "choria/mcollective_agent_puppet", "version_requirement": ">= 2.3.3" },
+    { "name": "choria/mcollective", "version_requirement": ">= 0.13.0 < 2.0.0" },
+    { "name": "choria/mcollective_agent_puppet", "version_requirement": ">= 2.4.0" },
     { "name": "choria/mcollective_agent_package", "version_requirement": ">= 5.3.0" },
     { "name": "choria/mcollective_agent_service", "version_requirement": ">= 4.0.1" },
     { "name": "choria/mcollective_agent_filemgr", "version_requirement": ">= 2.0.1" },
@@ -22,7 +22,6 @@
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "6",
         "7",
         "8"
       ]
@@ -30,7 +29,6 @@
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
-        "6",
         "7",
         "8"
       ]
@@ -38,21 +36,20 @@
     {
       "operatingsystem": "OracleLinux",
       "operatingsystemrelease": [
-        "6",
-        "7"
+        "7",
+        "8"
       ]
     },
     {
       "operatingsystem": "Scientific",
       "operatingsystemrelease": [
-        "6",
-        "7"
+        "7",
+        "8"
       ]
     },
     {
       "operatingsystem": "SLES",
       "operatingsystemrelease": [
-        "10 SP4",
         "11 SP1",
         "12"
       ]
@@ -67,52 +64,18 @@
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
-        "16.04",
+        "12.04",
+        "14.04",
         "18.04"
-      ]
-    },
-    {
-      "operatingsystem": "Solaris",
-      "operatingsystemrelease": [
-        "10",
-        "11",
-        "12"
       ]
     },
     {
       "operatingsystem": "Windows",
       "operatingsystemrelease": [
-        "Server 2003",
-        "Server 2003 R2",
-        "Server 2008",
-        "Server 2008 R2",
         "Server 2012",
         "Server 2012 R2",
         "7",
         "8"
-      ]
-    },
-    {
-      "operatingsystem": "AIX",
-      "operatingsystemrelease": [
-        "5.3",
-        "6.1",
-        "7.1"
-      ]
-    },
-    {
-      "operatingsystem": "Darwin",
-      "operatingsystemrelease": [
-        "10.11",
-        "10.12",
-        "10.13"
-      ]
-    },
-    {
-      "operatingsystem": "VirtuozzoLinux",
-      "operatingsystemrelease": [
-        "6",
-        "7"
       ]
     },
     {
