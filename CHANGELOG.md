@@ -1,5 +1,20 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2021/01/13|     |Release 0.21.0                                                                                           |
+|2020/10/26|     |Correctly describe the NATS Streaming Server adapter data type                                           |
+|2021/01/10|217  |Remove support for legacy compound filters                                                               |
+|2020/12/29|207  |Simplify choria module dependencies by moving all to this module                                         |
+|2020/12/29|207  |Migrate configuration to `/etc/choria`                                                                   |
+|2020/12/28|210  |Move mcollective_agent_bolt_tasks::ping task to choria::ping                                             |
+|2020/12/28|208  |Correctly support disabling the Choria Server                                                            |
+|2020/12/16|200  |Impove Puppet 7 support                                                                                  |
+|2020/12/21|195  |Support yum repositories on CentOS 8                                                                     |
+|2020/12/21|203  |Improve testing harness using rspec-puppet-facts                                                         |
+|2020/12/21|203  |Improve testing harness using rspec-puppet-facts                                                         |
+|2020/12/21|204  |Remove unsupported operating systems                                                                     |
+|2020/12/15|198  |Add support for setting additional properties in scout checks                                            |
+|2020/12/13|196  |Remove references to `mcollectived`                                                                      |
+|2020/12/04|192  |Add `choria::scout_metric`                                                                               |
 |2020/11/25|     |Release 0.20.0                                                                                           |
 |2020/10/22|188  |Add FreeBSD support for choria                                                                           |
 |2020/10/21|188  |Always deploy choria server                                                                              |
