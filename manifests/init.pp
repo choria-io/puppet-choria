@@ -104,7 +104,7 @@ class choria (
   }
 
   if $manage_mcollective {
-    contain mcollective
+    include mcollective
   }
 
   contain choria::install
