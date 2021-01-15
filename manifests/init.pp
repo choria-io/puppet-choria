@@ -73,6 +73,7 @@ class choria (
   Enum[debug, info, warn, error, fatal] $server_log_level = $log_level,
   Stdlib::Compat::Absolute_path $broker_logfile = $logfile,
   Stdlib::Compat::Absolute_path $server_logfile = $logfile,
+  Boolean $manage_mcollective = true,
 ) {
   if $manage_package_repo {
     class{"choria::repo":
@@ -100,6 +101,10 @@ class choria (
       require => Class["choria::scout_checks"]
     }
     contain choria::service_disable
+  }
+
+  if $manage_mcollective {
+    contain mcollective
   }
 
   contain choria::install

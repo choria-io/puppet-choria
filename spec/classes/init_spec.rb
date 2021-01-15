@@ -11,6 +11,11 @@ describe 'choria' do
       let :facts do
         facts
       end
+
+      let :params do
+        { manage_mcollective: false }
+      end
+
       context 'with all defaults' do
         it { is_expected.to compile.with_all_deps }
         it { is_expected.to contain_class("choria") }
@@ -70,7 +75,7 @@ describe 'choria' do
       context "repo related tests" do
         context "should not manage the repo if its disabled" do
           let :params do
-            { manage_package_repo: false }
+            { manage_package_repo: false, manage_mcollective: false }
           end
 
           it { is_expected.to_not contain_class("choria::repo") }
@@ -78,7 +83,7 @@ describe 'choria' do
 
         context "with manage_package_repo set to true" do
           let :params do
-            { manage_package_repo: true }
+            { manage_package_repo: true, manage_mcollective: false }
           end
 
           if facts[:kernel] == "Linux" and facts[:os]["family"] != "Suse"
@@ -102,9 +107,10 @@ describe 'choria' do
         context "with managed repos", if: (facts[:kernel] == "Linux" and facts[:os]["family"] != "Suse") do
           let(:params) do
             {
-              "manage_package_repo" => true,
-              "nightly_repo" => true,
-              "ensure" => "absent"
+              manage_package_repo: true,
+              nightly_repo: true,
+              ensure: "absent",
+              manage_mcollective: false
             }
           end
 
@@ -117,8 +123,9 @@ describe 'choria' do
         context "with custom repo on CentOS", if: facts[:os]["name"] == "CentOS" do
           let(:params) do
             {
-              "manage_package_repo" => true,
-              "repo_baseurl" => "http://internal-mirror.com/choria"
+              manage_mcollective: false,
+              manage_package_repo: true,
+              repo_baseurl: "http://internal-mirror.com/choria"
             }
           end
 
@@ -132,8 +139,9 @@ describe 'choria' do
         context "when managing an ubuntu bionic node", if: facts[:os]["release"]["major"] == "18.04" do
           let(:params) do
             {
-              "manage_package_repo" => true,
-              "repo_baseurl" => "http://internal-mirror.com/choria"
+              manage_mcollective: false,
+              manage_package_repo: true,
+              repo_baseurl: "http://internal-mirror.com/choria"
             }
           end
 
@@ -149,8 +157,9 @@ describe 'choria' do
         context "when managing an ubuntu xenial node", if: facts[:os]["release"]["major"] == "16.04" do
           let :params do
             {
-              "manage_package_repo" => true,
-              "repo_baseurl" => "http://internal-mirror.com/choria"
+              manage_mcollective: false,
+              manage_package_repo: true,
+              repo_baseurl: "http://internal-mirror.com/choria"
             }
           end
 
@@ -181,7 +190,13 @@ describe 'choria' do
         end
 
         context("with status file configured") do
-          let(:pre_condition) { 'class {"choria": statusfile => "/tmp/status", status_write_interval => 10}' }
+          let :params do
+            {
+              statusfile: "/tmp/status",
+              status_write_interval: 10,
+              manage_mcollective: false
+            }
+          end
 
           it "should support writing the status file" do
             is_expected.to contain_file("/etc/choria/server.conf")
@@ -194,6 +209,7 @@ describe 'choria' do
       context "custom server config", if: facts[:kernel] == "Linux" do
         let :params do
           {
+            manage_mcollective: false,
             server_config: {
               "plugin.choria.security.certname_whitelist": ["user1", "user2"]
             }
@@ -209,6 +225,7 @@ describe 'choria' do
       context "custom logging", if: facts[:kernel] == "Linux" do
         let :params do
          {
+           manage_mcollective: false,
            server_logfile: "/var/log/choria-server.log",
            server_log_level: "debug"
          }
@@ -222,7 +239,10 @@ describe 'choria' do
 
       context "with package set to a specific version" do
         let :params do
-          { version: "1.2.3" }
+          {
+            manage_mcollective: false,
+            version: "1.2.3"
+          }
         end
 
         if facts[:kernel] == "SunOS" and facts[:os]["release"]["major"].to_i == 10
@@ -242,7 +262,10 @@ describe 'choria' do
 
       context "with package ensure set to absent" do
         let :params do
-          { ensure: "absent" }
+          {
+            manage_mcollective: false,
+            ensure: "absent"
+          }
         end
 
         it { should compile.with_all_deps }
@@ -258,7 +281,10 @@ describe 'choria' do
 
       context "with server enabled" do
         let :params do
-          { server: true }
+          {
+            manage_mcollective: false,
+            server: true
+          }
         end
 
         it { should compile.with_all_deps }
@@ -269,7 +295,10 @@ describe 'choria' do
 
       context "with server disabled" do
         let :params do
-          { server: false }
+          {
+            manage_mcollective: false,
+            server: false
+          }
         end
 
         it { should compile.with_all_deps }
