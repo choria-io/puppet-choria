@@ -11,8 +11,10 @@ class choria::service {
         enable => true,
       }
 
-      # Ensures that module plugin changes will restart choria
-      Mcollective::Module_plugin <| |> ~> Service[$choria::server_service_name]
+      if $choria::manage_mcollective {
+        # Ensures that module plugin changes will restart choria
+        Mcollective::Module_plugin <| |> ~> Service[$choria::server_service_name]
+      }
 
       # Without this when a mcollective plugin is removed if purge is on the service
       # would not be restarted, unfortunate side effect that a client uninstall will

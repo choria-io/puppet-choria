@@ -6,6 +6,11 @@ describe 'choria' do
     "rspec.puppet.com"
   end
 
+  let :params do
+    { manage_mcollective: false }
+  end
+
+
   on_supported_os.each do |os, facts|
     context "on #{os} " do
       let :facts do
