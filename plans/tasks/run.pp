@@ -22,7 +22,8 @@ plan choria::tasks::run(
   Boolean $background = false,
   Boolean $silent = false,
   Integer $batch_size = 0,
-  Integer $batch_sleep_time = 2
+  Integer $batch_sleep_time = 2,
+  Optional[String[1]] $run_as = undef
 ) {
   $metadata = choria::tasks::metadata($task)
 
@@ -42,6 +43,12 @@ plan choria::tasks::run(
 
   info("Running task '${task}' on ${nodes.size} nodes")
 
+  if $run_as {
+    $run_as_property = { "run_as" => $run_as }
+  } else {
+    $run_as_property = {}
+  }
+
   choria::task(
     "nodes"            => $nodes,
     "action"           => $action,
@@ -52,6 +59,6 @@ plan choria::tasks::run(
       "task"           => $task,
       "files"          => $metadata["files"].to_json,
       "input"          => $inputs.to_json
-    }
+    } + $run_as_property
   )
 }
