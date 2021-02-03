@@ -1,6 +1,8 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
-|2021/01/13|     |Release 0.22.0                                                                                           |
+|2021/01/13|     |Release 0.22.2                                                                                           |
+|2021/01/13|     |Ensure `choria` version `0.20.2` is installed on RedHat and Debian                                       |
+|2021/01/13|     |Release 0.22.1                                                                                           |
 |2021/01/13|     |Ensure `choria` version `0.20.1` is installed on RedHat and Debian                                       |
 |2021/01/13|     |Release 0.22.0                                                                                           |
 |2021/01/18|     |Support `run_as` for playbooks                                                                           |
