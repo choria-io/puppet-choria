@@ -1,6 +1,6 @@
 {
   "name": "choria-choria",
-  "version": "0.22.0",
+  "version": "0.22.1",
   "author": "R.I.Pienaar <rip@devco.net>",
   "license": "Apache-2.0",
   "summary": "Install and manage the Choria plugin for MCollective",
