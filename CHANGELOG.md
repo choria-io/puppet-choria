@@ -1,5 +1,8 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2021/01/13|     |Release 0.22.0                                                                                           |
+|2021/01/18|     |Support `run_as` for playbooks                                                                           |
+|2021/01/15|207  |Ensure the `mcollective` class is included when just including `choria`                                  |
 |2021/01/13|     |Release 0.21.0                                                                                           |
 |2020/10/26|     |Correctly describe the NATS Streaming Server adapter data type                                           |
 |2021/01/10|217  |Remove support for legacy compound filters                                                               |
