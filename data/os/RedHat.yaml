@@ -1,2 +1,2 @@
 ---
-choria::version: "0.20.0-1.el%{facts.os.release.major}"
+choria::version: "0.20.1-1.el%{facts.os.release.major}"
