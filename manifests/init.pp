@@ -31,6 +31,7 @@
 # @param package_name The package to install
 # @param broker_service_name The service name of the Choria Broker
 # @param server_service_name The service name of the Choria Server
+# @param server_service_enable Enable Choria Server at boot
 # @param identity The identity this server will use to determine SSL cert names etc
 # @param server To enable or disable the choria server
 # @param server_config Configuration for the Choria Server
@@ -57,6 +58,7 @@ class choria (
   String $package_name,
   String $broker_service_name,
   String $server_service_name,
+  Boolean $server_service_enable,
   String $identity,
   Boolean $server,
   Hash $server_config,

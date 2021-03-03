@@ -8,7 +8,7 @@ class choria::service {
     if $choria::server {
       service{$choria::server_service_name:
         ensure => "running",
-        enable => true,
+        enable => $choria::server_service_enable,
       }
 
       if $choria::manage_mcollective {
