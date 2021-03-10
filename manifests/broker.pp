@@ -50,6 +50,10 @@
 # @param client_hosts Whitelist of clients that are allowed to connect to broker
 # @param tls_timeout TLS Handshake timeout (in seconds)
 # @param identity The identity this broker will use to determine SSL cert names etc
+# @param stream_store Enables Streaming and store data in this path
+# @param advisory_retention How long to store server advisories for in the Stream
+# @param event_retention How long to store events for in the Stream
+# @param machine_retention How long to store Choria Autonomous Agent events
 class choria::broker (
   Boolean $network_broker,
   Boolean $federation_broker,
@@ -67,6 +71,10 @@ class choria::broker (
   String $identity,
   Optional[Stdlib::Absolutepath] $ssldir = undef,
   Optional[Integer] $tls_timeout = undef,
+  Stdlib::Compat::Absolute_path $stream_store = "",
+  String $advisory_retention = "",
+  String $event_retention = "",
+  String $machine_retention = "",
 ) {
   require choria
 

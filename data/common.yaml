@@ -44,7 +44,6 @@ choria::broker::federation_cluster: "%{::environment}"
 choria::broker::listen_address: "::"
 choria::broker::stats_listen_address: "::"
 choria::broker::client_port: 4222
-choria::broker::cluster_peer_port: 4223
 choria::broker::stats_port: 8222
 choria::broker::network_peers: []
 choria::broker::federation_middleware_hosts: []
@@ -52,6 +51,10 @@ choria::broker::collective_middleware_hosts: []
 choria::broker::client_hosts: []
 choria::broker::adapters: {}
 choria::broker::identity: "%{trusted.certname}"
+choria::broker::cluster_peer_port: 0
+choria::broker::advisory_retention: "30d"
+choria::broker::event_retention: "30d"
+choria::broker::machine_retention: "30d"
 
 lookup_options:
   choria::collectives:

@@ -52,6 +52,13 @@ plugin.choria.network.client_hosts = <%= $choria::broker::client_hosts.join(", "
 plugin.choria.ssldir = <%= $choria::broker::ssldir %>
 <% } -%>
 
+<% if $choria::broker::stream_store != "" { -%>
+plugin.choria.network.stream.store = <%= $choria::broker::stream_store %>
+plugin.choria.network.stream.advisory_retention = <%= choria::broker::advisory_retention %>
+plugin.choria.network.stream.event_retention = <%= choria::broker::event_retention %>
+plugin.choria.network.stream.machine_retention = <%= choria::broker::machine_retention %>
+<% } -%>
+
 <% if $choria::broker::federation_broker { -%>
 # The Choria Federation Broker routes isolated Collectives into a Federated Network
 plugin.choria.broker_federation = true
