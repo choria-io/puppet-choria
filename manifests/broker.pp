@@ -54,6 +54,8 @@
 # @param advisory_retention How long to store server advisories for in the Stream
 # @param event_retention How long to store events for in the Stream
 # @param machine_retention How long to store Choria Autonomous Agent events
+# @param system_user Username to use for access to the System account
+# @param system_password Password to use for access to the System account
 class choria::broker (
   Boolean $network_broker,
   Boolean $federation_broker,
@@ -75,6 +77,8 @@ class choria::broker (
   String $advisory_retention = "",
   String $event_retention = "",
   String $machine_retention = "",
+  String $system_user = "",
+  String $system_password = ""
 ) {
   require choria
 
