@@ -52,7 +52,14 @@ plugin.choria.network.client_hosts = <%= $choria::broker::client_hosts.join(", "
 plugin.choria.ssldir = <%= $choria::broker::ssldir %>
 <% } -%>
 
+<% if $choria::broker::system_user != "" and $choria::broker::system_password != "" { -%>
+# Access to internal statistics and reporting
+plugin.choria.network.system.user = <%= $choria::broker::system_user %>
+plugin.choria.network.system.password = <%= $choria::broker::system_password %>
+<% } -%>
+
 <% if $choria::broker::stream_store != "" { -%>
+# Enables Choria Streaming for message persistence
 plugin.choria.network.stream.store = <%= $choria::broker::stream_store %>
 plugin.choria.network.stream.advisory_retention = <%= choria::broker::advisory_retention %>
 plugin.choria.network.stream.event_retention = <%= choria::broker::event_retention %>
