@@ -15,7 +15,7 @@ define choria::scout_check(
   String $plugin = "",
   String $arguments = "",
   String $builtin = "",
-  Variant[Stdlib::Compat::Absolute_path, String[0,0]] $gossfile = "",
+  Variant[Stdlib::Absolutepath, String[0,0]] $gossfile = "",
   String $plugin_timeout = "10s",
   String $check_interval = "5m",
   String $remediate_command = "",
