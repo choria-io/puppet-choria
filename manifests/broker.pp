@@ -73,7 +73,7 @@ class choria::broker (
   String $identity,
   Optional[Stdlib::Absolutepath] $ssldir = undef,
   Optional[Integer] $tls_timeout = undef,
-  Stdlib::Compat::Absolute_path $stream_store = "",
+  Optional[Stdlib::Compat::Absolute_path] $stream_store = undef,
   String $advisory_retention = "",
   String $event_retention = "",
   String $machine_retention = "",
