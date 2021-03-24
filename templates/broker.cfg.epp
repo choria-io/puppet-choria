@@ -33,8 +33,11 @@ plugin.choria.network.client_port = <%= $choria::broker::client_port %>
 plugin.choria.network.tls_timeout = <%= $choria::broker::tls_timeout %>
 
 <% } -%>
+
+<% if $choria::broker::cluster_peer_port > 0 {-%>
 # Other Choria Network Brokers will connect to this port to form a cluster
 plugin.choria.network.peer_port = <%= $choria::broker::cluster_peer_port %>
+<% } -%>
 <%   unless $choria::broker::network_peers.empty { -%>
 
 # All the cluster peers the server will attempt to create connections with
@@ -51,22 +54,22 @@ plugin.choria.network.client_hosts = <%= $choria::broker::client_hosts.join(", "
 # Override ssldir for broker, if needed. This has different effects than setting this key in /etc/choria/plugins/choria.cfg
 plugin.choria.ssldir = <%= $choria::broker::ssldir %>
 <% } -%>
-
 <% if $choria::broker::system_user != "" and $choria::broker::system_password != "" { -%>
+
 # Access to internal statistics and reporting
 plugin.choria.network.system.user = <%= $choria::broker::system_user %>
 plugin.choria.network.system.password = <%= $choria::broker::system_password %>
 <% } -%>
+<% if $choria::broker::stream_store { -%>
 
-<% if $choria::broker::stream_store != "" { -%>
 # Enables Choria Streaming for message persistence
 plugin.choria.network.stream.store = <%= $choria::broker::stream_store %>
-plugin.choria.network.stream.advisory_retention = <%= choria::broker::advisory_retention %>
-plugin.choria.network.stream.event_retention = <%= choria::broker::event_retention %>
-plugin.choria.network.stream.machine_retention = <%= choria::broker::machine_retention %>
+plugin.choria.network.stream.advisory_retention = <%= $choria::broker::advisory_retention %>
+plugin.choria.network.stream.event_retention = <%= $choria::broker::event_retention %>
+plugin.choria.network.stream.machine_retention = <%= $choria::broker::machine_retention %>
 <% } -%>
-
 <% if $choria::broker::federation_broker { -%>
+
 # The Choria Federation Broker routes isolated Collectives into a Federated Network
 plugin.choria.broker_federation = true
 plugin.choria.federation.cluster = <%= $choria::broker::federation_cluster %>
@@ -78,8 +81,8 @@ plugin.choria.federation_middleware_hosts = <%= $choria::broker::federation_midd
 plugin.choria.middleware_hosts = <%= $choria::broker::collective_middleware_hosts.join(", ") %>
 <%- } -%>
 <% } -%>
-
 <% unless $choria::broker::adapters.empty { -%>
+
 # Adapters convert Choria messages into other formats and other protocols
 plugin.choria.adapters = <%= $choria::broker::adapters.keys.sort.join(",") %>
 <%   $choria::broker::adapters.keys.sort.each |$adapter| { -%>
@@ -96,5 +99,41 @@ plugin.choria.adapter.<%= $adapter %>.<%= $section %>.<%= $key %> = <%= $value %
 <%          } -%>
 <%        } -%>
 <%      } -%>
+<%   } -%>
+<% } -%>
+<% if $choria::broker::leafnode_port > 0 {-%>
+
+# Other Choria Network Brokers in branch offices can connect here using Leafnode protocols
+plugin.choria.network.leafnode_port = <%= $choria::broker::leafnode_port %>
+<% } -%>
+<% unless $choria::broker::leafnodes.empty { -%>
+
+# Leafnodes configure links to Choria networks suitable for branch networks
+plugin.choria.network.leafnode_remotes = <%= $choria::broker::leafnodes.keys.sort.join(",") %>
+<%   $choria::broker::leafnodes.keys.sort.each |$leaf| { -%>
+plugin.choria.network.leafnode_remote.<%= $leaf %>.url = <%= $choria::broker::leafnodes[$leaf]["url"] %>
+<%     if $choria::broker::leafnodes[$leaf]["account"] {-%>
+plugin.choria.network.leafnode_remote.<%= $leaf %>.account = <%= $choria::broker::leafnodes[$leaf]["account"] %>
+<%     } -%>
+<%     if $choria::broker::leafnodes[$leaf]["credentials"] {-%>
+plugin.choria.network.leafnode_remote.<%= $leaf %>.credentials = <%= $choria::broker::leafnodes[$leaf]["credentials"] %>
+<%     } -%>
+<%     if $choria::broker::leafnodes[$leaf]["tls"] { -%>
+<%       if $choria::broker::leafnodes[$leaf]["tls"]["cert"] { -%>
+plugin.choria.network.leafnode_remote.<%= $leaf %>.tls.cert = <%= $choria::broker::leafnodes[$leaf]["tls"]["cert"] %>
+<%       } -%>
+<%       if $choria::broker::leafnodes[$leaf]["tls"]["key"] { -%>
+plugin.choria.network.leafnode_remote.<%= $leaf %>.tls.key = <%= $choria::broker::leafnodes[$leaf]["tls"]["key"] %>
+<%       } -%>
+<%       if $choria::broker::leafnodes[$leaf]["tls"]["ca"] { -%>
+plugin.choria.network.leafnode_remote.<%= $leaf %>.tls.ca = <%= $choria::broker::leafnodes[$leaf]["tls"]["ca"] %>
+<%       } -%>
+<%       if $choria::broker::leafnodes[$leaf]["tls"]["verify"] != "" and $choria::broker::leafnodes[$leaf]["tls"]["verify"] == false { -%>
+plugin.choria.network.leafnode_remote.<%= $leaf %>.tls.verify = false
+<%       } -%>
+<%       if $choria::broker::leafnodes[$leaf]["tls"]["disable"] != "" and $choria::broker::leafnodes[$leaf]["tls"]["disable"] == true { -%>
+plugin.choria.network.leafnode_remote.<%= $leaf %>.tls.disable = true
+<%       } -%>
+<%     } -%>
 <%   } -%>
 <% } -%>

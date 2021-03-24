@@ -4,7 +4,7 @@
 class choria::broker::config {
   assert_private()
 
-  if $choria::broker::stream_store != "" {
+  if $choria::broker::stream_store {
     file{$choria::broker::stream_store:
       owner  => "root",
       group  => $choria::config_group,

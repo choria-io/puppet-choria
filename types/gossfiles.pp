@@ -1,1 +1,1 @@
-type Choria::GossFiles = Hash[Stdlib::Compat::Absolute_path, Hash[String, Hash]]
+type Choria::GossFiles = Hash[Stdlib::Absolutepath, Hash[String, Hash]]
