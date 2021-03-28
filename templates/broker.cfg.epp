@@ -106,32 +106,32 @@ plugin.choria.adapter.<%= $adapter %>.<%= $section %>.<%= $key %> = <%= $value %
 # Other Choria Network Brokers in branch offices can connect here using Leafnode protocols
 plugin.choria.network.leafnode_port = <%= $choria::broker::leafnode_port %>
 <% } -%>
-<% unless $choria::broker::leafnodes.empty { -%>
+<% unless $choria::broker::leafnode_upstreams.empty { -%>
 
 # Leafnodes configure links to Choria networks suitable for branch networks
-plugin.choria.network.leafnode_remotes = <%= $choria::broker::leafnodes.keys.sort.join(",") %>
-<%   $choria::broker::leafnodes.keys.sort.each |$leaf| { -%>
-plugin.choria.network.leafnode_remote.<%= $leaf %>.url = <%= $choria::broker::leafnodes[$leaf]["url"] %>
-<%     if $choria::broker::leafnodes[$leaf]["account"] {-%>
-plugin.choria.network.leafnode_remote.<%= $leaf %>.account = <%= $choria::broker::leafnodes[$leaf]["account"] %>
+plugin.choria.network.leafnode_remotes = <%= $choria::broker::leafnode_upstreams.keys.sort.join(",") %>
+<%   $choria::broker::leafnode_upstreams.keys.sort.each |$leaf| { -%>
+plugin.choria.network.leafnode_remote.<%= $leaf %>.url = <%= $choria::broker::leafnode_upstreams[$leaf]["url"] %>
+<%     if $choria::broker::leafnode_upstreams[$leaf]["account"] {-%>
+plugin.choria.network.leafnode_remote.<%= $leaf %>.account = <%= $choria::broker::leafnode_upstreams[$leaf]["account"] %>
 <%     } -%>
-<%     if $choria::broker::leafnodes[$leaf]["credentials"] {-%>
-plugin.choria.network.leafnode_remote.<%= $leaf %>.credentials = <%= $choria::broker::leafnodes[$leaf]["credentials"] %>
+<%     if $choria::broker::leafnode_upstreams[$leaf]["credentials"] {-%>
+plugin.choria.network.leafnode_remote.<%= $leaf %>.credentials = <%= $choria::broker::leafnode_upstreams[$leaf]["credentials"] %>
 <%     } -%>
-<%     if $choria::broker::leafnodes[$leaf]["tls"] { -%>
-<%       if $choria::broker::leafnodes[$leaf]["tls"]["cert"] { -%>
-plugin.choria.network.leafnode_remote.<%= $leaf %>.tls.cert = <%= $choria::broker::leafnodes[$leaf]["tls"]["cert"] %>
+<%     if $choria::broker::leafnode_upstreams[$leaf]["tls"] { -%>
+<%       if $choria::broker::leafnode_upstreams[$leaf]["tls"]["cert"] { -%>
+plugin.choria.network.leafnode_remote.<%= $leaf %>.tls.cert = <%= $choria::broker::leafnode_upstreams[$leaf]["tls"]["cert"] %>
 <%       } -%>
-<%       if $choria::broker::leafnodes[$leaf]["tls"]["key"] { -%>
-plugin.choria.network.leafnode_remote.<%= $leaf %>.tls.key = <%= $choria::broker::leafnodes[$leaf]["tls"]["key"] %>
+<%       if $choria::broker::leafnode_upstreams[$leaf]["tls"]["key"] { -%>
+plugin.choria.network.leafnode_remote.<%= $leaf %>.tls.key = <%= $choria::broker::leafnode_upstreams[$leaf]["tls"]["key"] %>
 <%       } -%>
-<%       if $choria::broker::leafnodes[$leaf]["tls"]["ca"] { -%>
-plugin.choria.network.leafnode_remote.<%= $leaf %>.tls.ca = <%= $choria::broker::leafnodes[$leaf]["tls"]["ca"] %>
+<%       if $choria::broker::leafnode_upstreams[$leaf]["tls"]["ca"] { -%>
+plugin.choria.network.leafnode_remote.<%= $leaf %>.tls.ca = <%= $choria::broker::leafnode_upstreams[$leaf]["tls"]["ca"] %>
 <%       } -%>
-<%       if $choria::broker::leafnodes[$leaf]["tls"]["verify"] != "" and $choria::broker::leafnodes[$leaf]["tls"]["verify"] == false { -%>
+<%       if $choria::broker::leafnode_upstreams[$leaf]["tls"]["verify"] != "" and $choria::broker::leafnode_upstreams[$leaf]["tls"]["verify"] == false { -%>
 plugin.choria.network.leafnode_remote.<%= $leaf %>.tls.verify = false
 <%       } -%>
-<%       if $choria::broker::leafnodes[$leaf]["tls"]["disable"] != "" and $choria::broker::leafnodes[$leaf]["tls"]["disable"] == true { -%>
+<%       if $choria::broker::leafnode_upstreams[$leaf]["tls"]["disable"] != "" and $choria::broker::leafnode_upstreams[$leaf]["tls"]["disable"] == true { -%>
 plugin.choria.network.leafnode_remote.<%= $leaf %>.tls.disable = true
 <%       } -%>
 <%     } -%>

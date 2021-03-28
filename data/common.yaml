@@ -50,7 +50,7 @@ choria::broker::federation_middleware_hosts: []
 choria::broker::collective_middleware_hosts: []
 choria::broker::client_hosts: []
 choria::broker::adapters: {}
-choria::broker::leafnodes: {}
+choria::broker::leafnode_upstreams: {}
 choria::broker::identity: "%{trusted.certname}"
 choria::broker::cluster_peer_port: 0
 choria::broker::leafnode_port: 0

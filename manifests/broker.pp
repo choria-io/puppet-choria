@@ -50,7 +50,7 @@
 # @param leafnode_port Port leafnode connections will be accepted on
 # @param client_hosts Whitelist of clients that are allowed to connect to broker
 # @param adapters Data adapters to configure
-# @param leafnodes LEafnode connections to configure
+# @param leafnode_upstreams Leafnode connections to configure
 # @param tls_timeout TLS Handshake timeout (in seconds)
 # @param identity The identity this broker will use to determine SSL cert names etc
 # @param stream_store Enables Streaming and store data in this path
@@ -74,7 +74,7 @@ class choria::broker (
   Array[String] $collective_middleware_hosts,
   Array[String] $client_hosts,
   Choria::Adapters $adapters,
-  Choria::Leafnodes $leafnodes,
+  Choria::Leafnodes $leafnode_upstreams,
   String $identity,
   Optional[Stdlib::Absolutepath] $ssldir = undef,
   Optional[Integer] $tls_timeout = undef,
