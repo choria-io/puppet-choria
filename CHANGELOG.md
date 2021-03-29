@@ -1,5 +1,11 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2021/03/29|     |Release 0.23.0                                                                                           |
+|2021/03/23|238  |Support configuring leafnode connections                                                                 |
+|2021/03/22|235  |Support latest puppetlabs/stdlib                                                                         |
+|2021/03/22|233  |Enable access to the NATS system account                                                                 |
+|2021/03/10|231  |Support configuring Streaming                                                                            |
+|2021/03/03|230  |Add `server_service_enable` parameter                                                                    |
 |2021/01/13|     |Release 0.22.2                                                                                           |
 |2021/01/13|     |Ensure `choria` version `0.20.2` is installed on RedHat and Debian                                       |
 |2021/01/13|     |Release 0.22.1                                                                                           |
