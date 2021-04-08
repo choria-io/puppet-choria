@@ -51,6 +51,9 @@
 # @param client_hosts Whitelist of clients that are allowed to connect to broker
 # @param adapters Data adapters to configure
 # @param leafnode_upstreams Leafnode connections to configure
+# @param client_anon_tls Use anonymous TLS for client connections (disables verification)
+# @param request_signing_certificate The public certificate of the key used to sign the JWTs in the Signing Service
+# @param deny_server_connections Set ACLs denying server connections to this broker
 # @param tls_timeout TLS Handshake timeout (in seconds)
 # @param identity The identity this broker will use to determine SSL cert names etc
 # @param stream_store Enables Streaming and store data in this path
@@ -69,6 +72,9 @@ class choria::broker (
   Integer $cluster_peer_port,
   Integer $stats_port,
   Integer $leafnode_port,
+  Boolean $client_anon_tls = false,
+  Optional[Stdlib::AbsolutePath] $request_signing_certificate = undef,
+  Boolean $deny_server_connections = false,
   Array[String] $network_peers,
   Array[String] $federation_middleware_hosts,
   Array[String] $collective_middleware_hosts,
