@@ -27,6 +27,9 @@ plugin.choria.network.listen_address = <%= $choria::broker::listen_address %>
 
 # Clients and Servers will connect to this port
 plugin.choria.network.client_port = <%= $choria::broker::client_port %>
+<% if $choria::broker::websock_port > 0 {-%>
+plugin.choria.network.websocket_port = <%= $choria::broker::websock_port %>
+<% } -%>
 
 <% if $choria::broker::tls_timeout { -%>
 # TLS handshake timeout (in seconds)

@@ -44,7 +44,8 @@
 # @param federation_cluster The name of the federation cluster to serve
 # @param listen_address Address the network broker will listen on for clients and broker peers
 # @param stats_listen_address Address the broker will listen for Prometheus stats
-# @param client_port Port clients will connec tto
+# @param client_port Port clients will connect to using the core NATS protocol
+# @param websocket_port Port clients will connect to using NATS over Websockets
 # @param cluster_peer_port Port other brokers will connect to
 # @param stats_port Port where Prometheus stats are hosted
 # @param leafnode_port Port leafnode connections will be accepted on
@@ -66,6 +67,7 @@ class choria::broker (
   Stdlib::Compat::Ip_address $listen_address,
   Stdlib::Compat::Ip_address $stats_listen_address,
   Integer $client_port,
+  Integer $websock_port,
   Integer $cluster_peer_port,
   Integer $stats_port,
   Integer $leafnode_port,
