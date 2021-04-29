@@ -48,6 +48,14 @@
       ]
     },
     {
+      "operatingsystem": "Fedora",
+      "operatingsystemrelease": [
+        "32",
+        "33",
+        "34"
+      ]
+    },
+    {
       "operatingsystem": "SLES",
       "operatingsystemrelease": [
         "11 SP1",

@@ -16,6 +16,8 @@ class choria::repo (
       $release = '7'
     } elsif $facts['os']['name'] == 'Amazon' {
       $release = '6'
+    } elsif $facts['os']['name'] == 'Fedora' {
+      $release = '8'
     } elsif versioncmp($facts['os']['release']['major'], '6') < 0 {
       fail("Choria Repositories are only supported for RHEL/CentOS 6 or newer releases")
     } else {
