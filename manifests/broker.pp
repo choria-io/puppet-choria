@@ -67,7 +67,7 @@ class choria::broker (
   Stdlib::Compat::Ip_address $listen_address,
   Stdlib::Compat::Ip_address $stats_listen_address,
   Integer $client_port,
-  Integer $websock_port,
+  Integer $websocket_port,
   Integer $cluster_peer_port,
   Integer $stats_port,
   Integer $leafnode_port,
