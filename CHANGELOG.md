@@ -1,5 +1,8 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2021/06/19|     |Release 0.24.0                                                                                           |
+|2021/04/28|     |Use EL8 repo for Fedora                                                                                  |
+|2021/04/28|247  |Support websocket ports                                                                                  |
 |2021/03/29|     |Release 0.23.0                                                                                           |
 |2021/03/23|238  |Support configuring leafnode connections                                                                 |
 |2021/03/22|235  |Support latest puppetlabs/stdlib                                                                         |
