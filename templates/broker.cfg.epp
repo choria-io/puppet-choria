@@ -27,21 +27,18 @@ plugin.choria.network.listen_address = <%= $choria::broker::listen_address %>
 
 # Clients and Servers will connect to this port
 plugin.choria.network.client_port = <%= $choria::broker::client_port %>
-<% if $choria::broker::websocket_port > 0 {-%>
+<%   if $choria::broker::websocket_port > 0 {-%>
 plugin.choria.network.websocket_port = <%= $choria::broker::websocket_port %>
-<% } -%>
+<%   } -%>
 
-<% if $choria::broker::tls_timeout { -%>
+<%   if $choria::broker::tls_timeout { -%>
 # TLS handshake timeout (in seconds)
 plugin.choria.network.tls_timeout = <%= $choria::broker::tls_timeout %>
 
-<% } -%>
-
-<% if $choria::broker::cluster_peer_port > 0 {-%>
+<%   } -%>
+<%   unless $choria::broker::network_peers.empty { -%>
 # Other Choria Network Brokers will connect to this port to form a cluster
 plugin.choria.network.peer_port = <%= $choria::broker::cluster_peer_port %>
-<% } -%>
-<%   unless $choria::broker::network_peers.empty { -%>
 
 # All the cluster peers the server will attempt to create connections with
 plugin.choria.network.peers = <%= $choria::broker::network_peers.join(", ") %>
@@ -77,12 +74,12 @@ plugin.choria.network.stream.machine_retention = <%= $choria::broker::machine_re
 plugin.choria.broker_federation = true
 plugin.choria.federation.cluster = <%= $choria::broker::federation_cluster %>
 plugin.choria.federation.instance = <%= $facts["networking"]["fqdn"] %>
-<%- unless $choria::broker::federation_middleware_hosts.empty { -%>
+<%-   unless $choria::broker::federation_middleware_hosts.empty { -%>
 plugin.choria.federation_middleware_hosts = <%= $choria::broker::federation_middleware_hosts.join(", ") %>
-<%- } -%>
-<%- unless $choria::broker::collective_middleware_hosts.empty { -%>
+<%-   } -%>
+<%-   unless $choria::broker::collective_middleware_hosts.empty { -%>
 plugin.choria.middleware_hosts = <%= $choria::broker::collective_middleware_hosts.join(", ") %>
-<%- } -%>
+<%-   } -%>
 <% } -%>
 <% unless $choria::broker::adapters.empty { -%>
 

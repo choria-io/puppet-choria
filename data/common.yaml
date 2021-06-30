@@ -53,7 +53,7 @@ choria::broker::client_hosts: []
 choria::broker::adapters: {}
 choria::broker::leafnode_upstreams: {}
 choria::broker::identity: "%{trusted.certname}"
-choria::broker::cluster_peer_port: 0
+choria::broker::cluster_peer_port: 4223
 choria::broker::leafnode_port: 0
 choria::broker::advisory_retention: "30d"
 choria::broker::event_retention: "30d"
