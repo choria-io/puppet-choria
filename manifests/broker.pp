@@ -82,8 +82,11 @@ class choria::broker (
   Optional[Integer] $tls_timeout = undef,
   Optional[Stdlib::Absolutepath] $stream_store = undef,
   String $advisory_retention,
+  Integer $advisory_replicas,
   String $event_retention,
+  Integer $event_replicas,
   String $machine_retention,
+  Integer $machine_replicas,
   String $system_user,
   String $system_password,
 ) {
