@@ -68,8 +68,11 @@ plugin.choria.network.system.password = <%= $choria::broker::system_password %>
 # Enables Choria Streaming for message persistence
 plugin.choria.network.stream.store = <%= $choria::broker::stream_store %>
 plugin.choria.network.stream.advisory_retention = <%= $choria::broker::advisory_retention %>
+plugin.choria.network.stream.advisory_replicas = <%= $choria::broker::advisory_replicas %>
 plugin.choria.network.stream.event_retention = <%= $choria::broker::event_retention %>
+plugin.choria.network.stream.event_replicas = <%= $choria::broker::event_replicas %>
 plugin.choria.network.stream.machine_retention = <%= $choria::broker::machine_retention %>
+plugin.choria.network.stream.machine_replicas = <%= $choria::broker::machine_replicas %>
 <% } -%>
 <% if $choria::broker::federation_broker { -%>
 

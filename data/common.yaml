@@ -56,10 +56,15 @@ choria::broker::identity: "%{trusted.certname}"
 choria::broker::cluster_peer_port: 0
 choria::broker::leafnode_port: 0
 choria::broker::advisory_retention: "30d"
+choria::broker::advisory_replicas: 1
 choria::broker::event_retention: "30d"
+choria::broker::event_replicas: 1
 choria::broker::machine_retention: "30d"
+choria::broker::machine_replicas: 1
 choria::broker::system_user: ""
 choria::broker::system_password: ""
+choria::broker::submission_max_spool_size: 500
+choria::broker::submission_spool: ""
 
 lookup_options:
   choria::collectives:
