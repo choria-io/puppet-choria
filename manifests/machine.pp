@@ -27,18 +27,22 @@ define choria::machine(
 
   $_dir_ensure = $ensure ? {"present" => directory, "absent" => "absent"}
 
-  file{"${_store}/${name}":
-    ensure => $_dir_ensure,
-    owner  => $choria::config_user,
-    group  => $choria::config_group,
-    mode   => "0755",
-  }
+  file{
+    default:
+      owner  => $choria::config_user,
+      group  => $choria::config_group;
 
-  file{"${_store}/${name}/machine.yaml":
-    ensure  => $ensure,
-    content => $_machine.to_yaml,
-    owner   => $choria::config_user,
-    group   => $choria::config_group,
-    mode    => "0644",
+    "${_store}/${name}":
+      ensure => $_dir_ensure,
+      mode   => "0755";
+
+    "${_store}/${name}/machine_data.json":
+      ensure  => $ensure,
+      mode    => "0600";
+
+    "${_store}/${name}/machine.yaml":
+      ensure  => $ensure,
+      content => $_machine.to_yaml,
+      mode    => "0644";
   }
 }
