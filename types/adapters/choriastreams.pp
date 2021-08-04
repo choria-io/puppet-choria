@@ -1,6 +1,6 @@
-type Choria::Adapters::JetStream = Struct[{
+type Choria::Adapters::ChoriaStreams = Struct[{
   stream => Struct[{
-    type => Enum["jetstream"],
+    type => Enum["jetstream", "choria_streams"],
     servers => Array[String],
     topic => String,
     workers => Integer[1,100]
