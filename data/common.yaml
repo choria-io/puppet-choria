@@ -63,8 +63,8 @@ choria::broker::machine_retention: "30d"
 choria::broker::machine_replicas: 1
 choria::broker::system_user: ""
 choria::broker::system_password: ""
-choria::broker::submission_max_spool_size: 500
-choria::broker::submission_spool: ""
+choria::broker::provisioner_password: ""
+choria::broker::provisioning_signer_source: ""
 
 lookup_options:
   choria::collectives:

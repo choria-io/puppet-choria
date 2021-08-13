@@ -60,6 +60,8 @@
 # @param machine_retention How long to store Choria Autonomous Agent events
 # @param system_user Username to use for access to the System account
 # @param system_password Password to use for access to the System account
+# @param provisioner_password The Password the Choria Provisioner needs to present
+# @param provisioning_signer_source A Puppet source where the public used to sign provisioning.jwt is found
 class choria::broker (
   Boolean $network_broker,
   Boolean $federation_broker,
@@ -89,6 +91,8 @@ class choria::broker (
   Integer $machine_replicas,
   String $system_user,
   String $system_password,
+  String $provisioner_password,
+  String $provisioning_signer_source,
 ) {
   require choria
 
