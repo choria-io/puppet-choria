@@ -74,6 +74,14 @@ plugin.choria.network.stream.event_replicas = <%= $choria::broker::event_replica
 plugin.choria.network.stream.machine_retention = <%= $choria::broker::machine_retention %>
 plugin.choria.network.stream.machine_replicas = <%= $choria::broker::machine_replicas %>
 <% } -%>
+<% if $choria::broker::provisioner_password != "" and $choria::broker::provisioning_signer_source != "" { -%>
+
+# Enables accepting unverified TLS connections for provisioning
+# https://choria.io/blog/post/2021/08/13/secure_and_ha_provisioning/
+
+plugin.choria.network.provisioning.signer_cert = <%= $choria::broker::config_dir $>/provisioner-signer-certificate.pem
+plugin.choria.network.provisioning.client_password = <%= $choria::broker::provisioner_password $>
+<% } -%>
 <% if $choria::broker::federation_broker { -%>
 
 # The Choria Federation Broker routes isolated Collectives into a Federated Network

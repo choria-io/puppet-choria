@@ -14,6 +14,18 @@ class choria::broker::config {
     }
   }
 
+  $config_dir = dirname($choria::broker_config_file)
+
+  if $choria::broker::provisioning_signer_source != "" {
+    file{"${config_dir}/provisioner-signer-certificate.pem":
+      owner  => "root",
+      group  => $choria::config_group,
+      mode   => "0640",
+      source => $choria::broker::provisioning_signer_source,
+      before => File[$choria::broker_config_file]
+    }
+  }
+
   file{$choria::broker_config_file:
     owner   => "root",
     group   => $choria::config_group,
