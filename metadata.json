@@ -1,6 +1,6 @@
 {
   "name": "choria-choria",
-  "version": "0.24.0",
+  "version": "0.25.0",
   "author": "R.I.Pienaar <rip@devco.net>",
   "license": "Apache-2.0",
   "summary": "Install and manage the Choria plugin for MCollective",
@@ -10,7 +10,7 @@
   "dependencies": [
     { "name": "puppetlabs/stdlib", "version_requirement": ">= 4.24.0 < 8.0.0" },
     { "name": "puppetlabs/apt", "version_requirement": ">= 4.5.1 < 9.0.0" },
-    { "name": "choria/mcollective_choria", "version_requirement": ">= 0.21.0 < 2.0.0" },
+    { "name": "choria/mcollective_choria", "version_requirement": ">= 0.21.1 < 2.0.0" },
     { "name": "choria/mcollective", "version_requirement": ">= 0.13.2 < 2.0.0" },
     { "name": "choria/mcollective_agent_puppet", "version_requirement": ">= 2.4.1" },
     { "name": "choria/mcollective_agent_package", "version_requirement": ">= 5.3.0" },
