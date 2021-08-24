@@ -1,5 +1,11 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2021/08/24|     |Release 0.25.0                                                                                           |
+|2021/08/13|262  |Support allowing provisioning against a core Choria Broker                                               |
+|2021/08/04|260  |Rename `jetstream` adapter to `choria_streams`                                                           |
+|2021/07/14|258  |Prepare autonomous agents for data storage                                                               |
+|2021/05/20|235  |Support puppetlabs/apt 8.x                                                                               |
+|2021/07/10|254  |Support configuring core Stream replica configuration                                                    |
 |2021/06/19|     |Release 0.24.0                                                                                           |
 |2021/04/28|     |Use EL8 repo for Fedora                                                                                  |
 |2021/04/28|247  |Support websocket ports                                                                                  |
