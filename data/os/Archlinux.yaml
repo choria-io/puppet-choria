@@ -1,2 +1,3 @@
 ---
 choria::manage_package_repo: false
+choria::rubypath: /usr/bin/ruby-2.7
