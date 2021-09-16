@@ -1,4 +1,4 @@
-# Installs the Choria YUM Repositories
+# Installs the Choria Package Repositories
 #
 # @private
 class choria::repo (
@@ -6,82 +6,68 @@ class choria::repo (
   Enum["present", "absent"] $ensure = "present",
 ) {
   assert_private()
-  $nightly_ensure = $nightly ? {
-    true  => "present",
-    false => "absent",
-  }
 
   if $facts["os"]["family"] == "RedHat" {
     if ($facts['os']['name'] == 'Amazon' and $facts['os']['release']['major'] == '2') {
       $release = '7'
-    } elsif $facts['os']['name'] == 'Amazon' {
-      $release = '6'
     } elsif $facts['os']['name'] == 'Fedora' {
       $release = '8'
-    } elsif versioncmp($facts['os']['release']['major'], '6') < 0 {
-      fail("Choria Repositories are only supported for RHEL/CentOS 6 or newer releases")
+    } elsif versioncmp($facts['os']['release']['major'], '7') < 0 {
+      fail("Choria Repositories are only supported for RHEL/CentOS 7 or newer releases")
     } else {
       $release = '$releasever'
     }
-    yumrepo{"choria_release":
-      ensure          => $ensure,
-      descr           => 'Choria Orchestrator Releases',
-      baseurl         => "${choria::repo_baseurl}/release/el/${release}/\$basearch",
-      repo_gpgcheck   => $choria::repo_gpgcheck,
-      gpgcheck        => false,
-      enabled         => true,
-      gpgkey          => "https://packagecloud.io/choria/release/gpgkey",
-      sslverify       => true,
-      sslcacert       => "/etc/pki/tls/certs/ca-bundle.crt",
-      metadata_expire => 300,
+
+    yumrepo{
+      default:
+        ensure          => $ensure,
+        repo_gpgcheck   => true,
+        gpgcheck        => true,
+        enabled         => true,
+        sslverify       => true,
+        baseurl         => absent,
+        sslcacert       => "/etc/pki/tls/certs/ca-bundle.crt",
+        metadata_expire => 300;
+
+      "choria_release":
+        mirrorlist => "http://mirrorlists.choria.io/yum/release/el/${release}/\$basearch.txt",
+        descr      => "Choria Orchestrator Releases",
+        gpgkey     => "https://choria.io/RELEASE-GPG-KEY";
+
+      "choria_nightly":
+        mirrorlist => "http://mirrorlists.choria.io//yum/nightly/el/${release}/\$basearch.txt",
+        descr      => "Choria Orchestrator Nightly",
+        gpgkey     => "https://choria.io/NIGHTLY-GPG-KEY",
     }
 
-    yumrepo{"choria_nightly":
-      ensure          => $nightly_ensure,
-      descr           => 'Choria Orchestrator Nightly Builds',
-      baseurl         => "${choria::repo_baseurl}/nightly/el/${release}/\$basearch",
-      repo_gpgcheck   => $choria::repo_gpgcheck,
-      gpgcheck        => false,
-      enabled         => true,
-      gpgkey          => "https://packagecloud.io/choria/nightly/gpgkey",
-      sslverify       => true,
-      sslcacert       => "/etc/pki/tls/certs/ca-bundle.crt",
-      metadata_expire => 300,
-    }
   } elsif $facts["os"]["family"] == "Debian" {
     $release = $facts["os"]["distro"]["codename"]
-    if ! $release in ["xenial", "bionic", "focal", "stretch", "buster"] {
+    if ! $release in ["xenial", "bionic", "focal", "stretch", "buster", "bullseye"] {
       fail("Choria Repositories are not supported on ${release}")
     }
+
     $repo_os_name = $facts["os"]["distro"]["id"] ? {
       'Neon'  => 'ubuntu',
       default => $facts["os"]["name"].downcase,
+    }
+
+    if $release in ["xenial", "stretch"] {
+      # these piles of rubbish do not support our mirorr lists, doesnt support https, has mirror transport bugs and should just die in a fire
+      $_location = sprintf("https://apt.eu.choria.io/release/%s/%s", $repo_os_name, $release)
+    } else {
+      $_location = sprintf("mirror://mirrorlists.choria.io/apt/release/%s/%s/mirrors.txt", $repo_os_name, $release)
     }
 
     apt::source{"choria-release":
       ensure        => $ensure,
       notify_update => true,
       comment       => "Choria Orchestrator Releases",
-      location      => sprintf("%s/release/%s/", $choria::repo_baseurl, $repo_os_name),
+      location      => $_location,
       release       => $release,
       repos         => "main",
       key           => {
-        id     => "5921BC1D903D6E0353C985BB9F89253B1E83EA92",
-        source => "https://packagecloud.io/choria/release/gpgkey"
-      },
-      before        => Package[$choria::package_name],
-    }
-
-    apt::source{"choria-nightly":
-      ensure        => $nightly_ensure,
-      notify_update => true,
-      comment       => "Choria Orchestrator Nightly Builds",
-      location      => sprintf("%s/nightly/%s/", $choria::repo_baseurl, $repo_os_name),
-      release       => $release,
-      repos         => "main",
-      key           => {
-        id     => "3F311BDCBDFBF9A775FD6FB16C3AD4D617CE1A26",
-        source => "https://packagecloud.io/choria/nightly/gpgkey"
+        id     => "3DE1895F7B983F9B22DAF64030BC99C1AAEEF24D",
+        source => "https://choria.io/RELEASE-GPG-KEY"
       },
       before        => Package[$choria::package_name],
     }

@@ -95,7 +95,6 @@ describe 'choria' do
 
           context "on Debian OS family", if: facts[:os]["family"] == "Debian" do
             it { is_expected.to contain_apt__source("choria-release") }
-            it { is_expected.to contain_apt__source("choria-nightly") }
           end
 
           context "on RedHat OS family", if: facts[:os]["family"] == "RedHat" do
@@ -125,14 +124,13 @@ describe 'choria' do
             {
               manage_mcollective: false,
               manage_package_repo: true,
-              repo_baseurl: "http://internal-mirror.com/choria"
             }
           end
 
           it "should support managing the repo by default" do
             is_expected.to contain_class("choria::repo").with_nightly(false)
             is_expected.to contain_class("choria::repo").with_ensure("present")
-            is_expected.to contain_yumrepo("choria_release").with_ensure("present").with_baseurl("http://internal-mirror.com/choria/release/el/$releasever/$basearch")
+            is_expected.to contain_yumrepo("choria_release").with_ensure("present").with_mirrorlist("http://mirrorlists.choria.io/yum/release/el/$releasever/$basearch.txt")
           end
         end
 
@@ -141,7 +139,6 @@ describe 'choria' do
             {
               manage_mcollective: false,
               manage_package_repo: true,
-              repo_baseurl: "http://internal-mirror.com/choria"
             }
           end
 
@@ -150,7 +147,7 @@ describe 'choria' do
             is_expected.to contain_class("choria::repo").with_ensure("present")
             is_expected.to contain_file("/etc/apt/sources.list.d/choria-release.list")
             is_expected.to contain_apt__source("choria-release").with(release: "bionic")
-                             .with(location: "http://internal-mirror.com/choria/release/ubuntu/")
+                             .with(location: "mirror://mirrorlists.choria.io/apt/release/ubuntu/bionic/mirrors.txt")
           end
         end
 
@@ -159,7 +156,6 @@ describe 'choria' do
             {
               manage_mcollective: false,
               manage_package_repo: true,
-              repo_baseurl: "http://internal-mirror.com/choria"
             }
           end
 
@@ -167,7 +163,7 @@ describe 'choria' do
             is_expected.to contain_file("/etc/apt/sources.list.d/choria-release.list")
             is_expected.to contain_apt__source("choria-release")
                              .with(release: "xenial")
-                             .with(location: "http://internal-mirror.com/choria/release/ubuntu/")
+                             .with(location: "https://apt.eu.choria.io/release/ubuntu/xenial")
           end
         end
       end

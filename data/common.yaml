@@ -15,7 +15,6 @@ choria::manage_package: true
 choria::manage_service: true
 choria::manage_package_repo: true
 choria::nightly_repo: false
-choria::repo_baseurl: "https://packagecloud.io/choria"
 choria::ensure: "present"
 choria::version: "present"
 choria::log_level: "warn"
@@ -34,7 +33,6 @@ choria::server_service_name: "choria-server"
 choria::server_service_enable: true
 choria::identity: "%{trusted.certname}"
 choria::server: true
-choria::repo_gpgcheck: false
 choria::config_user: "root"
 choria::config_group: "root"
 
