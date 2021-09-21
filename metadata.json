@@ -1,6 +1,6 @@
 {
   "name": "choria-choria",
-  "version": "0.25.0",
+  "version": "0.26.0",
   "author": "R.I.Pienaar <rip@devco.net>",
   "license": "Apache-2.0",
   "summary": "Install and manage the Choria plugin for MCollective",
@@ -10,8 +10,8 @@
   "dependencies": [
     { "name": "puppetlabs/stdlib", "version_requirement": ">= 4.24.0 < 8.0.0" },
     { "name": "puppetlabs/apt", "version_requirement": ">= 4.5.1 < 9.0.0" },
-    { "name": "choria/mcollective_choria", "version_requirement": ">= 0.21.1 < 2.0.0" },
-    { "name": "choria/mcollective", "version_requirement": ">= 0.13.3 < 2.0.0" },
+    { "name": "choria/mcollective_choria", "version_requirement": ">= 0.21.2 < 2.0.0" },
+    { "name": "choria/mcollective", "version_requirement": ">= 0.13.4 < 2.0.0" },
     { "name": "choria/mcollective_agent_puppet", "version_requirement": ">= 2.4.1" },
     { "name": "choria/mcollective_agent_package", "version_requirement": ">= 5.3.0" },
     { "name": "choria/mcollective_agent_service", "version_requirement": ">= 4.0.1" },
@@ -65,16 +65,17 @@
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "8",
-        "9"
+        "9",
+        "10",
+        "11"
       ]
     },
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
-        "12.04",
-        "14.04",
-        "18.04"
+        "16.04",
+        "18.04",
+        "20.04"
       ]
     },
     {
