@@ -38,6 +38,10 @@ class choria::repo (
         mirrorlist => "http://mirrorlists.choria.io//yum/nightly/el/${release}/\$basearch.txt",
         descr      => "Choria Orchestrator Nightly",
         gpgkey     => "https://choria.io/NIGHTLY-GPG-KEY",
+        ensure     => $nightly ? {
+          true     => "present",
+          false    => "absent"
+        }
     }
 
   } elsif $facts["os"]["family"] == "Debian" {
