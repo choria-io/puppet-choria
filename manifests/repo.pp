@@ -67,8 +67,8 @@ class choria::repo (
       notify_update => true,
       comment       => "Choria Orchestrator Releases",
       location      => $_location,
-      release       => $release,
-      repos         => "main",
+      release       => $repo_os_name,
+      repos         => $release,
       key           => {
         id     => "3DE1895F7B983F9B22DAF64030BC99C1AAEEF24D",
         source => "https://choria.io/RELEASE-GPG-KEY"
