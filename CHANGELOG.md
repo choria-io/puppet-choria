@@ -1,5 +1,12 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2021/09/21|     |Release 0.26.1                                                                                           |
+|2021/09/21|     |Fix nightly repository ensure property                                                                   |
+|2021/09/21|     |Release 0.26.0                                                                                           |
+|2021/09/17|271  |Support new package repositories                                                                         |
+|2021/09/20|273  |Add a type and provider to manage governors                                                              |
+|2021/09/03|269  |Arch Linux: adjust package name from choria to choria-io                                                 |
+|2021/09/03|267  |Arch Linux: Use /usr/bin/ruby-2.7 instead of default Ruby 3                                              |
 |2021/08/24|     |Release 0.25.0                                                                                           |
 |2021/08/13|262  |Support allowing provisioning against a core Choria Broker                                               |
 |2021/08/04|260  |Rename `jetstream` adapter to `choria_streams`                                                           |
