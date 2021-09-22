@@ -146,7 +146,7 @@ describe 'choria' do
             is_expected.to contain_class("choria::repo").with_nightly(false)
             is_expected.to contain_class("choria::repo").with_ensure("present")
             is_expected.to contain_file("/etc/apt/sources.list.d/choria-release.list")
-            is_expected.to contain_apt__source("choria-release").with(release: "bionic")
+            is_expected.to contain_apt__source("choria-release").with(release: "ubuntu")
                              .with(location: "mirror://mirrorlists.choria.io/apt/release/ubuntu/bionic/mirrors.txt")
           end
         end
@@ -162,7 +162,7 @@ describe 'choria' do
           it "should manage the main repo" do
             is_expected.to contain_file("/etc/apt/sources.list.d/choria-release.list")
             is_expected.to contain_apt__source("choria-release")
-                             .with(release: "xenial")
+                             .with(release: "ubuntu")
                              .with(location: "https://apt.eu.choria.io/release/ubuntu/xenial")
           end
         end
