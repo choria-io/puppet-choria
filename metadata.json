@@ -8,7 +8,7 @@
   "project_page": "https://github.com/choria-io/puppet-choria",
   "issues_url": "https://github.com/choria-io/puppet-choria/issues",
   "dependencies": [
-    { "name": "puppetlabs/stdlib", "version_requirement": ">= 4.24.0 < 8.0.0" },
+    { "name": "puppetlabs/stdlib", "version_requirement": ">= 4.24.0 < 9.0.0" },
     { "name": "puppetlabs/apt", "version_requirement": ">= 4.5.1 < 9.0.0" },
     { "name": "choria/mcollective_choria", "version_requirement": ">= 0.21.2 < 2.0.0" },
     { "name": "choria/mcollective", "version_requirement": ">= 0.13.4 < 2.0.0" },
@@ -20,11 +20,20 @@
   ],
   "operatingsystem_support": [
     {
-      "operatingsystem": "RedHat",
+      "operatingsystem": "AIX",
       "operatingsystemrelease": [
-        "7",
+        "7.1",
+        "7.2"
+      ]
+    },
+    {
+      "operatingsystem": "AlmaLinux",
+      "operatingsystemrelease": [
         "8"
       ]
+    },
+    {
+      "operatingsystem": "Archlinux"
     },
     {
       "operatingsystem": "CentOS",
@@ -34,32 +43,11 @@
       ]
     },
     {
-      "operatingsystem": "OracleLinux",
+      "operatingsystem": "Darwin",
       "operatingsystemrelease": [
-        "7",
-        "8"
-      ]
-    },
-    {
-      "operatingsystem": "Scientific",
-      "operatingsystemrelease": [
-        "7",
-        "8"
-      ]
-    },
-    {
-      "operatingsystem": "Fedora",
-      "operatingsystemrelease": [
-        "32",
-        "33",
-        "34"
-      ]
-    },
-    {
-      "operatingsystem": "SLES",
-      "operatingsystemrelease": [
-        "11 SP1",
-        "12"
+        "10.11",
+        "10.12",
+        "10.13"
       ]
     },
     {
@@ -71,9 +59,58 @@
       ]
     },
     {
+      "operatingsystem": "Fedora",
+      "operatingsystemrelease": [
+        "33",
+        "34",
+        "35"
+      ]
+    },
+    {
+      "operatingsystem": "FreeBSD",
+      "operatingsystemrelease": [
+        "12",
+        "13"
+      ]
+    },
+    {
+      "operatingsystem": "OracleLinux",
+      "operatingsystemrelease": [
+        "7",
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "7",
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "RockyLinux",
+      "operatingsystemrelease": [
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "Scientific",
+      "operatingsystemrelease": [
+        "7",
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "SLES",
+      "operatingsystemrelease": [
+        "11",
+        "12",
+        "15"
+      ]
+    },
+    {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
-        "16.04",
         "18.04",
         "20.04"
       ]
@@ -83,22 +120,18 @@
       "operatingsystemrelease": [
         "Server 2012",
         "Server 2012 R2",
-        "7",
-        "8"
-      ]
-    },
-    {
-      "operatingsystem": "FreeBSD",
-      "operatingsystemrelease": [
-        "11",
-        "12"
+        "Server 2016",
+        "Server 2019",
+        "Server 2022",
+        "8",
+        "10"
       ]
     }
   ],
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 6.0.0"
+      "version_requirement": ">= 6.0.0 < 8.0.0"
     }
   ]
 }

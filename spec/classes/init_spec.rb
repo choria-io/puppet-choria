@@ -65,7 +65,7 @@ describe 'choria' do
           it { is_expected.to contain_file("/usr/local/etc/choria/machine").with_ensure("directory") }
         end
 
-        if ["FreeBSD", "AIX", "Solaris", "windows", "SLES"].include? facts[:os]["name"]
+        if ["Archlinux", "AIX", "FreeBSD", "SLES", "Solaris", "windows"].include? facts[:os]["name"]
           it { is_expected.not_to contain_class("choria::repo") }
         else
           it { is_expected.to contain_class("choria::repo") }
@@ -86,7 +86,7 @@ describe 'choria' do
             { manage_package_repo: true, manage_mcollective: false }
           end
 
-          if facts[:kernel] == "Linux" and facts[:os]["family"] != "Suse"
+          if facts[:kernel] == "Linux" and ! ["Archlinux", "Suse"].include?(facts[:os]["family"])
             it { is_expected.to contain_class("choria::repo").with_nightly(false) }
             it { is_expected.to contain_class("choria::repo").with_ensure("present") }
           else
@@ -103,7 +103,7 @@ describe 'choria' do
           end
         end
 
-        context "with managed repos", if: (facts[:kernel] == "Linux" and facts[:os]["family"] != "Suse") do
+        context "with managed repos", if: (facts[:kernel] == "Linux" and ! ["Archlinux", "Suse"].include?(facts[:os]["family"])) do
           let(:params) do
             {
               manage_package_repo: true,
@@ -233,7 +233,7 @@ describe 'choria' do
         end
       end
 
-      context "with package set to a specific version" do
+      context "with package set to a specific version", unless: facts[:os]["family"] == "Archlinux" do
         let :params do
           {
             manage_mcollective: false,
@@ -269,8 +269,14 @@ describe 'choria' do
         if facts[:kernel] == "windows"
           it { is_expected.not_to contain_package("choria") }
         else
-          it "should use the correct ensure value" do
-            is_expected.to contain_package("choria").with_ensure("absent")
+          if facts[:os]["family"] == "Archlinux"
+            it "should use the correct ensure value" do
+              is_expected.to contain_package("choria-io").with_ensure("absent")
+            end
+          else
+            it "should use the correct ensure value" do
+              is_expected.to contain_package("choria").with_ensure("absent")
+            end
           end
         end
       end
