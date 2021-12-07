@@ -19,18 +19,45 @@ class Puppet::Provider::ChoriaKvBucket::ChoriaKvBucket < Puppet::ResourceApi::Si
 
   def run(action, ens, args={})
     args.delete(:ensure)
-    parse_result(Puppet::Util::Execution.execute(make_cmd(action, args), :failonfail => false, :custom_environment => environment), ens)
+    parse_result(Puppet::Util::Execution.execute(make_cmd(action, args), :failonfail => true, :custom_environment => environment), ens)
+  end
+
+  def config_file
+    paths = if Process.uid == 0
+      [
+        "/etc/choria/server.conf",
+        "/usr/local/etc/choria/server.conf",
+      ]
+    else
+      [
+        "/etc/choria/client.conf",
+        "/usr/local/etc/choria/client.conf",
+      ]
+    end
+
+    paths.each do |p|
+      return p if File.exist?(p)
+    end
+
+    raise("cannot find configuration path")
   end
 
   def make_cmd(action, args={})
     choria = Puppet::Util.which("choria")
     raise("cannot find choria executable") if choria == ""
 
-    cmd = [choria, "kv", "api", "--%s" % action]
-    args.each {|k, v|
-      cmd << "--%s" % k
-      cmd << v unless v.is_a?(TrueClass)
-    }
+    cmd = [choria, "kv", "api", "--%s" % action, "--config=%s" % config_file]
+
+    args.each do |k, v|
+      k = k.to_s.gsub("_", "-")
+      if v.is_a?(TrueClass)
+        cmd << "--%s" % k
+      elsif v.is_a?(FalseClass)
+        cmd << "--no-%s" % k
+      else
+        cmd << "--%s=%s" % [k, v]
+      end
+    end
 
     cmd.join(" ")
   end

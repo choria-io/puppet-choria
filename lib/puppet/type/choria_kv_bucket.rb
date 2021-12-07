@@ -24,7 +24,7 @@ Puppet::ResourceApi.register_type(
     expire: {
       type: "Integer",
       desc: "How long before a value expires from the bucket, in seconds",
-      default: -1
+      default: 0
     },
 
     replicas: {

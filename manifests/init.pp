@@ -34,6 +34,8 @@
 # @param server_config Configuration for the Choria Server
 # @param manage_package_repo Installs the package repositories
 # @param nightly_repo Install the nightly package repo as well as the release one
+# @param kv_buckets Hash of choria_kv_bucket resources for a node, ideal for use using Hiera
+# @param governors Hash of choria_governor resources for a node, ideal for use using Hiera
 class choria (
   Boolean $manage_package,
   Boolean $manage_service,
@@ -72,6 +74,8 @@ class choria (
   Stdlib::Absolutepath $broker_logfile = $logfile,
   Stdlib::Absolutepath $server_logfile = $logfile,
   Boolean $manage_mcollective = true,
+  Choria::KVBuckets $kv_buckets = {},
+  Choria::Governors $governors = {},
 ) {
   if $manage_package_repo {
     class{"choria::repo":
@@ -108,4 +112,6 @@ class choria (
   contain choria::install
   contain choria::scout_checks
   contain choria::scout_metrics
+  contain choria::kv_buckets
+  contain choria::governors
 }
