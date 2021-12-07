@@ -23,11 +23,13 @@ Puppet::ResourceApi.register_type(
     expire: {
       type: "Integer",
       desc: "How long before a slot reservation is forcibly timed out",
+      default: 0
     },
 
     replicas: {
       type: "Integer[1,5]",
       desc: "In clustered environments this is how many active Replicas of the data and configuration is kept, odd number is best",
+      default: 1,
     },
 
     collective: {

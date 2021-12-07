@@ -24,10 +24,9 @@
 #    adapters => {
 #      discovery => {
 #        stream => {
-#          type => "nats_stream",
-#          servers => ["stan1:4222", "stan2:4222"],
-#          clusterid => "prod",
-#          topic => "discovery",
+#          type => "choria_streams",
+#          servers => ["choria1:4222", "choria2:4222"],
+#          topic => "choria.node_metadata.%s",
 #          workers => 10,
 #        },
 #        ingest => {
