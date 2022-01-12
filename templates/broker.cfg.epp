@@ -6,6 +6,7 @@ identity = <%= $choria::broker::identity %>
 plugin.choria.srv_domain = <%= $choria::srvdomain %>
 <% } -%>
 
+<% if $choria::broker::stats_port > 0 {-%>
 # Exposes a number of stats end points:
 #   /choria            - JSON information about this broker
 #   /choria/prometheus - Prometheus.io compatible statistics
@@ -17,6 +18,7 @@ plugin.choria.srv_domain = <%= $choria::srvdomain %>
 <% } -%>
 plugin.choria.stats_address = <%= $choria::broker::stats_listen_address %>
 plugin.choria.stats_port = <%= $choria::broker::stats_port %>
+<% } -%>
 
 <% if $choria::broker::network_broker { -%>
 # The Choria Network Broker serves middleware services for the Choria network
