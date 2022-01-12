@@ -55,7 +55,7 @@ Configuration for the various scenarios are shown via Hiera, you can run all sce
 
 ### Configure a Standalone Choria Broker
 
-We can now configure a standalone Choria Broker, it will listen on ports 4222, 4223 and 8222 on `::`, these are configurable via other properties of `choria::broker`
+We can now configure a standalone Choria Broker, it will listen on port 4222 on `::` and on port 8222 on `::1`.  These settings are configurable via other properties of `choria::broker`.
 
 Please review the [Choria Network Broker](https://choria.io/docs/deployment/broker/) documentation for full details.
 
