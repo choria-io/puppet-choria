@@ -308,6 +308,30 @@ describe 'choria' do
         it { is_expected.to contain_class("choria::service_disable") }
         it { is_expected.not_to contain_class("choria::service") }
       end
+
+      context 'with package_source and manage_package' do
+        let :params do
+          {
+            manage_package: true,
+            manage_mcollective: false,
+            package_source: 'C:/choria.msi'
+          }
+        end
+
+        _package = case facts[:os]['family']
+                   when 'Archlinux'
+                     'choria-io'
+                  when 'windows'
+                    'Choria Orchestrator'
+                  else
+                    'choria'
+                  end
+        it do
+          is_expected.to contain_package(_package).with(
+            source: 'C:/choria.msi'
+          )
+        end
+      end
     end
   end
 end

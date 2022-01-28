@@ -11,7 +11,8 @@ class choria::install {
     }
 
     package{$choria::package_name:
-      ensure => $version
+      ensure => $version,
+      source => $choria::package_source,
     }
   }
 }
