@@ -1,5 +1,12 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2022/02/23|     |Release 0.27.0                                                                                           |
+|2022/02/10|     |Allow access to Choria::TaskResults#bolt_task_result                                                     |
+|2022/01/25|292  |Add package_source parameter                                                                             |
+|2022/01/12|290  |Provide stats over the loopback address, allow the stats to be disabled entirely                         |
+|2021/12/17|287  |Add choria::kv_buckets and choria::governors                                                             |
+|2021/10/16|281  |Arch Linux: Switch from Ruby 2.7 to 3                                                                    |
+|2021/09/22|278  |Add the choria_kv_bucket resource                                                                        |
 |2021/09/21|     |Release 0.26.2                                                                                           |
 |2021/09/21|     |Fix Debian releases                                                                                      |
 |2021/09/21|     |Release 0.26.1                                                                                           |
