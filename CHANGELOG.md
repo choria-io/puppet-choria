@@ -1,5 +1,7 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2022/02/23|     |Release 0.27.1                                                                                           |
+|2022/02/23|     |Update dependencies to fix choria/mcollective bug                                                        |
 |2022/02/23|     |Release 0.27.0                                                                                           |
 |2022/02/10|     |Allow access to Choria::TaskResults#bolt_task_result                                                     |
 |2022/01/25|292  |Add package_source parameter                                                                             |
