@@ -126,7 +126,7 @@ class choria::config {
     }
 
     if $choria::server {
-      File[$choria::server_config_file] ~> Class["choria::service"]
+      File[$choria::server_provisioning_token_file] ~> Class["choria::service"]
     }
   }
 }
