@@ -40,7 +40,7 @@ choria::broker::network_broker: true
 choria::broker::federation_broker: false
 choria::broker::federation_cluster: "%{::environment}"
 choria::broker::listen_address: "::"
-choria::broker::stats_listen_address: "::1"
+choria::broker::stats_listen_address: "localhost"
 choria::broker::client_port: 4222
 choria::broker::websocket_port: 0
 choria::broker::stats_port: 8222
