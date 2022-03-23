@@ -55,12 +55,7 @@ class choria::repo (
       default => $facts["os"]["name"].downcase,
     }
 
-    if $release in ["xenial", "stretch"] {
-      # these piles of rubbish do not support our mirorr lists, doesnt support https, has mirror transport bugs and should just die in a fire
-      $_location = sprintf("https://apt.eu.choria.io/release/%s/%s", $repo_os_name, $release)
-    } else {
-      $_location = sprintf("mirror://mirrorlists.choria.io/apt/release/%s/%s/mirrors.txt", $repo_os_name, $release)
-    }
+    $_location = sprintf("mirror://mirrorlists.choria.io/apt/release/%s/%s/mirrors.txt", $repo_os_name, $release)
 
     apt::source{"choria-release":
       ensure        => $ensure,

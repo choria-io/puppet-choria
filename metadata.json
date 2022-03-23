@@ -27,12 +27,6 @@
       ]
     },
     {
-      "operatingsystem": "AlmaLinux",
-      "operatingsystemrelease": [
-        "8"
-      ]
-    },
-    {
       "operatingsystem": "Archlinux"
     },
     {
@@ -53,7 +47,6 @@
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "9",
         "10",
         "11"
       ]
@@ -94,10 +87,15 @@
       ]
     },
     {
+      "operatingsystem": "AlmaLinux",
+      "operatingsystemrelease": [
+        "8"
+      ]
+    },
+    {
       "operatingsystem": "Scientific",
       "operatingsystemrelease": [
-        "7",
-        "8"
+        "7"
       ]
     },
     {
