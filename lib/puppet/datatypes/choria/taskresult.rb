@@ -10,7 +10,7 @@ Puppet::DataTypes.create_type("Choria::TaskResult") do
       fail_ok => Callable[[], Boolean],
       type => Callable[[], String[1]],
       "[]" => Callable[[String[1]], Data],
-      "value" => Callable[[], Data]
+      "value" => Callable[[], Data],
       bolt_task_result => Callable[[], Data],
     }
   PUPPET
