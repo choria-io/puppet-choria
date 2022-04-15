@@ -153,3 +153,13 @@ plugin.choria.network.leafnode_remote.<%= $leaf %>.tls.disable = true
 <%     } -%>
 <%   } -%>
 <% } -%>
+
+<% if $choria::broker::client_anon_tls { -%>
+plugin.choria.network.client_anon_tls = true
+<% } -%>
+<% if $choria::broker::request_signing_certificate { -%>
+plugin.choria.security.request_signing_certificate = <%= $choria::broker::request_signing_certificate %>
+<% } -%>
+<% if $choria::broker::deny_server_connections { -%>
+plugin.choria.network.deny_server_connections = true
+<% } -%>
