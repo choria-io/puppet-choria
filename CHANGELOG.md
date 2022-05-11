@@ -1,5 +1,9 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2022/05/11|     |Release 0.27.2                                                                                           |
+|2022/05/11|303  |Fix syntax errors affecting playbooks                                                                    |
+|2022/03/23|301  |Remove Xenial and Stretch from support operatating systems                                               |
+|2022/02/24|298  |Support systems without IPv6                                                                             |
 |2022/02/23|     |Release 0.27.1                                                                                           |
 |2022/02/23|     |Update dependencies to fix choria/mcollective bug                                                        |
 |2022/02/23|     |Release 0.27.0                                                                                           |
