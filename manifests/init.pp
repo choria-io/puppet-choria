@@ -1,7 +1,7 @@
 # Installs, configures and manages the Choria Orchestrator
 #
 # @param manage_package Manage the choria package
-# @param manage_service Manage the choria-server package
+# @param manage_service Manage the choria-server service
 # @param purge_machines Deletes Choria Autonomous Agents that are not managed by Puppet
 # @param scout_checks Hash of Scout Checks for a node, ideal for use using Hiera
 # @param scout_metrics Hash of Scout Metrics for a node, ideal for use using Hiera

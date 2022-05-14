@@ -39,6 +39,7 @@ choria::config_group: "root"
 choria::broker::network_broker: true
 choria::broker::federation_broker: false
 choria::broker::federation_cluster: "%{::environment}"
+choria::broker::manage_service: true
 choria::broker::listen_address: "::"
 choria::broker::stats_listen_address: "localhost"
 choria::broker::client_port: 4222
