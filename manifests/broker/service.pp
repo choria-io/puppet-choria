@@ -4,6 +4,10 @@
 class choria::broker::service {
   assert_private()
 
+  if !$choria::broker::manage_service {
+    return()
+  }
+
   $ensure = $choria::ensure ? {
     "present" => "running",
     "absent" => "stopped"

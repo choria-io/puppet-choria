@@ -41,6 +41,7 @@
 # @param network_broker Enable or Disable the network broker
 # @param federation_broker Enable or Disable the federation broker
 # @param federation_cluster The name of the federation cluster to serve
+# @param manage_service Manage the choria-broker service
 # @param listen_address Address the network broker will listen on for clients and broker peers
 # @param stats_listen_address Address the broker will listen for Prometheus stats
 # @param client_port Port clients will connect to using the core NATS protocol
@@ -65,8 +66,9 @@ class choria::broker (
   Boolean $network_broker,
   Boolean $federation_broker,
   Optional[String] $federation_cluster,
-  Stdlib::Compat::Ip_address $listen_address,
-  Stdlib::Compat::Ip_address $stats_listen_address,
+  Boolean $manage_service,
+  Stdlib::Host $listen_address,
+  Stdlib::Host $stats_listen_address,
   Integer $client_port,
   Integer $websocket_port,
   Integer $cluster_peer_port,
