@@ -1,5 +1,7 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2022/05/16|     |Release 0.27.3                                                                                           |
+|2022/05/16|307  |Allow hostnames in stats listen address                                                                  |
 |2022/05/11|     |Release 0.27.2                                                                                           |
 |2022/05/11|303  |Fix syntax errors affecting playbooks                                                                    |
 |2022/03/23|301  |Remove Xenial and Stretch from support operatating systems                                               |
