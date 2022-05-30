@@ -45,14 +45,31 @@ class choria::repo (
     }
 
   } elsif $facts["os"]["family"] == "Debian" {
-    $release = $facts["os"]["distro"]["codename"]
+    $release = $facts["os"]["distro"]["codename"] ? {
+      # Map Linux Mint codenames to the corresponding Ubuntu ones.
+      # Note: we do not use this mapped OS, that these mappings are provided by the community on a best effort basis.
+      # Feel free to send PR to add new release when necessary.
+      'tara'   => 'bionic',
+      'tessa'  => 'bionic',
+      'tina'   => 'bionic',
+      'tricia' => 'bionic',
+      'ulyana' => 'focal',
+      'ulyssa' => 'focal',
+      'uma'    => 'focal',
+      'una'    => 'focal',
+
+      # Use the actual codename in all other cases
+      default  => $facts["os"]["distro"]["codename"],
+    }
+
     if ! $release in ["xenial", "bionic", "focal", "stretch", "buster", "bullseye"] {
       fail("Choria Repositories are not supported on ${release}")
     }
 
     $repo_os_name = $facts["os"]["distro"]["id"] ? {
-      'Neon'  => 'ubuntu',
-      default => $facts["os"]["name"].downcase,
+      'Neon'      => 'ubuntu',
+      'linuxmint' => 'ubuntu',
+      default     => $facts["os"]["name"].downcase,
     }
 
     $_location = sprintf("mirror://mirrorlists.choria.io/apt/release/%s/%s/mirrors.txt", $repo_os_name, $release)
