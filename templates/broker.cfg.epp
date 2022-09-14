@@ -153,3 +153,9 @@ plugin.choria.network.leafnode_remote.<%= $leaf %>.tls.disable = true
 <%     } -%>
 <%   } -%>
 <% } -%>
+
+<% if $choria::broker::cluster_name { -%>
+# A unique name for this network, if connecting to a remote cluster as a
+# leafnode this name should uniquely identify this site
+plugin.choria.network.gateway_name = <%= $choria::broker::cluster_name %>
+<% } -%>

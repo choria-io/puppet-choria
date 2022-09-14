@@ -62,10 +62,12 @@
 # @param system_password Password to use for access to the System account
 # @param provisioner_password The Password the Choria Provisioner needs to present
 # @param provisioning_signer_source A Puppet source where the public used to sign provisioning.jwt is found
+# @param $cluster_name Configures a unique location specific name, use when establishing leafnodes to a central network
 class choria::broker (
   Boolean $network_broker,
   Boolean $federation_broker,
   Optional[String] $federation_cluster,
+  Optional[String] $cluster_name,
   Boolean $manage_service,
   Stdlib::Host $listen_address,
   Stdlib::Host $stats_listen_address,
