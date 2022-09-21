@@ -1,5 +1,8 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2022/09/21|     |Release 0.28.3                                                                                           |
+|2022/09/14|320  |Allow `plugin.choria.network.gateway_name` to be set via `choria::broker::cluster_name`                  |
+|2022/09/04|317  |Allow latest puppetlabs/apt module to be used                                                            |
 |2022/08/03|     |Release 0.28.2                                                                                           |
 |2022/06/23|     |Release 0.28.1                                                                                           |
 |2022/06/23|314  |Support code name in debian versions                                                                     |
