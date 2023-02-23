@@ -18,6 +18,11 @@ class choria::repo (
       $release = '$releasever'
     }
 
+    $choria_nightly_ensure = $nightly ? {
+      true  => "present",
+      false => "absent",
+    }
+
     yumrepo{
       default:
         ensure          => $ensure,
@@ -35,13 +40,10 @@ class choria::repo (
         gpgkey     => "https://choria.io/RELEASE-GPG-KEY";
 
       "choria_nightly":
+        ensure     => $choria_nightly_ensure,
         mirrorlist => "http://mirrorlists.choria.io//yum/nightly/el/${release}/\$basearch.txt",
         descr      => "Choria Orchestrator Nightly",
         gpgkey     => "https://choria.io/NIGHTLY-GPG-KEY",
-        ensure     => $nightly ? {
-          true     => "present",
-          false    => "absent"
-        }
     }
 
   } elsif $facts["os"]["family"] == "Debian" {

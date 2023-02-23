@@ -33,6 +33,13 @@ class choria::config {
     mode   => "0755",
   }
 
+  concat{"${_config_dir}/policies/groups":
+    ensure => "present",
+    owner  => $choria::config_user,
+    group  => $choria::config_group,
+    mode   => "0644",
+  }
+
   $choria::scout_gossfile.each |$target, $gossfile| {
     file{$target:
       content => $gossfile.to_yaml,
