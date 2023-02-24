@@ -1,29 +1,36 @@
 version: 2
 jobs:
-  puppetlabs_spec_ruby24:
-    docker:
-      - image: circleci/ruby:2.4-node
-    steps:
-      - checkout
-      - run: bundle install
-      - run: bundle exec rake
   puppetlabs_spec_ruby25:
     docker:
-      - image: circleci/ruby:2.5-node
+      - image: cimg/ruby:2.5
     steps:
       - checkout
       - run: bundle install
       - run: bundle exec rake
   puppetlabs_spec_ruby27:
     docker:
-      - image: circleci/ruby:2.7-node
+      - image: cimg/ruby:2.7
     steps:
       - checkout
       - run: bundle install
       - run: bundle exec rake
   puppetlabs_spec_ruby3:
     docker:
-      - image: circleci/ruby:3.0-node
+      - image: cimg/ruby:3.0
+    steps:
+      - checkout
+      - run: bundle install
+      - run: bundle exec rake
+  puppetlabs_spec_ruby31:
+    docker:
+      - image: cimg/ruby:3.1
+    steps:
+      - checkout
+      - run: bundle install
+      - run: bundle exec rake
+  puppetlabs_spec_ruby32:
+    docker:
+      - image: cimg/ruby:3.2
     steps:
       - checkout
       - run: bundle install
@@ -33,7 +40,8 @@ workflows:
   version: 2
   test:
     jobs:
-      - puppetlabs_spec_ruby24
       - puppetlabs_spec_ruby25
       - puppetlabs_spec_ruby27
       - puppetlabs_spec_ruby3
+      - puppetlabs_spec_ruby31
+      - puppetlabs_spec_ruby32
