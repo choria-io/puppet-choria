@@ -1,2 +1,2 @@
 ---
-choria::version: "0.26.2+%{facts.os.distro.codename}"
+choria::version: "0.27.0+%{facts.os.distro.codename}"
