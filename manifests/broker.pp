@@ -66,8 +66,6 @@
 class choria::broker (
   Boolean $network_broker,
   Boolean $federation_broker,
-  Optional[String] $federation_cluster,
-  Optional[String] $cluster_name,
   Boolean $manage_service,
   Stdlib::Host $listen_address,
   Stdlib::Host $stats_listen_address,
@@ -83,9 +81,6 @@ class choria::broker (
   Choria::Adapters $adapters,
   Choria::Leafnodes $leafnode_upstreams,
   String $identity,
-  Optional[Stdlib::Absolutepath] $ssldir = undef,
-  Optional[Integer] $tls_timeout = undef,
-  Optional[Stdlib::Absolutepath] $stream_store = undef,
   String $advisory_retention,
   Integer $advisory_replicas,
   String $event_retention,
@@ -96,6 +91,11 @@ class choria::broker (
   String $system_password,
   String $provisioner_password,
   String $provisioning_signer_source,
+  Optional[String] $federation_cluster,
+  Optional[String] $cluster_name,
+  Optional[Stdlib::Absolutepath] $ssldir = undef,
+  Optional[Integer] $tls_timeout = undef,
+  Optional[Stdlib::Absolutepath] $stream_store = undef,
 ) {
   require choria
 

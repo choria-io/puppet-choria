@@ -6,10 +6,10 @@ class choria::broker::config {
 
   if $choria::broker::stream_store {
     file{$choria::broker::stream_store:
+      ensure => directory,
       owner  => "root",
       group  => $choria::config_group,
       mode   => "0750",
-      ensure => directory,
       before => File[$choria::broker_config_file]
     }
   }
