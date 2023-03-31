@@ -11,6 +11,8 @@ class choria::service {
         enable => $choria::server_service_enable,
       }
 
+      Concat["${choria::config::_config_dir}/policies/groups"] ~> Service[$choria::server_service_name]
+
       if $choria::manage_mcollective {
         # Ensures that module plugin changes will restart choria
         Mcollective::Module_plugin <| |> ~> Service[$choria::server_service_name]

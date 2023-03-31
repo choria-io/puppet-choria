@@ -29,16 +29,16 @@ define choria::machine(
 
   file{
     default:
-      owner  => $choria::config_user,
-      group  => $choria::config_group;
+      owner => $choria::config_user,
+      group => $choria::config_group;
 
     "${_store}/${name}":
       ensure => $_dir_ensure,
       mode   => "0755";
 
     "${_store}/${name}/machine_data.json":
-      ensure  => $ensure,
-      mode    => "0600";
+      ensure => $ensure,
+      mode   => "0600";
 
     "${_store}/${name}/machine.yaml":
       ensure  => $ensure,
