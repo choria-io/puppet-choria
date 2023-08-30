@@ -15,6 +15,7 @@
 # @param silent Surpress logging of individual node results
 # @param batch_size When not 0, run the task on nodes in batches
 # @params batch_sleep_time How long to sleep between batches
+# @param tasks_environment The environment to find tasks
 plan choria::tasks::run(
   Choria::Nodes $nodes,
   String $task,
@@ -23,16 +24,18 @@ plan choria::tasks::run(
   Boolean $silent = false,
   Integer $batch_size = 0,
   Integer $batch_sleep_time = 2,
-  Optional[String[1]] $run_as = undef
+  Optional[String[1]] $run_as = undef,
+  String[1] $tasks_environment = "production",
 ) {
   $metadata = choria::tasks::metadata($task)
 
   choria::tasks::validate_input($inputs, $metadata)
 
   choria::run_playbook("choria::tasks::download_files",
-    "nodes" => $nodes,
-    "task"  => $task,
-    "files" => $metadata["files"]
+    "nodes"       => $nodes,
+    "task"        => $task,
+    "files"       => $metadata["files"],
+    "environment" => $tasks_environment,
   )
 
   if $background {
