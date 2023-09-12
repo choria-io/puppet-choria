@@ -20,7 +20,7 @@ plan choria::tasks::download_files(
     "properties"       => {
       "environment"    => "production",
       "task"           => $task,
-      "files"          => $files.to_json
+      "files"          => $files.stdlib::to_json
     }
   )
 }

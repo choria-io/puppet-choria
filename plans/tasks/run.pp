@@ -57,8 +57,8 @@ plan choria::tasks::run(
     "silent"           => $silent,
     "properties"       => {
       "task"           => $task,
-      "files"          => $metadata["files"].to_json,
-      "input"          => $inputs.to_json
+      "files"          => $metadata["files"].stdlib::to_json,
+      "input"          => $inputs.stdlib::to_json
     } + $run_as_property
   )
 }
