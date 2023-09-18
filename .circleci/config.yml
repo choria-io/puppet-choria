@@ -1,12 +1,5 @@
 version: 2
 jobs:
-  puppetlabs_spec_ruby25:
-    docker:
-      - image: cimg/ruby:2.5
-    steps:
-      - checkout
-      - run: bundle install
-      - run: bundle exec rake
   puppetlabs_spec_ruby27:
     docker:
       - image: cimg/ruby:2.7
@@ -40,7 +33,6 @@ workflows:
   version: 2
   test:
     jobs:
-      - puppetlabs_spec_ruby25
       - puppetlabs_spec_ruby27
       - puppetlabs_spec_ruby3
       - puppetlabs_spec_ruby31

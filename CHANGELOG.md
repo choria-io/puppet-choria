@@ -1,5 +1,9 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2023/09/18|     |Release 0.30.0                                                                                           |
+|2023/08/30|329  |Allow playbooks and tasks from non production environments                                               |
+|2023/02/23|     |New defined type `choria::group` to manage groups in access policies                                     |
+|2023/03/22|     |Release 0.29.0                                                                                           |
 |2022/09/21|     |Release 0.28.3                                                                                           |
 |2022/09/14|320  |Allow `plugin.choria.network.gateway_name` to be set via `choria::broker::cluster_name`                  |
 |2022/09/04|317  |Allow latest puppetlabs/apt module to be used                                                            |
