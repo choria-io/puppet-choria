@@ -87,6 +87,7 @@ class choria::repo (
         id     => "3DE1895F7B983F9B22DAF64030BC99C1AAEEF24D",
         source => "https://choria.io/RELEASE-GPG-KEY"
       },
+      architecture  => $facts["os"]["architecture"],
       before        => Package[$choria::package_name],
     }
 
