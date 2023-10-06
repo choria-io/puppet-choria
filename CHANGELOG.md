@@ -1,5 +1,7 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2023/10/06|     |Release 0.30.1                                                                                           |
+|2023/09/18|331  |Adds the architecture parameter to remove warnings about unsupported architectures                       |
 |2023/09/18|     |Release 0.30.0                                                                                           |
 |2023/08/30|329  |Allow playbooks and tasks from non production environments                                               |
 |2023/02/23|     |New defined type `choria::group` to manage groups in access policies                                     |
