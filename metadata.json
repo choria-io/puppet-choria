@@ -10,7 +10,7 @@
   "dependencies": [
     { "name": "puppetlabs/stdlib", "version_requirement": ">= 9.0.0 < 10.0.0" },
     { "name": "puppetlabs/apt", "version_requirement": ">= 4.5.1 < 10.0.0" },
-    { "name": "puppetlabs/concat", "version_requirement": ">= 4.0.0 < 8.0.0" },
+    { "name": "puppetlabs/concat", "version_requirement": ">= 9.0.0 < 10.0.0" },
     { "name": "choria/mcollective_choria", "version_requirement": ">= 0.22.0 < 2.0.0" },
     { "name": "choria/mcollective", "version_requirement": ">= 0.14.4 < 2.0.0" },
     { "name": "choria/mcollective_agent_puppet", "version_requirement": ">= 2.4.2" },
