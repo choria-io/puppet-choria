@@ -6,6 +6,7 @@
 Puppet::Functions.create_function(:"choria::tasks::metadata") do
   dispatch :fetch do
     param "String", :task
+    optional_param "String", :tasks_environment
   end
 
   def init
@@ -23,7 +24,7 @@ Puppet::Functions.create_function(:"choria::tasks::metadata") do
     @__tasks ||= choria.tasks_support
   end
 
-  def fetch(task)
-    tasks_support.task_metadata(task, "production")
+  def fetch(task, tasks_environment = "production")
+    tasks_support.task_metadata(task, tasks_environment)
   end
 end
