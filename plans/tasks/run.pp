@@ -27,15 +27,15 @@ plan choria::tasks::run(
   Optional[String[1]] $run_as = undef,
   String[1] $tasks_environment = "production",
 ) {
-  $metadata = choria::tasks::metadata($task)
+  $metadata = choria::tasks::metadata($task, $tasks_environment)
 
   choria::tasks::validate_input($inputs, $metadata)
 
   choria::run_playbook("choria::tasks::download_files",
-    "nodes"       => $nodes,
-    "task"        => $task,
-    "files"       => $metadata["files"],
-    "environment" => $tasks_environment,
+    "nodes"             => $nodes,
+    "task"              => $task,
+    "files"             => $metadata["files"],
+    "tasks_environment" => $tasks_environment,
   )
 
   if $background {
