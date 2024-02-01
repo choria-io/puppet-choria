@@ -76,6 +76,11 @@ class choria::repo (
 
     $_location = sprintf("mirror://mirrorlists.choria.io/apt/release/%s/%s/mirrors.txt", $repo_os_name, $release)
 
+    apt::keyring{
+      "choria.asc":
+        source => "https://choria.io/RELEASE-GPG-KEY"
+    }
+
     apt::source{"choria-release":
       ensure        => $ensure,
       notify_update => true,
@@ -83,15 +88,12 @@ class choria::repo (
       location      => $_location,
       release       => $repo_os_name,
       repos         => $release,
-      key           => {
-        name   => "choria.asc",
-        source => "https://choria.io/RELEASE-GPG-KEY"
-      },
+      keyring       => "/etc/apt/keyrings/choria.asc",
       architecture  => $facts["os"]["architecture"],
       before        => Package[$choria::package_name],
     }
 
-    Class['apt::update'] -> Package[$choria::package_name]
+    Apt::Keyring['choria.asc'] -> Apt::Source['choria-release'] -> Class['apt::update'] -> Package[$choria::package_name]
   } else {
     fail(sprintf("Choria Repositories are not supported on %s", $facts["os"]["family"]))
   }
