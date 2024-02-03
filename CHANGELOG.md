@@ -1,5 +1,8 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2024/02/03|     |Release 0.30.2                                                                                           |
+|2024/01/08|339  | Use modern APT keyrings on Debian family                                                                |
+|2023/12/27|336  |Ensure tasks from non-production environments actually work                                              |
 |2023/10/06|     |Release 0.30.1                                                                                           |
 |2023/09/18|331  |Adds the architecture parameter to remove warnings about unsupported architectures                       |
 |2023/09/18|     |Release 0.30.0                                                                                           |
