@@ -42,7 +42,7 @@ define choria::machine(
 
     "${_store}/${name}/machine.yaml":
       ensure  => $ensure,
-      content => $_machine.to_yaml,
+      content => stdlib::to_yaml($_machine),
       mode    => "0644";
   }
 }
