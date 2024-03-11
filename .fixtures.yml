@@ -13,3 +13,4 @@ fixtures:
     scheduled_task: "puppetlabs/scheduled_task"
     stdlib: "puppetlabs/stdlib"
     yumrepo_core: "puppetlabs/yumrepo_core"
+    sysemd: "puppet/systemd"
