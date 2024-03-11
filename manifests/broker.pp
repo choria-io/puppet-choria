@@ -63,6 +63,8 @@
 # @param provisioner_password The Password the Choria Provisioner needs to present
 # @param provisioning_signer_source A Puppet source where the public used to sign provisioning.jwt is found
 # @param $cluster_name Configures a unique location specific name, use when establishing leafnodes to a central network
+# @param $issuer Defines a Choria Protocol version 2 Issuer
+# @param $choria_security Configures the Choria Protocol version 2 security plugin
 class choria::broker (
   Boolean $network_broker,
   Boolean $federation_broker,
@@ -96,6 +98,8 @@ class choria::broker (
   Optional[Stdlib::Absolutepath] $ssldir = undef,
   Optional[Integer] $tls_timeout = undef,
   Optional[Stdlib::Absolutepath] $stream_store = undef,
+  Optional[Choria::Issuer] $issuer = undef,
+  Optional[Choria::ChoriaSecurity] $choria_security = undef,
 ) {
   require choria
 

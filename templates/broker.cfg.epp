@@ -159,3 +159,21 @@ plugin.choria.network.leafnode_remote.<%= $leaf %>.tls.disable = true
 # leafnode this name should uniquely identify this site
 plugin.choria.network.gateway_name = <%= $choria::broker::cluster_name %>
 <% } -%>
+
+<% if $choria::broker::issuer { -%>
+# Choria Protocol Version 2 security configuration
+plugin.security.issuer.names = <%= $choria::broker::issuer["name"] %>
+plugin.security.issuer.<%= $choria::broker::issuer["name"] %>.public = <%= $choria::broker::issuer["public"] %>
+
+<%   if $choria::broker::choria_security { -%>
+plugin.security.provider = choria
+plugin.security.choria.certificate = <%= $choria::broker::choria_security["certificate"] %>
+plugin.security.choria.key = <%= $choria::broker::choria_security["key"] %>
+plugin.security.choria.token_file = <%= $choria::broker::choria_security["token_file"] %>
+plugin.security.choria.seed_file = <%= $choria::broker::choria_security["seed_file"] %>
+<%     if $choria::broker::choria_security["ca"] { -%>
+plugin.security.choria.ca = <%= $choria::broker::choria_security["ca"] %>
+<%     } -%>
+<%   } -%>
+<% } -%>
+
