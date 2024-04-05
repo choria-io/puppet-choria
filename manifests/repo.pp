@@ -37,13 +37,13 @@ class choria::repo (
       "choria_release":
         mirrorlist => "http://mirrorlists.choria.io/yum/release/el/${release}/\$basearch.txt",
         descr      => "Choria Orchestrator Releases",
-        gpgkey     => "https://choria.io/RELEASE-GPG-KEY";
+        gpgkey     => "https://static.choria.io/RELEASE-GPG-KEY";
 
       "choria_nightly":
         ensure     => $choria_nightly_ensure,
         mirrorlist => "http://mirrorlists.choria.io//yum/nightly/el/${release}/\$basearch.txt",
         descr      => "Choria Orchestrator Nightly",
-        gpgkey     => "https://choria.io/NIGHTLY-GPG-KEY",
+        gpgkey     => "https://static.choria.io/NIGHTLY-GPG-KEY",
     }
 
   } elsif $facts["os"]["family"] == "Debian" {
@@ -85,7 +85,7 @@ class choria::repo (
       repos         => $release,
       key           => {
         name   => "choria.asc",
-        source => "https://choria.io/RELEASE-GPG-KEY"
+        source => "https://static.choria.io/RELEASE-GPG-KEY"
       },
       architecture  => $facts["os"]["architecture"],
       before        => Package[$choria::package_name],
