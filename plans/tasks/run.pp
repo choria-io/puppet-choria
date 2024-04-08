@@ -16,6 +16,7 @@
 # @param batch_size When not 0, run the task on nodes in batches
 # @params batch_sleep_time How long to sleep between batches
 # @param tasks_environment The environment to find tasks
+# @param catch_errors Whether to catch errors
 plan choria::tasks::run(
   Choria::Nodes $nodes,
   String $task,
@@ -26,6 +27,7 @@ plan choria::tasks::run(
   Integer $batch_sleep_time = 2,
   Optional[String[1]] $run_as = undef,
   String[1] $tasks_environment = "production",
+  Optional[Boolean] $catch_errors = undef,
 ) {
   $metadata = choria::tasks::metadata($task, $tasks_environment)
 
@@ -36,6 +38,7 @@ plan choria::tasks::run(
     "task"              => $task,
     "files"             => $metadata["files"],
     "tasks_environment" => $tasks_environment,
+    "catch_errors"      => $catch_errors,
   )
 
   if $background {
@@ -58,6 +61,7 @@ plan choria::tasks::run(
     "batch_size"       => $batch_size,
     "batch_sleep_time" => $batch_sleep_time,
     "silent"           => $silent,
+    "_catch_errors"    => $catch_errors,
     "properties"       => {
       "task"           => $task,
       "files"          => $metadata["files"].stdlib::to_json,
