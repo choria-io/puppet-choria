@@ -25,12 +25,16 @@ class Puppet::Provider::ChoriaGovernor::ChoriaGovernor < Puppet::ResourceApi::Si
   def config_file
     paths = if Process.uid == 0
       [
+        "/etc/choria/puppet.conf",
         "/etc/choria/server.conf",
+        "/usr/local/etc/choria/puppet.conf",
         "/usr/local/etc/choria/server.conf",
       ]
     else
       [
+        "/etc/choria/puppet.conf",
         "/etc/choria/client.conf",
+        "/usr/local/etc/choria/puppet.conf",
         "/usr/local/etc/choria/client.conf",
       ]
     end
