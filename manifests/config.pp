@@ -132,7 +132,7 @@ class choria::config {
       require => Class["choria::install"],
     }
 
-    if $choria::server {
+    if $choria::manage_server_config and $choria::server {
       File[$choria::server_provisioning_token_file] ~> Class["choria::service"]
     }
   }
