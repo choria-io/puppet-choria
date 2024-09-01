@@ -1,5 +1,12 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2024/09/01|     |Release 0.31.0                                                                                           |
+|2024/08/23|356  |Support v2 protocol security when creating KV and Governors using Puppet types                           |
+|2024/04/02|355  |Switched to the static key URL to optimize key downloads                                                 |
+|2024/03/22|352  |Allow `choria::task::run` to catch errors                                                                |
+|2024/03/12|350  |Support v2 provisioning connections                                                                      |
+|2024/03/11|248  |Fix protocol v2 issuers and security                                                                     |
+|2024/02/20|345  |Fix adapters data type                                                                                   |
 |2024/02/04|     |Release 0.30.3                                                                                           |
 |2024/02/04|     |Update dependencies                                                                                      |
 |2024/02/03|     |Release 0.30.2                                                                                           |

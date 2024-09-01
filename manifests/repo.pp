@@ -64,7 +64,7 @@ class choria::repo (
       default  => $facts["os"]["distro"]["codename"],
     }
 
-    if ! $release in ["xenial", "bionic", "focal", "stretch", "buster", "bullseye"] {
+    if ! $release in ["xenial", "bionic", "focal", "stretch", "buster", "bullseye", "noble"] {
       fail("Choria Repositories are not supported on ${release}")
     }
 
