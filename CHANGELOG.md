@@ -166,3 +166,6 @@
 |2018/02/23|12   |Add choria::in_groups_of                                                                                 |
 |2018/02/23|1    |Support functions, types and helpers to support playbooks in the Puppet DSL                              |
 |2018/02/16|3    |Manage the YUM repository on EL machines                                                                 |
+
+
+Minor update to documentation.
