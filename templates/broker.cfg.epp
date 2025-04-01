@@ -175,3 +175,10 @@ plugin.security.choria.ca = <%= $choria::broker::choria_security["ca"] %>
 <%   } -%>
 <% } -%>
 
+<% if $choria::broker::file_security { -%>
+# Choria file provider configuration
+plugin.security.provider = file
+plugin.security.file.certificate = <%= $choria::broker::file_security["certificate"] %>
+plugin.security.file.key = <%= $choria::broker::file_security["key"] %>
+plugin.security.file.ca = <%= $choria::broker::file_security["ca"] %>
+<% } -%>
