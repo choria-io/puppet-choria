@@ -8,9 +8,9 @@ A modern Orchestration Engine with roots in The Marionette Collective.  Please r
 
 ### Package Repo and Basic Installation
 
-At present RHEL 7 and 8, Debian Stretch, Buster and Bullseye and Ubuntu Xenial, Bionic and Focal are supported, the repository also include packages for other tools like our Stream Replicator etc.
+At present RHEL 7 and 8, Debian Stretch, Buster and Bullseye and Ubuntu Mantic and Noble are supported. The repositories also include packages for other tools like our Stream Replicator etc.
 
-It's best configured using Hiera, to install the YUM Repository and install a particular version with some basic adjustments this will be enough.
+It's best configured using Hiera; to install the YUM/APT Repository and install a particular version with some basic adjustments this will be enough.
 
 ```yaml
 choria::manage_package_repo: true
