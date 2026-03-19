@@ -4,12 +4,14 @@
 # @param version The SemVer version string for this agent
 # @param transitions The supported transition events
 # @param watchers The watchers to run in specific states
+# @param splay_start The amount in seconds to sleep randomly up to before starting
 define choria::machine(
   String $initial_state,
   String $version,
   Array[Hash] $transitions,
   Array[Hash] $watchers,
   Enum["present", "absent"] $ensure = "present",
+  Optional[Integer[0]] $splay_start = undef,
 ) {
   if !("plugin.choria.machine.store" in $choria::server_config) {
     fail("Cannot configure choria::machine ${name}, plugin.choria.machine.store is not set")
@@ -21,9 +23,10 @@ define choria::machine(
     name          => $name,
     version       => $version,
     initial_state => $initial_state,
+    splay_start   => $splay_start,
     transitions   => $transitions,
-    watchers      => $watchers
-  }
+    watchers      => $watchers,
+  }.filter |$_, $v| { $v =~ NotUndef }
 
   $_dir_ensure = $ensure ? {"present" => directory, "absent" => "absent"}
 

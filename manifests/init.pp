@@ -36,6 +36,7 @@
 # @param nightly_repo Install the nightly package repo as well as the release one
 # @param kv_buckets Hash of choria_kv_bucket resources for a node, ideal for use using Hiera
 # @param governors Hash of choria_governor resources for a node, ideal for use using Hiera
+# @param machines Hash of choria::machine resources for a node, ideal for use using Hiera
 # @param package_source The package source location
 class choria (
   Boolean $manage_package,
@@ -77,6 +78,7 @@ class choria (
   Boolean $manage_mcollective = true,
   Choria::KVBuckets $kv_buckets = {},
   Choria::Governors $governors = {},
+  Hash[String[1], Choria::MachineType] $machines = {},
   Optional[String] $package_source = undef,
 ) {
   if $manage_package_repo {
@@ -116,4 +118,10 @@ class choria (
   contain choria::scout_metrics
   contain choria::kv_buckets
   contain choria::governors
+
+  $machines.each |$machine, $properties| {
+    choria::machine { $machine:
+      * => $properties,
+    }
+  }
 }
