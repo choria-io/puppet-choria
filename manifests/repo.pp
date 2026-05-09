@@ -41,7 +41,7 @@ class choria::repo (
 
       "choria_nightly":
         ensure     => $choria_nightly_ensure,
-        mirrorlist => "http://mirrorlists.choria.io//yum/nightly/el/${release}/\$basearch.txt",
+        mirrorlist => "http://mirrorlists.choria.io//yum/nightly/el/generic/\$basearch.txt",
         descr      => "Choria Orchestrator Nightly",
         gpgkey     => "https://static.choria.io/NIGHTLY-GPG-KEY",
     }
