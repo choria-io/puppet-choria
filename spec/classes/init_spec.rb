@@ -130,7 +130,7 @@ describe 'choria' do
           it "should support managing the repo by default" do
             is_expected.to contain_class("choria::repo").with_nightly(false)
             is_expected.to contain_class("choria::repo").with_ensure("present")
-            is_expected.to contain_yumrepo("choria_release").with_ensure("present").with_mirrorlist("http://mirrorlists.choria.io/yum/release/el/$releasever/$basearch.txt")
+            is_expected.to contain_yumrepo("choria_release").with_ensure("present").with_mirrorlist("http://mirrorlists.choria.io/yum/release/el/generic/$basearch.txt")
           end
         end
 

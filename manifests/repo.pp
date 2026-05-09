@@ -8,16 +8,6 @@ class choria::repo (
   assert_private()
 
   if $facts["os"]["family"] == "RedHat" {
-    if ($facts['os']['name'] == 'Amazon' and $facts['os']['release']['major'] == '2') {
-      $release = '7'
-    } elsif $facts['os']['name'] == 'Fedora' {
-      $release = '8'
-    } elsif versioncmp($facts['os']['release']['major'], '7') < 0 {
-      fail("Choria Repositories are only supported for RHEL/CentOS 7 or newer releases")
-    } else {
-      $release = '$releasever'
-    }
-
     $choria_nightly_ensure = $nightly ? {
       true  => "present",
       false => "absent",
@@ -35,7 +25,7 @@ class choria::repo (
         metadata_expire => 300;
 
       "choria_release":
-        mirrorlist => "http://mirrorlists.choria.io/yum/release/el/${release}/\$basearch.txt",
+        mirrorlist => "http://mirrorlists.choria.io/yum/release/el/generic/\$basearch.txt",
         descr      => "Choria Orchestrator Releases",
         gpgkey     => "https://static.choria.io/RELEASE-GPG-KEY";
 
