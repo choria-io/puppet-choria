@@ -21,84 +21,34 @@
   ],
   "operatingsystem_support": [
     {
-      "operatingsystem": "Archlinux"
+      "operatingsystem": "CentOS"
     },
     {
-      "operatingsystem": "CentOS",
-      "operatingsystemrelease": [
-        "8",
-        "9"
-      ]
+      "operatingsystem": "Debian"
     },
     {
-      "operatingsystem": "Debian",
-      "operatingsystemrelease": [
-        "12",
-        "13",
-        "14"
-      ]
+      "operatingsystem": "Fedora"
     },
     {
-      "operatingsystem": "Fedora",
-      "operatingsystemrelease": [
-        "33",
-        "34",
-        "35"
-      ]
+      "operatingsystem": "FreeBSD"
     },
     {
-      "operatingsystem": "FreeBSD",
-      "operatingsystemrelease": [
-        "13",
-        "14"
-      ]
+      "operatingsystem": "OracleLinux"
     },
     {
-      "operatingsystem": "OracleLinux",
-      "operatingsystemrelease": [
-        "8",
-        "9"
-      ]
+      "operatingsystem": "RedHat"
     },
     {
-      "operatingsystem": "RedHat",
-      "operatingsystemrelease": [
-        "8",
-        "9"
-      ]
+      "operatingsystem": "RockyLinux"
     },
     {
-      "operatingsystem": "RockyLinux",
-      "operatingsystemrelease": [
-        "8",
-        "9"
-      ]
+      "operatingsystem": "AlmaLinux"
     },
     {
-      "operatingsystem": "AlmaLinux",
-      "operatingsystemrelease": [
-        "8",
-        "9"
-      ]
+      "operatingsystem": "Ubuntu"
     },
     {
-      "operatingsystem": "Ubuntu",
-      "operatingsystemrelease": [
-        "23.10",
-        "24.04"
-      ]
-    },
-    {
-      "operatingsystem": "Windows",
-      "operatingsystemrelease": [
-        "Server 2012",
-        "Server 2012 R2",
-        "Server 2016",
-        "Server 2019",
-        "Server 2022",
-        "8",
-        "10"
-      ]
+      "operatingsystem": "Windows"
     }
   ],
   "requirements": [
