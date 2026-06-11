@@ -1,18 +1,18 @@
 {
   "name": "choria-choria",
-  "version": "0.31.0",
+  "version": "0.32.0",
   "author": "R.I.Pienaar <rip@devco.net>",
   "license": "Apache-2.0",
-  "summary": "Install and manage the Choria plugin for MCollective",
+  "summary": "Install and manage the Choria Orchestrator",
   "source": "https://github.com/choria-io/puppet-choria",
   "project_page": "https://github.com/choria-io/puppet-choria",
   "issues_url": "https://github.com/choria-io/puppet-choria/issues",
   "dependencies": [
-    { "name": "puppetlabs/stdlib", "version_requirement": ">= 9.0.0 < 10.0.0" },
+    { "name": "puppetlabs/stdlib", "version_requirement": ">= 9.0.0 < 11.0.0" },
     { "name": "puppetlabs/apt", "version_requirement": ">= 9.2.0 < 12.0.0" },
     { "name": "puppetlabs/concat", "version_requirement": ">= 9.0.0 < 11.0.0" },
-    { "name": "choria/mcollective_choria", "version_requirement": ">= 0.22.2 < 2.0.0" },
-    { "name": "choria/mcollective", "version_requirement": ">= 0.14.6 < 2.0.0" },
+    { "name": "choria/mcollective_choria", "version_requirement": ">= 0.23.0 < 2.0.0" },
+    { "name": "choria/mcollective", "version_requirement": ">= 0.15.0 < 2.0.0" },
     { "name": "choria/mcollective_agent_puppet", "version_requirement": ">= 2.5.0" },
     { "name": "choria/mcollective_agent_package", "version_requirement": ">= 5.5.1" },
     { "name": "choria/mcollective_agent_service", "version_requirement": ">= 4.1.0" },
@@ -20,41 +20,21 @@
     { "name": "choria/mcollective_util_actionpolicy", "version_requirement": ">= 3.3.0" }
   ],
   "operatingsystem_support": [
-    {
-      "operatingsystem": "CentOS"
-    },
-    {
-      "operatingsystem": "Debian"
-    },
-    {
-      "operatingsystem": "Fedora"
-    },
-    {
-      "operatingsystem": "FreeBSD"
-    },
-    {
-      "operatingsystem": "OracleLinux"
-    },
-    {
-      "operatingsystem": "RedHat"
-    },
-    {
-      "operatingsystem": "RockyLinux"
-    },
-    {
-      "operatingsystem": "AlmaLinux"
-    },
-    {
-      "operatingsystem": "Ubuntu"
-    },
-    {
-      "operatingsystem": "Windows"
-    }
+    { "operatingsystem": "CentOS" },
+    { "operatingsystem": "Debian" },
+    { "operatingsystem": "Fedora" },
+    { "operatingsystem": "FreeBSD" },
+    { "operatingsystem": "OracleLinux" },
+    { "operatingsystem": "RedHat" },
+    { "operatingsystem": "RockyLinux" },
+    { "operatingsystem": "AlmaLinux" },
+    { "operatingsystem": "Ubuntu" },
+    { "operatingsystem": "Windows" }
   ],
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 8.0.0 < 9.0.0"
+      "version_requirement": ">= 8.0.0 < 10.0.0"
     }
   ]
 }
