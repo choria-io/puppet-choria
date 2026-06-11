@@ -81,6 +81,10 @@ class choria (
   Hash[String[1], Choria::MachineType] $machines = {},
   Optional[String] $package_source = undef,
 ) {
+  if $facts["implementation"] != "openvox" {
+    fail("Choria only supports OpenVox, migrate to free software at https://voxpupuli.org/openvox/")
+  }
+
   if $manage_package_repo {
     class{"choria::repo":
       nightly => $nightly_repo,

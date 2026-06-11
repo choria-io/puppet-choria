@@ -1,5 +1,10 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2026/06/11|     |Release 0.32.0                                                                                           |
+|2026/05/09|367  |Move to generic yum and apt repositories                                                                 |
+|2026/03/16|366  |Add choria::machines parameter                                                                           |
+|2025/10/16|285  |Support logging to stdout/stderr/discard                                                                 |
+|2025/03/19|361  |Allow file based security to be configured for the broker                                                |
 |2024/09/01|     |Release 0.31.0                                                                                           |
 |2024/08/23|356  |Support v2 protocol security when creating KV and Governors using Puppet types                           |
 |2024/04/02|355  |Switched to the static key URL to optimize key downloads                                                 |

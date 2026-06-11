@@ -4,11 +4,14 @@
 
 A modern Orchestration Engine with roots in The Marionette Collective.  Please review the [Official Documentation](https://choria.io/docs) for installation guidance.
 
+> [!WARNING]
+> This software only supports OpenVox, Perforce Puppet users will receive a hard failure.
+
 ## Usage
 
 ### Package Repo and Basic Installation
 
-At present RHEL 7 and 8, Debian Stretch, Buster and Bullseye and Ubuntu Mantic and Noble are supported. The repositories also include packages for other tools like our Stream Replicator etc.
+At present RHEL, Debian and Ubuntu are supported via generic rpm and deb packages. The repositories also include packages for other tools like our Stream Replicator etc.
 
 It's best configured using Hiera; to install the YUM/APT Repository and install a particular version with some basic adjustments this will be enough.
 
