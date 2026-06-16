@@ -1,5 +1,7 @@
 |Date      |Issue|Description                                                                                              |
 |----------|-----|---------------------------------------------------------------------------------------------------------|
+|2026/06/11|     |Release 0.32.1                                                                                           |
+|2026/05/16|     |Upgrade Choria to 0.30.2                                                                                 |
 |2026/06/11|     |Release 0.32.0                                                                                           |
 |2026/05/09|367  |Move to generic yum and apt repositories                                                                 |
 |2026/03/16|366  |Add choria::machines parameter                                                                           |
