@@ -38,6 +38,21 @@ plugin.choria.network.websocket_port = <%= $choria::broker::websocket_port %>
 plugin.choria.network.tls_timeout = <%= $choria::broker::tls_timeout %>
 
 <% } -%>
+<% if $choria::broker::network_write_deadline { -%>
+# How long to allow clients to process traffic before treating them as slow
+plugin.choria.network.write_deadline = <%= $choria::broker::network_write_deadline %>
+
+<% } -%>
+<% if $choria::broker::network_auth_timeout { -%>
+# Time to allow for clients to authenticate after the TLS handshake (must not exceed 60s)
+plugin.choria.network.auth_timeout = <%= $choria::broker::network_auth_timeout %>
+
+<% } -%>
+<% if $choria::broker::network_connect_timeout { -%>
+# Maximum time a NATS client will wait to establish a full connection (must not exceed 120s)
+plugin.choria.network.connect_timeout = <%= $choria::broker::network_connect_timeout %>
+
+<% } -%>
 
 <% if $choria::broker::cluster_peer_port > 0 {-%>
 # Other Choria Network Brokers will connect to this port to form a cluster
