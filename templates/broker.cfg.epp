@@ -39,7 +39,7 @@ plugin.choria.network.tls_timeout = <%= $choria::broker::tls_timeout %>
 
 <% } -%>
 <% if $choria::broker::network_write_deadline { -%>
-# How long to allow clients to process traffic before treating them as slow
+# How long the server will allow a network I/O call to block before closing the connection
 plugin.choria.network.write_deadline = <%= $choria::broker::network_write_deadline %>
 
 <% } -%>

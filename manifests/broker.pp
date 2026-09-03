@@ -53,7 +53,7 @@
 # @param adapters Data adapters to configure
 # @param leafnode_upstreams Leafnode connections to configure
 # @param tls_timeout TLS Handshake timeout (in seconds)
-# @param network_write_deadline How long to allow clients to process traffic before treating them as slow, increase on large or slow networks (e.g. "10s")
+# @param network_write_deadline How long the server will allow a network I/O call to block before closing the connection, increase on large or slow networks (e.g. "10s")
 # @param network_auth_timeout Time to allow for clients to authenticate after the TLS handshake, increase on slow or very large networks. Must not exceed 60s (e.g. "2s")
 # @param network_connect_timeout Maximum time a NATS client will wait to establish a full connection including TCP, TLS, and authorization. Should generally exceed tls_timeout + network_auth_timeout. Must not exceed 120s (e.g. "2s")
 # @param identity The identity this broker will use to determine SSL cert names etc
